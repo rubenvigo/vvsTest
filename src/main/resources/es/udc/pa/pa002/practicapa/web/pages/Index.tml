@@ -1,0 +1,9 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:title="title" showTitleInBody="false">
+
+<p class="text-center">${message:welcome}</p>
+<center>
+	<img src="${asset:images/betfict.png}" alt="logobet-fic" height="35%"
+		width="35%" />
+</center>
+</html>

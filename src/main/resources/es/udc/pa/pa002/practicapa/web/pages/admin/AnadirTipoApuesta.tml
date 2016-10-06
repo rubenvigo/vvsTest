@@ -1,0 +1,40 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:title="title" showTitleinBody="false">
+
+<t:If t:test="evento">
+	<div class="text-center">
+		<h2>${evento.nombre}</h2>
+	</div>
+	<t:If t:test="isAdmin">
+		<form t:type="Form" class="form-horizontal"
+			t:id="anadirTipoApuestaContinueButton">
+
+			<t:errors />
+
+			<div class="form-group">
+				<t:label for="pregunta" class="col-md-offset-3 col-md-2" />
+				<div class="col-md-3">
+					<input t:type="TextField" t:id="pregunta" t:validate="required" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<t:label for="multiplesganadoras" class="col-md-offset-3 col-md-2" />
+				<div class="col-md-3">
+					<t:checkbox t:id="multiplesganadoras" />
+				</div>
+			</div>
+
+			<div class="form-group">
+				<div class="col-md-offset-5 col-md-1">
+					<button type="submit" class="btn btn-primary">${message:submit-button}</button>
+				</div>
+			</div>
+
+		</form>
+	</t:If>
+	<p:else>
+		<h4 class="alert alert-danger text-center">${message:error-evento-notFound}</h4>
+	</p:else>
+</t:If>
+</html>

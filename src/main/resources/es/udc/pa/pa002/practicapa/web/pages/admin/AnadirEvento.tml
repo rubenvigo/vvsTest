@@ -1,0 +1,42 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+    xmlns:p="tapestry:parameter"
+    t:type="Layout" t:title="title">
+
+<form t:type="Form" class="form-horizontal" t:id="addEventosForm">
+
+   <t:errors/>
+   
+       <div class="form-group">
+            <t:label for="nombre" class="col-md-offset-3 col-md-2"/>
+            <div class="col-md-3">
+                <input t:type="TextField" t:id="nombre" t:validate="required"/>
+            </div>   
+       </div>
+       <div class="form-group">
+            <t:label for="fecha" class="col-md-offset-3 col-md-2"/>
+            <div class="col-md-3">
+                <input t:type="DateField" t:id="fecha" t:validate="required"/>
+            </div>   
+       </div>
+       <div class="form-group">
+            <t:label for="hora" class="col-md-offset-3 col-md-2"/>
+            <div class="col-md-3">
+                <input t:type="TextField" t:id="hora" t:validate="required"/>
+            </div>   
+       </div>
+
+       <div class="form-group">
+        <t:label for="categoria" class="col-md-offset-3 col-md-2"/>
+        <div class="col-md-3">
+            <t:select t:id="categoria" value="categoria" model="categoriaSelectModel" t:encoder="categoriaEncoder" t:validate="required"/>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-5 col-md-1">
+            <button type="submit" class="btn btn-primary">${message:submit-button}</button>
+        </div>
+    </div>
+
+</form>
+        
+</html>

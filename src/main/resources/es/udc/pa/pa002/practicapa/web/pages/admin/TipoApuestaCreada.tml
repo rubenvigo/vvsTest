@@ -1,0 +1,48 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:title="title">
+
+<t:If t:test="isAdmin">
+	<div class="text-center">
+		<div class="col-md-offset-0 col-md-0">
+			
+			<a href="#" t:type="PageLink"
+			t:page="useroperations/eventodetails"
+			t:context="tipoApuesta.evento.idEvento">${tipoApuesta.evento.nombre}</a>
+		</div>
+		<div class="col-md-offset-0 col-md-0">
+			<label>${message:pregunta}: ${tipoApuesta.pregunta}</label>
+		</div>
+		<div class="col-md-offset-0 col-md-0">
+			<t:If t:test="tipoApuesta.multiplesGanadoras">
+				<label>${message:multiplesGanadoras}: ${message:si}</label>
+				<p:else>
+					<label>${message:multiplesGanadoras}: ${message:no}</label>
+				</p:else>
+			</t:If>
+		</div>
+	</div>
+
+	<table class="table table-striped table-hover">
+
+		<thead>
+			<tr>
+				<th>${message:idApuesta}</th>
+				<th>${message:opcionApuesta}</th>
+				<th>${message:cuota}</th>
+			</tr>
+		</thead>
+		<tbody>
+
+
+			<tr t:type="Loop" t:source="opciones" t:value="opcion">
+				<td>${opcion.idOpcionApuesta}</td>
+				<td>${opcion.respuesta}</td>
+				<td>${opcion.cuota}</td>
+			</tr>
+		</tbody>
+
+
+	</table>
+
+</t:If>
+</html>

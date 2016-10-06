@@ -1,0 +1,45 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:title="title"
+	showTitleinBody="false">
+<t:If t:test="tipoApuesta">
+	<div class="text-center">
+		<h2>${message:title} ${evento.nombre}: ${tipoapuesta.pregunta}</h2>
+	</div>
+	<t:If t:test="opcionesApuesta">
+		<div class="col-md-offset-4 col-md-0">
+			<t:form t:id="especificarGanadorasForm">
+				<t:errors />
+				<div class="form-group text-justify">
+					<t:If t:test="tipoapuesta.multiplesganadoras">
+						<t:checklist t:id="opcionesApuesta" t:selected="ganadoras"
+							t:encoder="opcionApuestaEncoder" model="opcionApuestaSelectModel" />
+						<p:else>
+							<table class="table-hover">
+								<tbody>
+									<t:RadioGroup t:value="opcionApuesta"
+										t:encoder="opcionApuestaEncoder">
+										<t:Loop t:source="opcionesApuesta" t:value="opcionApuesta"
+											t:encoder="opcionApuestaEncoder">
+											<tr>
+												<th><t:radio t:value="opcionApuesta" /></th>
+												<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;${opcionApuesta.respuesta}</td>
+											</tr>
+										</t:Loop>
+									</t:RadioGroup>
+								</tbody>
+							</table>
+						</p:else>
+					</t:If>
+				</div>
+				<button type="submit" class="btn btn-success btn-sm">${message:boton-confirmar}</button>
+			</t:form>
+		</div>
+		<p:else>
+			<h4 class="alert alert-danger text-center">${message:noOpcionesApuesta}</h4>
+		</p:else>
+	</t:If>
+	<p:else>
+		<h4 class="alert alert-danger text-center">${message:error-tipoapuesta-notFound}</h4>
+	</p:else>
+</t:If>
+</html>

@@ -1,0 +1,61 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:title="title">
+
+<t:If t:test="opcionapuesta">
+	<table class="table table-striped table-hover">
+		<tbody>
+			<tr>
+				<th>${message:evento-label}</th>
+				<td>${evento.nombre}</td>
+			</tr>
+			<tr>
+				<th>${message:tipoApuesta-label}</th>
+				<td>${tipoApuesta.pregunta}</td>
+			</tr>
+			<tr>
+				<th>${message:opcionApuesta-label}</th>
+				<td>${opcionApuesta.respuesta}</td>
+			</tr>
+			<tr>
+				<th>${message:cuota-label}</th>
+				<td>${opcionApuesta.cuota}</td>
+			</tr>
+
+
+		</tbody>
+	</table>
+	<table class="table table-striped table-hover">
+		<tbody>
+			<tr>
+				<th><t:If t:test="isUsuario">
+						<t:If t:test="!pastEvent">
+							<form t:type="Form" class="form-horizontal" t:id="apostarForm">
+								<t:errors />
+								<div class="form-group">
+									<div class="col-md-1 ">
+										<t:label for="importe" />
+									</div>
+									<div class="col-md-3 ">
+										<input t:type="TextField" t:id="importe"
+											t:validate="required, min=1" />
+									</div>
+									<button id="submit" type="submit" class="btn btn-primary">${message:boton-apostar}</button>
+								</div>
+
+
+							</form>
+						</t:If>
+					</t:If></th>
+			</tr>
+
+
+		</tbody>
+
+	</table>
+	<p:else>
+		<h4 class="alert alert-danger text-center">${message:error-opcionapuesta-notFound}</h4>
+	</p:else>
+</t:If>
+
+
+</html>

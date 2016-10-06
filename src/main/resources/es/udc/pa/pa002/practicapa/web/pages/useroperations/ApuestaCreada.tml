@@ -1,0 +1,55 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	t:type="Layout" t:title="title" showTitleInBody="false">
+	
+	
+<div class="alert alert-success text-center" role="alert">
+
+	<h4>${message:title}</h4>
+</div>
+
+	<table class="table table-striped table-hover">
+	
+		<tbody>			
+			<tr>	
+				<th>${message:eventoname}</th>
+				<td>${apuesta.opcionapuesta.tipoapuesta.evento.nombre}</td>
+			</tr>
+			<tr>
+				<th>${message:dateEvento}</th>
+				<td>${dataevento}</td>
+			</tr>
+			<tr>
+				<th>${message:category}</th>
+				<td>${apuesta.opcionapuesta.tipoapuesta.evento.categoria.nombre}</td>
+			</tr>
+			<tr>
+				<th>${message:tipoApuesta}</th>
+				<td>${apuesta.opcionapuesta.tipoapuesta.pregunta}</td>
+			</tr>
+			<tr>
+				<th>${message:opcionapuesta}</th>
+				<td>${apuesta.opcionapuesta.respuesta}</td>
+			</tr>
+			<tr>
+				<th>${message:fechaApuesta}</th>
+				<td>${fechaapuesta}</td>
+			</tr>
+			<tr>
+				<th>${message:cantidadApostada}</th>
+				<td>${apuesta.cantidadApostada}</td>
+			</tr>
+			<tr>
+				<th>${message:cuota}</th>
+				<td>${apuesta.opcionapuesta.cuota}</td>
+			</tr>
+			<tr>
+				<th>${message:ganancia}</th>
+				<td>${ganancia}</td>
+			</tr>
+		</tbody>
+	
+	
+	</table>
+	
+
+</html>

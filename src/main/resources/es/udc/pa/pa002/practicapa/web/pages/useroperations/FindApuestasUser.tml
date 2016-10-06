@@ -1,0 +1,75 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter" t:type="Layout" t:title="title">
+
+
+<t:if test="apuestasuser">
+
+	<table class="table table-striped table-bordered table-hover table-responsive">
+
+		<thead>
+			<tr>
+				<th>${message:eventoname}</th>
+				<th>${message:category}</th>
+				<th>${message:tipoApuesta}</th>
+				<th>${message:opcionApuesta}</th>
+				<th>${message:fechaApuesta}</th>
+				<th>${message:cantidadApostada}</th>
+				<th>${message:cuota}</th>
+				<th>${message:estado}</th>
+				<th>${message:ganancia}</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr t:type="Loop" t:source="apuestasuser" t:value="apuesta">
+					<td>${apuesta.opcionapuesta.tipoapuesta.evento.nombre}</td>
+					<td>${apuesta.opcionapuesta.tipoapuesta.evento.categoria.nombre}</td>
+					<td>${apuesta.opcionapuesta.tipoapuesta.pregunta}</td>
+					<td>${apuesta.opcionapuesta.respuesta}</td>
+					<td>${fechaapuesta}</td>
+					<td>${apuesta.cantidadApostada}</td>
+					<td>${apuesta.opcionapuesta.cuota}</td>
+					<t:If t:test="isPendiente">
+						<td>${message:apuesta-pendiente}</td>
+						<td>---</td>
+						<p:else>
+							<t:If t:test="isWinner">
+								<td>${message:apuesta-ganada}</td>
+								<td class="bg-success lead">+${ganancia}</td>
+								<p:else>
+									<td>${message:apuesta-perdida}</td>
+									<td class="bg-danger">-${apuesta.cantidadapostada}</td>
+								</p:else>
+							</t:If>
+						</p:else>
+					</t:If>
+			</tr>
+		</tbody>
+
+
+	</table>
+
+	<ul class="pager">
+
+		<t:if test="previousLinkContext">
+			<li><a href="#" t:type="PageLink"
+				t:page="useroperations/findapuestasuser" t:context="previousLinkContext">&larr;${message:boton-antes}</a>
+			</li>
+		</t:if>
+
+		<li>&nbsp;</li>
+
+		<t:if test="nextLinkContext">
+			<li><a href="#" t:type="PageLink"
+				t:page="useroperations/findapuestasuser" t:context="nextLinkContext">${message:boton-siguiente}&rarr;</a>
+			</li>
+		</t:if>
+
+	</ul>
+
+	<p:else>
+		<h4 class="alert alert-danger text-center">${message:alert-noapuestas}</h4>
+	</p:else>
+
+</t:if>
+
+</html>

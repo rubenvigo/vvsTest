@@ -1,0 +1,46 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+	xmlns:p="tapestry:parameter"
+	t:type="Layout" t:title="title">
+	
+	
+	
+	
+<t:grid source="eventoGridDataSource" add="{categoria}" row="evento" rowsPerPage="EVENTOSPERPAGE" exclude="idEvento,tipoApuesta" inPlace="true">
+	<p:nombreHeader>
+		${message:name}
+	</p:nombreHeader>
+
+	<p:fechaHeader>
+		${message:date}
+	</p:fechaHeader>
+
+	<p:categoriaHeader>
+		${message:category}
+	</p:categoriaHeader>
+
+	<p:nombreCell>
+		<a href="#" t:type="PageLink" t:page="useroperations/eventodetails" t:context="evento.idEvento">${evento.nombre}</a>
+	</p:nombreCell>
+	
+	<p:fechaCell>
+		<t:output value="evento.fecha.time" format="format"/>
+	</p:fechaCell>
+
+	<p:categoriaCell>
+	${evento.categoria.nombre}
+	</p:categoriaCell>
+
+	<p:empty>
+		<h4 class="alert alert-danger text-center">
+			<t:if test="eventoGridDataSource.eventoNotFound">
+				${message:alert-noeventos}
+				<p:else>
+					${message:alert-noeventos}
+	            </p:else>
+			</t:if>
+		</h4>
+	</p:empty>
+</t:grid>	
+
+</html>
+	

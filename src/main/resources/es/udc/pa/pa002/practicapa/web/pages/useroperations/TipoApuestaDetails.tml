@@ -1,0 +1,52 @@
+<html xmlns:t="http://tapestry.apache.org/schema/tapestry_5_3.xsd"
+		xmlns:p="tapestry:parameter"
+	t:type="Layout" t:title="title" showTitleInBody="false">
+	
+	<t:If t:test="tipoApuesta">
+	<div class="text-center">
+		<h2>${evento.nombre}: ${tipoapuesta.pregunta}</h2>
+	</div>
+	<t:If t:test="eventoStart">
+		<t:If t:test="isAdmin"> 
+			<t:If t:test="notResolved">
+				<form t:type="Form" class="form-horizontal" t:id="anadirTipoApuesta">
+					<div class="text-right">
+						<button type="submit" class="btn btn-primary" >${message:boton-especificarGanadoras}</button>
+					</div>
+				</form>
+			</t:If>	
+		</t:If>
+	</t:If>
+	<t:If t:test="opcionesApuesta">
+		<table class="table table-striped table-hover">
+		
+			<thead>
+				<tr>
+					<th>${message:options}</th>
+					<th>${message:rate}</th>
+				</tr>
+			</thead>
+			<tbody>			
+				<tr t:type="Loop" t:source="opcionesApuesta" t:value="opcionApuesta">
+					<t:If t:test="opcionApuesta.estado">
+						<td class="lead"><a class="text-success" href="#" t:type="PageLink" t:page="useroperations/opcionapuestadetails" t:context="opcionApuesta.idOpcionApuesta">${opcionApuesta.respuesta}</a></td>
+						<td>${opcionApuesta.cuota}</td>
+						<p:else>
+							<td><a href="#" t:type="PageLink" t:page="useroperations/opcionapuestadetails" t:context="opcionApuesta.idOpcionApuesta">${opcionApuesta.respuesta}</a></td>
+							<td>${opcionApuesta.cuota}</td>
+						</p:else>
+					</t:If>
+				</tr>
+			</tbody>
+		
+		
+		</table>
+		<p:else>
+			<h4 class="alert alert-danger text-center">${message:noOpcionesApuesta}</h4>
+		</p:else>
+	</t:If>
+		<p:else>
+		<h4 class="alert alert-danger text-center">${message:error-tipoapuesta-notFound}</h4>
+	</p:else>
+</t:If>
+</html>
