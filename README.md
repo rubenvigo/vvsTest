@@ -1,6 +1,6 @@
 # vvsTest
 
-https://travis-ci.org/rubenvigo/vvsTest.svg?branch=master
+[![Build Status](https://travis-ci.org/rubenvigo/vvsTest.svg?branch=master)](https://travis-ci.org/rubenvigo/vvsTest)
 
 
 Responsables do producto software:
