@@ -45,8 +45,6 @@ import es.udc.pa.pa002.practicapa.model.userprofile.UserProfileDao;
 import es.udc.pa.pa002.practicapa.model.userservice.util.PasswordEncrypter;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
-import com.ibatis.common.jdbc.ScriptRunner;
-
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
