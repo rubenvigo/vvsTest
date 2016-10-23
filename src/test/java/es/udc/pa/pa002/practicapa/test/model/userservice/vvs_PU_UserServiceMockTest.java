@@ -49,7 +49,7 @@ import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @RunWith(MockitoJUnitRunner.class)
-public class VvsMockTest2 {
+public class vvs_PU_UserServiceMockTest {
 
 	@InjectMocks
 	private UserServiceImpl userService = new UserServiceImpl();
