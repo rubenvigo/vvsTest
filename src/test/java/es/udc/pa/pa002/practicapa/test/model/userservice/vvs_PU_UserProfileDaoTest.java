@@ -49,6 +49,15 @@ public class vvs_PU_UserProfileDaoTest {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/*
+	 * PR-UN-006
+	 * 
+	 * UserProfileDAO
+	 * 
+	 * findByLoginName Comprobacion de búsqueda de un usuario inexistente
+	 * loginName inexistente en la bd Exception:InstanceNotFoundException Base
+	 * de datos arrancada
+	 */
 	@Test(expected = InstanceNotFoundException.class)
 	public void findUserProfileByLoginNotFound()
 			throws InstanceNotFoundException {
@@ -57,6 +66,15 @@ public class vvs_PU_UserProfileDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-005
+	 * 
+	 * UserProfileDAO
+	 * 
+	 * findByLoginName Comprobacion de búsqueda de un usuario por su login name
+	 * loginName existente en la bd UserProfile con el loginName de entrada Base
+	 * de datos arrancada con un UserProfile insertado
+	 */
 	@Test
 	public void findUserProfileByLogin() throws InstanceNotFoundException {
 		String encPass = PasswordEncrypter.crypt("pass");

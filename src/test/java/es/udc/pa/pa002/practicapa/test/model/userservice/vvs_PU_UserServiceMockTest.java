@@ -72,6 +72,15 @@ public class vvs_PU_UserServiceMockTest {
 	@Rule
 	public ExpectedException thrown = ExpectedException.none();
 
+	/*
+	 * PR-UN-066
+	 * 
+	 * UserService
+	 * 
+	 * registerUser Aplicacion de particiones equivalentes -loginName del
+	 * usuario -contraseña -UserProfilDetails del usuario UserProfile con los
+	 * datos de registro Base de datos arrancada
+	 */
 	@Test
 	public void registerUser() throws DuplicateInstanceException,
 			InstanceNotFoundException {
@@ -82,6 +91,16 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-067
+	 * 
+	 * UserService
+	 * 
+	 * registerUser Aplicacion de particiones equivalentes -loginName del
+	 * usuario -contraseña -UserProfileDetails del usuario
+	 * Excepcion:"DuplicateInstanceException" Base de datos arrancada con un
+	 * userProfile coincidente con los datos de registro
+	 */
 	@Test
 	public void registerRepeatedUser() throws DuplicateInstanceException {
 		thrown.expect(DuplicateInstanceException.class);
@@ -90,6 +109,16 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-068
+	 * 
+	 * UserService
+	 * 
+	 * login Aplicacion de particiones equivalentes -loginName del usuario
+	 * -password en claro del usuario -false UserProfile del usuario autenticado
+	 * Base de datos arrancada con un userProfile coincidente con los datos de
+	 * login
+	 */
 	@Test
 	public void loginWithPassword() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -102,6 +131,16 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-069
+	 * 
+	 * UserService
+	 * 
+	 * login Aplicacion de particiones equivalentes -loginName del usuario
+	 * -password encriptada del usuario -true UserProfile del usuario
+	 * autenticado Base de datos arrancada con un userProfile coincidente con
+	 * los datos de login
+	 */
 	@Test
 	public void loginWithEncryptedPassword() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -114,6 +153,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-070
+	 * 
+	 * UserService
+	 * 
+	 * login Aplicacion de particiones equivalentes -loginName de usuario no
+	 * existente -password -true Excepcion:"InstanceNotFoundException" Base de
+	 * datos arrancada
+	 */
 	@Test
 	public void loginUserNotFound() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -127,6 +175,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-072
+	 * 
+	 * UserService
+	 * 
+	 * login Aplicacion de particiones equivalentes -loginName del usuario
+	 * existente -password encriptada incorrecta -true
+	 * Excepcion:"IncorrectPasswordException" Base de datos arrancada
+	 */
 	@Test
 	public void loginIncorrectPassword() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -140,6 +197,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-073
+	 * 
+	 * UserService
+	 * 
+	 * login Aplicacion de particiones equivalentes -loginName del usuario
+	 * existente -password en claro incorrecta -false
+	 * Excepcion:"IncorrectPasswordException" Base de datos arrancada
+	 */
 	@Test
 	public void loginIncorrectEncryptedPassword()
 			throws InstanceNotFoundException, IncorrectPasswordException {
@@ -154,6 +220,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-076
+	 * 
+	 * UserService
+	 * 
+	 * findUserProfile Comprobacion busqueda de un usuario por su userProfileId
+	 * userProfileId de un usuario existente UserProfile correspondiente al
+	 * userProfileId Base de datos arrancada con un userProfile insertado
+	 */
 	@Test
 	public void findUserProfile() throws InstanceNotFoundException {
 		UserProfile user = new UserProfile("name", "pass", "firstName",
@@ -164,6 +239,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-077
+	 * 
+	 * UserService
+	 * 
+	 * findUserProfile Comprobacion busqueda de un usuario inexistente por su
+	 * userProfileId userProfileId inexistente en la base de datos
+	 * Excepcion:"InstanceNotFoundException" Base de datos arrancada
+	 */
 	@Test
 	public void findUserProfileNotFound() throws InstanceNotFoundException {
 		thrown.expect(InstanceNotFoundException.class);
@@ -174,6 +258,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-078
+	 * 
+	 * UserService
+	 * 
+	 * updateUserProfileDetails Comprobacion actualización de un
+	 * UserProfileDetails existente -userProfileId del usuario -UserDetails No
+	 * salida Base de datos arrancada con un userProfile insertado
+	 */
 	@Test
 	public void updateUserProfile() throws InstanceNotFoundException {
 		String encPass = PasswordEncrypter.crypt("pass");
@@ -190,6 +283,16 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-079
+	 * 
+	 * UserService
+	 * 
+	 * updateUserProfileDetails Comprobacion actualización de un
+	 * UserProfileDetails inexistente -userProfileId inexistente
+	 * -UserProfileDetails detalles del ususario
+	 * Excepcion:"InstanceNotFoundException" Base de datos arrancada
+	 */
 	@Test
 	public void updateUserProfileNotFound() throws InstanceNotFoundException {
 		thrown.expect(InstanceNotFoundException.class);
@@ -201,6 +304,16 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-080
+	 * 
+	 * UserService
+	 * 
+	 * changePassword Comprobacion cambio de contraseña -userProfileId del
+	 * usuario -oldClearPassword contraseña antigua del usuario
+	 * -newClearPassword nueva contraseña del usuario No salida Base de datos
+	 * arrancada con un userProfie
+	 */
 	@Test
 	public void changePassword() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -216,6 +329,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-081
+	 * 
+	 * UserService
+	 * 
+	 * changePassword Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -userProfileId inexistente del usuario -oldClearPassword
+	 * contraseña antigua del usuario -newClearPassword nueva contraseña del
+	 * usuario Excepcion:"InstanceNotFoundException" Base de datos arrancada con
+	 * un userProfile insertado
+	 */
 	@Test
 	public void changePasswordNotFound() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -228,6 +352,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-082
+	 * 
+	 * UserService
+	 * 
+	 * changePassword Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -userProfileId del usuario -oldClearPassword contraseña antigua
+	 * del usuario -newClearPassword nueva contraseña invalida del usuario
+	 * Excepcion:"IncorrectPasswordException" Base de datos arrancada con un
+	 * userProfie
+	 */
 	@Test
 	public void changePasswordIncorrectOld() throws InstanceNotFoundException,
 			IncorrectPasswordException {
@@ -243,6 +378,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-084
+	 * 
+	 * UserService
+	 * 
+	 * addEvento Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -Evento sin id con fecha posterior al instante actual No error Base de
+	 * datos arrancada con una categoria insertada
+	 */
 	@Test
 	public void addEvento() throws InvalidDateException,
 			InstanceAlreadyCreatedException {
@@ -253,6 +397,16 @@ public class vvs_PU_UserServiceMockTest {
 		userService.addEvento(evento);
 	}
 
+	/*
+	 * PR-UN-085
+	 * 
+	 * UserService
+	 * 
+	 * addEvento Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -Evento sin id con fecha anterior al instante actual
+	 * Excepcion:InvalidDateException Base de datos arrancada con una categoria
+	 * insertada
+	 */
 	@Test
 	public void addPastEvento() throws InvalidDateException,
 			InstanceAlreadyCreatedException {
@@ -265,6 +419,16 @@ public class vvs_PU_UserServiceMockTest {
 		userService.addEvento(evento);
 	}
 
+	/*
+	 * PR-UN-086
+	 * 
+	 * UserService
+	 * 
+	 * addEvento Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -Evento sin id con fecha, nombre y categoria coincidentes con un Evento
+	 * en base de datos Excepcion:InstanceAlreadyCreatedException Base de datos
+	 * arrancada con una categoria y un evento insertado
+	 */
 	@Test
 	public void addRepeatedEvento() throws InvalidDateException,
 			InstanceAlreadyCreatedException {
@@ -283,6 +447,16 @@ public class vvs_PU_UserServiceMockTest {
 		userService.addEvento(evento);
 	}
 
+	/*
+	 * PR-UN-087
+	 * 
+	 * UserService
+	 * 
+	 * findEventos Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -null -null -true -0 -10 EventoBlock (lista de 10 Eventos,TRUE)
+	 * Base de datos arrancada con una categoria y al menos 11 Eventos
+	 * insertados
+	 */
 	@Test
 	public void findEventos() {
 		Categoria categoria = new Categoria("Futbol");
@@ -305,6 +479,15 @@ public class vvs_PU_UserServiceMockTest {
 		assertEquals(eventoBlock.getEventos().size(), 2);
 	}
 
+	/*
+	 * PR-UN-088
+	 * 
+	 * UserService
+	 * 
+	 * findEventos Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -null -null -true -10 -10 EventoBlock (lista de 2 Eventos,FALSE)
+	 * Base de datos arrancada con una categoria y 12 Eventos insertados
+	 */
 	@Test
 	public void findEventosNotExistsMore() {
 		Categoria categoria = new Categoria("Futbol");
@@ -325,6 +508,15 @@ public class vvs_PU_UserServiceMockTest {
 		assertEquals(eventoBlock.getEventos().size(), 2);
 	}
 
+	/*
+	 * PR-UN-089
+	 * 
+	 * UserService
+	 * 
+	 * findEventos Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -null -null -true -0 -10 EventoBlock (lista vacia,FALSE) Base de
+	 * datos arrancada
+	 */
 	@Test
 	public void findEventosNotEventos() {
 		Categoria categoria = new Categoria("Futbol");
@@ -345,6 +537,18 @@ public class vvs_PU_UserServiceMockTest {
 		assertTrue(eventoBlock.getEventos().isEmpty());
 	}
 
+	/*
+	 * PR-UN-090
+	 * 
+	 * UserService
+	 * 
+	 * addTipoApuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idEvento de base de datos con fecha posterior al instante actual
+	 * -TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de
+	 * OpcionApuesta sin id sin repetir. Mismo TipoApuesta con id y la lista de
+	 * OpcionApuesta con ids Base de datos arrancada con una categoria y evento
+	 * insertados
+	 */
 	@Test
 	public void addTipoApuesta() throws InstanceNotFoundException,
 			EventoStartedException, InstanceAlreadyCreatedException,
@@ -362,7 +566,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
-	@Test
+	/*
+	 * PR-UN-091
+	 * 
+	 * UserService
+	 * 
+	 * addTipoApuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idEvento de base de datos con fecha anterior al instante actual
+	 * -TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de
+	 * OpcionApuesta sin id sin repetir. Excepcion:EventoStartedException Base
+	 * de datos arrancada con una categoria y evento insertados
+	 */
 	public void addTipoApuestaEventoNotFound()
 			throws InstanceNotFoundException, EventoStartedException,
 			InstanceAlreadyCreatedException, RepeatedOpcionApuestaException {
@@ -381,6 +595,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-093
+	 * 
+	 * UserService
+	 * 
+	 * addTipoApuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idEvento de base de datos con fecha posterior al instante actual
+	 * -TipoApuesta sin id cuya pregunta coincida con la de otro TipoApuesta en
+	 * el Evento Excepcion:InstanceAlreadyCreatedException Base de datos
+	 * arrancada con una categoria, un evento y un tipoApuesta insertados
+	 */
 	@Test
 	public void addTipoApuestaRepeatedTipoApuesta()
 			throws InstanceNotFoundException, EventoStartedException,
@@ -401,6 +626,18 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-094
+	 * 
+	 * UserService
+	 * 
+	 * addTipoApuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idEvento de base de datos con fecha posterior al instante actual
+	 * -TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de
+	 * OpcionApuesta en la que dos opcionesApuesta coincidan en su respuesta
+	 * Excepcion:RepeatedOpcionApuestaException Base de datos arrancada con una
+	 * categoria y un evento insertados
+	 */
 	@Test
 	public void addTipoApuestaRepeatedOpcionApuesta()
 			throws InstanceNotFoundException, EventoStartedException,
@@ -425,6 +662,18 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-095
+	 * 
+	 * UserService
+	 * 
+	 * apostar Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -idOpcionApuesta de base de datos -idUsuario de base datos -cantidad a
+	 * apostar ApuestaRealizada(con el usuario correspondiente al idUsuario,con
+	 * la OpcionApuesta correspondiente al idOpcionApuesta y la cantidad de
+	 * entrada) Base de datos arrancada con una categoria, un evento, un
+	 * TipoApuesta, una OpcionApuesta y un UserProfile insertados
+	 */
 	@Test
 	public void apostar() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -454,6 +703,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-096
+	 * 
+	 * UserService
+	 * 
+	 * apostar Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -idOpcionApuesta de base de datos -idUsuario de base datos -cantidad a
+	 * apostar negativa Excepcion:InvalidValueException Base de datos arrancada
+	 */
 	@Test(expected = InvalidValueException.class)
 	public void apostarFailTest() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -479,6 +737,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-097
+	 * 
+	 * UserService
+	 * 
+	 * apostar Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -idOpcionApuesta de base de datos -idUsuario de base datos -cantidad a
+	 * apostar Excepcion:EventoStartedException Base de datos arrancada con una
+	 * categoria, un evento(con fecha anterior al instante actual), un
+	 * TipoApuesta y una OpcionApuesta insertados
+	 */
 	@Test
 	public void apostarStartedEvent() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -501,6 +770,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-098
+	 * 
+	 * UserService
+	 * 
+	 * apostar Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -idOpcionApuesta de base de datos -idUsuario -cantidad a apostar
+	 * Excepcion:InstanceNotFoundException Base de datos arrancada con una
+	 * categoria, un evento(con fecha anterior al instante actual), un
+	 * TipoApuesta y una OpcionApuesta insertados
+	 */
 	@Test
 	public void apostarOpcionNotFound() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -524,6 +804,15 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-099
+	 * 
+	 * UserService
+	 * 
+	 * apostar Aplicacion de particiones equivalentes en la entrada del metodo
+	 * -idOpcionApuesta -idUsuario de base datos -cantidad a apostar
+	 * Excepcion:InstanceNotFoundException Base de datos arrancada
+	 */
 	@Test
 	public void apostarUserNotFound() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -548,6 +837,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-100
+	 * 
+	 * UserService
+	 * 
+	 * especificarganadoras Aplicacion de particiones equivalentes en la entrada
+	 * del metodo -idTipoApuesta -Lista de idOpcionApuesta de dicho TipoApuesta
+	 * No salida Base de datos arrancada con una categoria, un evento(con fecha
+	 * anterior al instante actual), un TipoApuesta y una OpcionApuesta
+	 * insertados
+	 */
 	@Test
 	public void especificarGanadoras() throws InstanceNotFoundException,
 			EventoNotStartedException, OpcionApuestaAlreadySolvedException,
@@ -580,6 +880,17 @@ public class vvs_PU_UserServiceMockTest {
 		assertFalse(opcionApuesta2.getEstado());
 	}
 
+	/*
+	 * PR-UN-101
+	 * 
+	 * UserService
+	 * 
+	 * especificarganadoras Aplicacion de particiones equivalentes en la entrada
+	 * del metodo -idTipoApuesta -Lista de idOpcionApuesta de dicho TipoApuesta
+	 * Excepcion:EventoNotStartedException Base de datos arrancada con una
+	 * categoria, un evento(con fecha posterior al instante actual), un
+	 * TipoApuesta y una OpcionApuesta insertados
+	 */
 	@Test
 	public void especificarGanadorasEventoNotStarted()
 			throws InstanceNotFoundException, EventoNotStartedException,
@@ -611,6 +922,18 @@ public class vvs_PU_UserServiceMockTest {
 		userService.EspecificarGanadoras(1L, ganadoras);
 	}
 
+	/*
+	 * PR-UN-103
+	 * 
+	 * UserService
+	 * 
+	 * especificarganadoras Aplicacion de particiones equivalentes en la entrada
+	 * del metodo -idTipoApuesta con las opcionesApuesta resueltas -Lista de
+	 * idOpcionApuesta de dicho TipoApuesta
+	 * Excepcion:OpcionApuestaAlreadySolvedException Base de datos arrancada con
+	 * una categoria, un evento(con fecha posterior al instante actual), un
+	 * TipoApuesta y una/s OpcionApuesta(resueltas) insertados
+	 */
 	@Test
 	public void especificarGanadorasAlreadySolved()
 			throws InstanceNotFoundException, EventoNotStartedException,
@@ -645,6 +968,19 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * 
+	 * PR-UN-104
+	 * 
+	 * UserService
+	 * 
+	 * especificarganadoras Aplicacion de particiones equivalentes en la entrada
+	 * del metodo -idTipoApuesta de TipoApuesta(simple ganadora) con las
+	 * opcionesApuesta -Lista con 1 o más idOpcionApuesta de dicho TipoApuesta
+	 * Excepcion:SimpleWinnerException Base de datos arrancada con una
+	 * categoria, un evento(con fecha posterior al instante actual), un
+	 * TipoApuesta(con simple ganadora) y unas OpcionApuesta insertados
+	 */
 	@Test
 	public void especificarGanadorasSimpleWinnerException()
 			throws InstanceNotFoundException, EventoNotStartedException,
@@ -680,6 +1016,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-105
+	 * 
+	 * UserService
+	 * 
+	 * especificarganadoras Aplicacion de particiones equivalentes en la entrada
+	 * del metodo -idTipoApuesta -Lista con varios idOpcionApuesta en la que uno
+	 * no pertenece a dicho TipoApuesta Excepcion:InvalidOptionException Base de
+	 * datos arrancada con una categoria, un evento(con fecha posterior al
+	 * instante actual), un TipoApuesta y unas OpcionApuesta insertados
+	 */
 	@Test
 	public void especificarGanadorasInvalidOptionException()
 			throws InstanceNotFoundException, EventoNotStartedException,
@@ -713,6 +1060,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-106
+	 * 
+	 * UserService
+	 * 
+	 * consultarapuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idUsuario -0 -10 ApuestaBlock (lista de 10
+	 * ApuestaRealizadas,TRUE) Base de datos arrancada con una categoria, un
+	 * Evento(con fecha anterior al instante actual), un TipoApuesta, unas
+	 * OpcionApuesta, un UserProfile y 11 ApuestasRealizadas insertados
+	 */
 	@Test
 	public void consultarapuesta() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -767,6 +1125,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-107
+	 * 
+	 * UserService
+	 * 
+	 * consultarapuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idUsuario -10 -10 ApuestaBlock (lista de 2
+	 * ApuestasRealizadas,FALSE) Base de datos arrancada con una categoria, un
+	 * Evento(con fecha anterior al instante actual), un TipoApuesta, unas
+	 * OpcionApuesta, un UserProfile y 12 ApuestasRealizadas insertados
+	 */
 	@Test
 	public void consultarapuesta2() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {
@@ -788,16 +1157,7 @@ public class vvs_PU_UserServiceMockTest {
 
 		when(opcionApuestaDaoMock.find(1L)).thenReturn(opcionApuesta);
 		when(userProfileDaoMock.find(1L)).thenReturn(user);
-		ApuestaRealizada apuesta1 = userService.apostar(1L, 1, 1L);
-		ApuestaRealizada apuesta2 = userService.apostar(1L, 2, 1L);
-		ApuestaRealizada apuesta3 = userService.apostar(1L, 3, 1L);
-		ApuestaRealizada apuesta4 = userService.apostar(1L, 4, 1L);
-		ApuestaRealizada apuesta5 = userService.apostar(1L, 5, 1L);
-		ApuestaRealizada apuesta6 = userService.apostar(1L, 6, 1L);
-		ApuestaRealizada apuesta7 = userService.apostar(1L, 7, 1L);
-		ApuestaRealizada apuesta8 = userService.apostar(1L, 8, 1L);
-		ApuestaRealizada apuesta9 = userService.apostar(1L, 9, 1L);
-		ApuestaRealizada apuesta10 = userService.apostar(1L, 10, 1L);
+
 		ApuestaRealizada apuesta11 = userService.apostar(1L, 11, 1L);
 		ApuestaRealizada apuesta12 = userService.apostar(1L, 12, 1L);
 
@@ -813,6 +1173,17 @@ public class vvs_PU_UserServiceMockTest {
 
 	}
 
+	/*
+	 * PR-UN-108
+	 * 
+	 * UserService
+	 * 
+	 * consultarapuesta Aplicacion de particiones equivalentes en la entrada del
+	 * metodo -idUsuario -0 -10 ApuestaBlock (lista de 2
+	 * ApuestasRealizadas,FALSE) Base de datos arrancada con una categoria, un
+	 * Evento(con fecha anterior al instante actual), un TipoApuesta, unas
+	 * OpcionApuesta, un UserProfile y 2 ApuestasRealizadas insertados
+	 */
 	@Test
 	public void consultarapuesta3() throws InstanceNotFoundException,
 			EventoStartedException, InvalidValueException {

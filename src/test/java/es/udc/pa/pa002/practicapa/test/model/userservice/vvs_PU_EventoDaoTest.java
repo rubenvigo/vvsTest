@@ -56,6 +56,15 @@ public class vvs_PU_EventoDaoTest {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/*
+	 * PR-UN-009
+	 * 
+	 * EventoDAO
+	 * 
+	 * saveOrUpdate Recorrido del diagrama de estados de la unidad Evento sin
+	 * idEvento Mismo objeto Evento con idEvento Base de datos arrancada con una
+	 * categoria insertada
+	 */
 	@Test
 	public void saveEvento() {
 		Categoria categoria = new Categoria("Futbol");
@@ -67,6 +76,15 @@ public class vvs_PU_EventoDaoTest {
 		assertNotNull(evento.getIdEvento());
 	}
 
+	/*
+	 * PR-UN-010
+	 * 
+	 * EventoDAO
+	 * 
+	 * saveOrUpdate Recorrido del diagrama de estados de la unidad Evento con
+	 * idEvento existente en la bd Mismo objeto Evento Base de datos arrancada
+	 * con una categoria y un evento insertados
+	 */
 	@Test
 	public void updateEvento() {
 		Categoria categoria = new Categoria("Futbol");
@@ -81,6 +99,15 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(evento, saveEvento);
 	}
 
+	/*
+	 * PR-UN-011
+	 * 
+	 * EventoDAO
+	 * 
+	 * remove Recorrido del diagrama de estados de la unidad idEvento existente
+	 * en la base de datos No existen fallos Base de datos arrancada con una
+	 * categoria y un evento insertados
+	 */
 	@Test
 	public void deleteEvento() throws InstanceNotFoundException {
 		Categoria categoria = new Categoria("Futbol");
@@ -93,6 +120,15 @@ public class vvs_PU_EventoDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-012
+	 * 
+	 * EventoDAO
+	 * 
+	 * remove Recorrido del diagrama de estados de la unidad idEvento no
+	 * existente en la bd Exception:InstanceNotFoundException Base de datos
+	 * arrancada
+	 */
 	@Test(expected = InstanceNotFoundException.class)
 	public void deleteEventoNotFound() throws InstanceNotFoundException {
 
@@ -100,6 +136,15 @@ public class vvs_PU_EventoDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-013
+	 * 
+	 * EventoDAO
+	 * 
+	 * find Comprobacion de búsqueda de un evento inexistente por su idEvento
+	 * idEvento inexistente en la bd Exception:InstanceNotFoundException Base de
+	 * datos arrancada
+	 */
 	@Test(expected = InstanceNotFoundException.class)
 	public void findEventoByIdNotFound() throws InstanceNotFoundException {
 
@@ -107,6 +152,15 @@ public class vvs_PU_EventoDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-014
+	 * 
+	 * EventoDAO
+	 * 
+	 * find Comprobacion de búsqueda de un evento existente por su idEvento
+	 * idEvento existente en la bd Evento con el idEvento Base de datos
+	 * arrancada con una categoria y un evento insertados
+	 */
 	@Test
 	public void findEventoById() throws InstanceNotFoundException {
 		Categoria categoria = new Categoria("Futbol");
@@ -121,6 +175,17 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(foundEvento, evento);
 	}
 
+	/*
+	 * PR-UN-015
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria con null
+	 * -adminstrador true -startindex=0 -count=10 Lista de eventospasados o no
+	 * cuyo nombre contiene todas las palabra/s Base de datos arrancada con
+	 * Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByKeywordsAdmin() {
 
@@ -148,6 +213,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-016
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s con
+	 * null -idCategoria existente -adminstrador true -startindex=0 -count=10
+	 * Lista de eventos pasados o no que pertenezcan a la categoria de entrada
+	 * Base de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByKeywords() {
 
@@ -174,6 +249,17 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-017
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria con null
+	 * -adminstrador false -startindex=0 -count=10 Lista de eventos no pasados
+	 * cuyo nombre contiene todas las palabra/s Base de datos arrancada con
+	 * Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByCategoryAdmin() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -199,6 +285,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-018
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s con
+	 * null -idCategoria existente -adminstrador false -startindex=0 -count=10
+	 * Lista de eventos no pasados que pertenezcan a la categoria de entrada
+	 * Base de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByCategory() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -222,6 +318,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-019
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s con
+	 * null -idCategoria con null -adminstrador con false -startindex=0
+	 * -count=10 Lista de eventos no pasados guardados en la base de datos Base
+	 * de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByDateAdmin() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -247,6 +353,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-020
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s con
+	 * null -idCategoria con null -adminstrador con true -startindex=0 -count=10
+	 * Lista de eventos pasados o no guardados en la base de datos Base de datos
+	 * arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByDateUser() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -271,6 +387,18 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-021
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria existente
+	 * -adminstrador con true -startindex=0 -count=10 Lista de eventos pasados o
+	 * no guardados en la base de datos que pertenezan a la categoria de entrada
+	 * y cuyo nombre coincida con todas las palabra/s. Base de datos arrancada
+	 * con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByKeywordsCategoryAdmin() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -295,6 +423,18 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-022
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria existente
+	 * -adminstrador con false -startindex=0 -count=10 Lista de eventos no
+	 * pasados guardados en la base de datos que pertenezan a la categoria de
+	 * entrada y cuyo nombre coincida con todas las palabra/s. Base de datos
+	 * arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByKeywordsCategoryUser() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -322,6 +462,18 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-023
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria existente
+	 * -adminstrador con false -startindex=1 -count=10 Lista de eventos no
+	 * pasados guardados en la base de datos que pertenezan a la categoria de
+	 * entrada y cuyo nombre coincida con todas las palabra/s sin mostrar el mas
+	 * reciente. Base de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByKeywordsCategoryUserPageStartIndex() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -352,6 +504,18 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-024
+	 * 
+	 * EventoDAO
+	 * 
+	 * findByParameters Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria existente
+	 * -adminstrador con false -startindex=0 -count=1 Lista con el evento mas
+	 * reciente no pasado guardado en la base de datos que pertenece a la
+	 * categoria de entrada y cuyo nombre coincide con todas las palabra/s. Base
+	 * de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testFindEventosByKeywordsCategoryUserPageCount() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -382,6 +546,15 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(eventos, foundEventos);
 	}
 
+	/*
+	 * PR-UN-025
+	 * 
+	 * EventoDAO
+	 * 
+	 * existsEvent Aplicacion de particiones equivalentes -nombre del evento
+	 * -idCategoria del evento -fecha del evento True Base de datos arrancada
+	 * con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void existsEvento() {
 		Categoria categoria = new Categoria("Futbol");
@@ -394,6 +567,15 @@ public class vvs_PU_EventoDaoTest {
 				fecha));
 	}
 
+	/*
+	 * PR-UN-026
+	 * 
+	 * EventoDAO
+	 * 
+	 * existsEvent Aplicacion de particiones equivalentes -nombre del evento
+	 * existente -idCategoria no correspondiente al del evento -fecha del evento
+	 * False Base de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void NotExistsCategoryEvento() {
 		Categoria categoria = new Categoria("Futbol");
@@ -408,6 +590,16 @@ public class vvs_PU_EventoDaoTest {
 				categoria2.getIdCategoria(), fecha));
 	}
 
+	/*
+	 * PR-UN-027
+	 * 
+	 * EventoDAO
+	 * 
+	 * existsEvent Aplicacion de particiones equivalentes -nombre del evento
+	 * existente -idCategoria del evento -fecha no correspondiente a la del
+	 * evento False Base de datos arrancada con Categoria/s y Evento/s
+	 * insertados.
+	 */
 	@Test
 	public void NotExistsDateEvento() {
 		Categoria categoria = new Categoria("Futbol");
@@ -422,6 +614,16 @@ public class vvs_PU_EventoDaoTest {
 				fecha2));
 	}
 
+	/*
+	 * PR-UN-028
+	 * 
+	 * EventoDAO
+	 * 
+	 * existsEvent Aplicacion de particiones equivalentes -nombre del evento
+	 * inexistente -idCategoria de un evento existente -fecha correspondiente a
+	 * un evento de la categoria anterior. False Base de datos arrancada con
+	 * Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void NotExistsNameEvento() {
 		Categoria categoria = new Categoria("Futbol");
@@ -434,6 +636,17 @@ public class vvs_PU_EventoDaoTest {
 				categoria.getIdCategoria(), fecha));
 	}
 
+	/*
+	 * PR-UN-029
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria con null
+	 * -adminstrador con false Número de eventos no pasados cuyo nombre contiene
+	 * todas las palabra/s Base de datos arrancada con Categoria/s y Evento/s
+	 * insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByKeywordsAdmin() {
 
@@ -458,6 +671,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(2, foundEventos);
 	}
 
+	/*
+	 * PR-UN-030
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabas/s con
+	 * null -idCategoria existente -adminstrador con false Número de eventos no
+	 * pasados que pertenezcan a la categoria de entrada Base de datos arrancada
+	 * con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByKeywords() {
 
@@ -482,6 +705,17 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(1, foundEventos);
 	}
 
+	/*
+	 * PR-UN-031
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria existente
+	 * -adminstrador con false Número de eventos no pasados cuyo nombre contiene
+	 * todas las palabra/s y que pertenezcan a la categoria de entrada Base de
+	 * datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByCategoryAdmin() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -504,6 +738,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(2, foundEventos);
 	}
 
+	/*
+	 * PR-UN-032
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabas/s con
+	 * null -idCategoria con null -adminstrador con false Número de eventos no
+	 * pasados guardados en la base de datos Base de datos arrancada con
+	 * Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByCategory() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -524,6 +768,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(2, foundEventos);
 	}
 
+	/*
+	 * PR-UN-033
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabas/s con
+	 * null -idCategoria con null -adminstrador con true Número de eventos
+	 * pasados o no guardados en la base de datos Base de datos arrancada con
+	 * Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByDateAdmin() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -545,6 +799,17 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(3, foundEventos);
 	}
 
+	/*
+	 * PR-UN-034
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria con null
+	 * -adminstrador con true Número de eventos pasados o no guardados en la
+	 * base de datos cuyo nombre coincida con todas las palabra/s. Base de datos
+	 * arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByDateUser() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -566,6 +831,16 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(2, foundEventos);
 	}
 
+	/*
+	 * PR-UN-035
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabas/s con
+	 * null -idCategoria existente -adminstrador con true Número de eventos
+	 * pasados o no guardados en la base de datos que pertenezan a la categoria
+	 * de entrada Base de datos arrancada con Categoria/s y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByKeywordsCategoryAdmin() {
 		Categoria categoria1 = new Categoria("Futbol");
@@ -588,6 +863,18 @@ public class vvs_PU_EventoDaoTest {
 		assertEquals(1, foundEventos);
 	}
 
+	/*
+	 * PR-UN-036
+	 * 
+	 * EventoDAO
+	 * 
+	 * getNumberOfEventos Aplicacion de particiones equivalentes -palabra/s
+	 * alternando entre mayusculas y minusculas -idCategoria existente
+	 * -adminstrador con true Número de eventos pasados o no guardados en la
+	 * base de datos que pertenezan a la categoria de entrada y cuyo nombre
+	 * coincida con todas las palabra/s. Base de datos arrancada con Categoria/s
+	 * y Evento/s insertados.
+	 */
 	@Test
 	public void testGetNumberOfEventosByKeywordsCategoryUser() {
 		Categoria categoria1 = new Categoria("Futbol");

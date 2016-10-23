@@ -50,6 +50,14 @@ public class vvs_PU_CategoriaDaoTest {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/*
+	 * PR-UN-043
+	 * 
+	 * CategoriaDAO
+	 * 
+	 * findAll Comprobacion de búsqueda de todas las Categorias no hay entrada
+	 * Lista de categorias Base de datos arrancada con categorias insertadas
+	 */
 	@Test
 	public void testFindAllCategories() {
 		Categoria categoria1 = new Categoria("Futbol");

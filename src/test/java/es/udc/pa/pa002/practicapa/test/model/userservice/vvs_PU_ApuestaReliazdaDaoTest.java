@@ -60,6 +60,17 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 		return sessionFactory.getCurrentSession();
 	}
 
+	/*
+	 * PR-UN-050
+	 * 
+	 * ApuestaRealizadaDAO
+	 * 
+	 * findByUser Comprobacion de búsqueda de todos las apuestasrealizadas de un
+	 * usuario -userId id del usuario propietario de las apuestas -startindex=0
+	 * -count=10 Lista de ApuestasRealizadas del usuario Base de datos arrancada
+	 * con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta
+	 * ,un Usuario y una ApuestaRealizada
+	 */
 	@Test
 	public void findApuestasUsuario() {
 		Categoria categoria = new Categoria("Futbol");
@@ -99,6 +110,17 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-051
+	 * 
+	 * ApuestaRealizadaDAO
+	 * 
+	 * findByUser Comprobacion de paginacion de apuesta -userId id del usuario
+	 * propietario de las apuestas -startindex=1 -count=10 Lista sin la apuesta
+	 * mas reciente Base de datos arrancada con al menos una Categoria,un
+	 * Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y varias
+	 * ApuestaRealizada
+	 */
 	@Test
 	public void findApuestasUsuarioPageStartIndex() {
 		Categoria categoria = new Categoria("Futbol");
@@ -137,6 +159,17 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-052
+	 * 
+	 * ApuestaRealizadaDAO
+	 * 
+	 * findByUser Comprobacion de paginacion de apuesta -userId id del usuario
+	 * propietario de las apuestas -startindex=0 -count=1 Lista con la apuesta
+	 * mas reciente del usuario Base de datos arrancada con al menos una
+	 * Categoria,un Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y
+	 * varias ApuestaRealizada
+	 */
 	@Test
 	public void findApuestasUsuarioPageCount() {
 		Categoria categoria = new Categoria("Futbol");
@@ -175,6 +208,15 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 
 	}
 
+	/*
+	 * PR-UN-053
+	 * 
+	 * ApuestaRealizadaDAO
+	 * 
+	 * findByUser Comprobacion de búsqueda de todos las apuestasrealizadas de un
+	 * usuario -userId id del usuario propietario de las apuestas -startindex=0
+	 * -count=10 Lista vacia Base de datos arrancada.
+	 */
 	@Test
 	public void findApuestasUsuarioNotFound() {
 
