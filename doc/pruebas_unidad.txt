@@ -1285,8 +1285,24 @@ ApuestaRealizada(con el usuario correspondiente al idUsuario,con la OpcionApuest
 Base de datos arrancada con una categoria, un evento, un TipoApuesta, una OpcionApuesta y un UserProfile insertados
 */
 
- /*
+/*
 PR-UN-096
+
+UserService
+
+apostar
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idOpcionApuesta de base de datos
+	-idUsuario de base datos
+	-cantidad a apostar negativa
+Excepcion:InvalidValueException
+Base de datos arrancada
+*/
+
+
+
+ /*
+PR-UN-097
 
 UserService
 
@@ -1300,7 +1316,7 @@ Base de datos arrancada con una categoria, un evento(con fecha anterior al insta
 */
 
 /*
-PR-UN-097
+PR-UN-098
 
 UserService
 
@@ -1314,7 +1330,7 @@ Base de datos arrancada con una categoria, un evento(con fecha anterior al insta
 */
 
 /*
-PR-UN-098
+PR-UN-099
 
 UserService
 
@@ -1328,7 +1344,7 @@ Base de datos arrancada
 */
 
 /*
-PR-UN-099
+PR-UN-100
 
 UserService
 
@@ -1341,7 +1357,7 @@ Base de datos arrancada con una categoria, un evento(con fecha anterior al insta
 */
 
 /*
-PR-UN-100
+PR-UN-101
 
 UserService
 
@@ -1354,7 +1370,7 @@ Base de datos arrancada con una categoria, un evento(con fecha posterior al inst
 */
 
 /*
-PR-UN-101
+PR-UN-102
 
 UserService
 
@@ -1367,7 +1383,7 @@ Base de datos arrancada
 */
 
 /*
-PR-UN-102
+PR-UN-103
 
 UserService
 
@@ -1382,7 +1398,7 @@ Base de datos arrancada con una categoria, un evento(con fecha posterior al inst
 
 /*
 
-PR-UN-103
+PR-UN-104
 
 UserService
 
@@ -1395,7 +1411,7 @@ Base de datos arrancada con una categoria, un evento(con fecha posterior al inst
 */
 
 /*
-PR-UN-104
+PR-UN-105
 
 UserService
 
@@ -1408,7 +1424,7 @@ Base de datos arrancada con una categoria, un evento(con fecha posterior al inst
 */
 
 /*
-PR-UN-105
+PR-UN-106
 
 UserService
 
@@ -1422,7 +1438,7 @@ Base de datos arrancada con una categoria, un Evento(con fecha anterior al insta
  */
 
 /*
-PR-UN-106
+PR-UN-107
 
 UserService
 
@@ -1436,7 +1452,7 @@ Base de datos arrancada con una categoria, un Evento(con fecha anterior al insta
  */
 
 /*
-PR-UN-107
+PR-UN-108
 
 UserService
 
