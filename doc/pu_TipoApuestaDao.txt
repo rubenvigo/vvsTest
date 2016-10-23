@@ -1,0 +1,72 @@
+
+/*
+PR-UN-060
+
+TipoApuestaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+TipoApuesta sin idTipoApuesta
+Mismo objeto TipoApuesta con idTipoApuesta
+Base de datos arrancada
+*/
+
+/*
+PR-UN-061
+
+TipoApuestaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+TipoApuesta con idTipoApuesta
+Mismo objeto TipoApuesta
+Base de datos arrancada con al menos una Categoria,un Evento y un TipoApuesta
+*/
+
+/*
+PR-UN-062
+
+TipoApuestaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idTipoApuesta existente en la base de datos
+No existen fallos
+Base de datos arrancada con al menos una Categoria,un Evento y un TipoApuesta
+*/
+
+/*
+PR-UN-063
+
+TipoApuestaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idTipoApuesta no existente en la bd
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-064
+
+TipoApuestaDAO
+
+find
+Comprobacion de búsqueda de uan TipoApuesta inexistente por su idTipoApuesta
+idTipoApuesta inexistente en la bd
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-065
+
+TipoApuestaDAO
+
+findTipoApuestaByIdrobacion de búsqueda de una TipoApuesta existente por su idTipoApuesta 
+idTipoApuesta existente en la bd
+TipoApuesta con el idTipoApuesta
+Base de datos arrancada con al menos una Categoria,un Evento y un TipoApuesta
+*/
+

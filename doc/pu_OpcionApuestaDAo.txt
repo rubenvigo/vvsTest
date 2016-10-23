@@ -1,0 +1,72 @@
+
+/*
+PR-UN-054
+
+OpcionApuestaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+OpcionApuesta sin idOpcionApuesta
+Mismo objeto OpcionApuesta con idOpcionApuesta
+Base de datos arrancada
+*/
+
+
+/*
+PR-UN-055
+
+OpcionApuestaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+OpcionApuesta con idOpcionApuesta
+Mismo objeto OpcionApuesta
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta y una OpcionApuesta
+
+/*
+PR-UN-056
+
+OpcionApuestaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idOpcionApuesta existente en la base de datos
+No existen fallos
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta y una OpcionApuesta
+*/
+
+/*
+PR-UN-057
+
+OpcionApuestaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idOpcionApuesta no existente en la bd
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-058
+
+OpcionApuestaDAO
+
+find
+Recorrido del diagrama de estados de la unidad
+idOpcionApuesta inexistente en la bd
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-059
+
+OpcionApuestaDAO
+
+find
+Comprobacion de búsqueda de una OpcionApuesta existente por su idOpcionApuesta 
+idOpcionApuesta existente en la bd
+OpcionApuesta con el idOpcionApuesta de entrada
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta y una OpcionApuesta
+*/

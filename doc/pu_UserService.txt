@@ -1,0 +1,630 @@
+/*
+*Id
+
+*Unidade
+
+*Funcion
+*Motivacion da proba
+*Entradas
+*Salidas
+*Inicializacion contexto(opcional)
+*/
+
+
+
+
+
+
+
+/*
+PR-UN-066
+
+UserService
+
+registerUser
+Aplicacion de particiones equivalentes
+	-loginName del usuario
+	-contraseña 
+	-UserProfilDetails del usuario
+UserProfile con los datos de registro
+Base de datos arrancada
+*/
+
+/*
+PR-UN-067
+
+UserService
+
+registerUser
+Aplicacion de particiones equivalentes
+	-loginName del usuario
+	-contraseña
+	-UserProfileDetails del usuario
+Excepcion:"DuplicateInstanceException" 
+Base de datos arrancada con un userProfile coincidente con los datos de registro
+*/
+
+/*
+PR-UN-068
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName del usuario
+	-password en claro del usuario
+	-false
+UserProfile del usuario autenticado 
+Base de datos arrancada con un userProfile coincidente con los datos de login
+*/
+
+/*
+PR-UN-069
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName del usuario
+	-password encriptada del usuario
+	-true
+UserProfile del usuario autenticado 
+Base de datos arrancada con un userProfile coincidente con los datos de login
+*/
+
+/*
+PR-UN-070
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName de usuario no existente
+	-password
+	-true
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-0071
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName de usuario no existente
+	-password
+	-false
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-072
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName del usuario existente
+	-password encriptada incorrecta
+	-true
+Excepcion:"IncorrectPasswordException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-073
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName del usuario existente
+	-password en claro incorrecta
+	-false
+Excepcion:"IncorrectPasswordException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-074
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName de usuario no existente
+	-password enciptada incorrecta
+	-true
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-075
+
+UserService
+
+login
+Aplicacion de particiones equivalentes
+	-loginName de usuario no existente
+	-password en claro incorrecta
+	-false
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-076
+
+UserService
+
+findUserProfile
+Comprobacion busqueda de un usuario por su userProfileId
+userProfileId de un usuario existente 
+UserProfile correspondiente al userProfileId
+Base de datos arrancada con un userProfile insertado
+*/
+
+/*
+PR-UN-077
+
+UserService
+
+findUserProfile
+Comprobacion busqueda de un usuario inexistente por su userProfileId
+userProfileId inexistente en la base de datos
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-078
+
+UserService
+
+updateUserProfileDetails
+Comprobacion actualización de un UserProfileDetails existente
+	-userProfileId del usuario 
+	-UserDetails
+No salida
+Base de datos arrancada con un userProfile insertado
+*/
+
+
+/*
+PR-UN-079
+
+UserService
+
+updateUserProfileDetails
+Comprobacion actualización de un UserProfileDetails inexistente
+	-userProfileId inexistente
+	-UserProfileDetails detalles del ususario 
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada 
+*/
+
+
+/*
+PR-UN-080
+
+UserService
+
+changePassword
+Comprobacion cambio de contraseña
+	-userProfileId del usuario
+	-oldClearPassword contraseña antigua del usuario
+	-newClearPassword nueva contraseña del usuario
+No salida
+Base de datos arrancada con un userProfie
+*/
+
+/*
+PR-UN-081
+
+UserService
+
+changePassword
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-userProfileId inexistente del usuario 
+	-oldClearPassword contraseña antigua del usuario
+	-newClearPassword nueva contraseña del usuario
+Excepcion:"InstanceNotFoundException"
+Base de datos arrancada con un userProfile insertado
+*/
+
+/*
+PR-UN-082
+
+UserService
+
+changePassword
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-userProfileId del usuario
+	-oldClearPassword contraseña antigua del usuario
+	-newClearPassword nueva contraseña invalida del usuario
+Excepcion:"IncorrectPasswordException"
+Base de datos arrancada con un userProfie
+*/
+
+/*
+PR-UN-083
+
+UserService
+
+changePassword
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-userProfileId del usuario
+	-oldClearPassword contraseña antigua incorrecta del usuario
+	-newClearPassword nueva contraseña del usuario
+Excepcion:"IncorrectPasswordException"
+Base de datos arrancada con un userProfile
+ */
+
+
+ /*
+PR-UN-084
+
+UserService
+
+addEvento
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-Evento sin id con fecha posterior al instante actual
+No error
+Base de datos arrancada con una categoria insertada
+ */
+
+ /*
+PR-UN-085
+
+UserService
+
+addEvento
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-Evento sin id con fecha anterior al instante actual
+Excepcion:InvalidDateException
+Base de datos arrancada con una categoria insertada
+ */
+
+/*
+PR-UN-086
+
+UserService
+
+addEvento
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-Evento sin id con fecha, nombre y categoria coincidentes con un Evento en base de datos
+Excepcion:InstanceAlreadyCreatedException
+Base de datos arrancada con una categoria y un evento insertado
+ */
+
+/*
+PR-UN-087
+
+UserService
+
+findEventos
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-null
+	-null
+	-true
+	-0
+	-10
+EventoBlock (lista de 10 Eventos,TRUE)
+Base de datos arrancada con una categoria y al menos 11 Eventos insertados
+ */
+
+/*
+PR-UN-088
+
+UserService
+
+findEventos
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-null
+	-null
+	-true
+	-10
+	-10
+EventoBlock (lista de 2 Eventos,FALSE)
+Base de datos arrancada con una categoria y 12 Eventos insertados
+ */
+
+/*
+PR-UN-089
+
+UserService
+
+findEventos
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-null
+	-null
+	-true
+	-0
+	-10
+EventoBlock (lista de 2 Eventos,FALSE)
+Base de datos arrancada con una categoria y 2 Eventos insertados
+ */
+
+
+ /*
+PR-UN-090
+
+UserService
+
+addTipoApuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idEvento de base de datos con fecha posterior al instante actual
+	-TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de OpcionApuesta sin id sin repetir.
+Mismo TipoApuesta con id y la lista de OpcionApuesta con ids
+Base de datos arrancada con una categoria y evento insertados
+*/
+
+ /*
+PR-UN-091
+
+UserService
+
+addTipoApuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idEvento de base de datos con fecha anterior al instante actual
+	-TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de OpcionApuesta sin id sin repetir.
+Excepcion:EventoStartedException
+Base de datos arrancada con una categoria y evento insertados
+*/
+
+ /*
+PR-UN-092
+
+UserService
+
+addTipoApuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idEvento inexistente en base de datos
+	-TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de OpcionApuesta sin id sin repetir.
+Excepcion:InstanceNotFoundException
+Base de datos arrancada con una categoria insertada
+*/
+
+ /*
+PR-UN-093
+
+UserService
+
+addTipoApuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idEvento de base de datos con fecha posterior al instante actual
+	-TipoApuesta sin id cuya pregunta coincida con la de otro TipoApuesta en el Evento 
+Excepcion:InstanceAlreadyCreatedException
+Base de datos arrancada con una categoria, un evento y un tipoApuesta insertados
+*/
+
+ /*
+PR-UN-094
+
+UserService
+
+addTipoApuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idEvento de base de datos con fecha posterior al instante actual
+	-TipoApuesta sin id cuya pregunta no este en el Evento y con una lista de OpcionApuesta en la que dos opcionesApuesta coincidan en su respuesta
+Excepcion:RepeatedOpcionApuestaException
+Base de datos arrancada con una categoria y un evento insertados
+*/
+
+ /*
+PR-UN-095
+
+UserService
+
+apostar
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idOpcionApuesta de base de datos
+	-idUsuario de base datos
+	-cantidad a apostar
+ApuestaRealizada(con el usuario correspondiente al idUsuario,con la OpcionApuesta correspondiente al idOpcionApuesta y la cantidad de entrada)
+Base de datos arrancada con una categoria, un evento, un TipoApuesta, una OpcionApuesta y un UserProfile insertados
+*/
+
+/*
+PR-UN-096
+
+UserService
+
+apostar
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idOpcionApuesta de base de datos
+	-idUsuario de base datos
+	-cantidad a apostar negativa
+Excepcion:InvalidValueException
+Base de datos arrancada
+*/
+
+
+
+ /*
+PR-UN-097
+
+UserService
+
+apostar
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idOpcionApuesta de base de datos
+	-idUsuario de base datos
+	-cantidad a apostar
+Excepcion:EventoStartedException
+Base de datos arrancada con una categoria, un evento(con fecha anterior al instante actual), un TipoApuesta y una OpcionApuesta insertados
+*/
+
+/*
+PR-UN-098
+
+UserService
+
+apostar
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idOpcionApuesta de base de datos
+	-idUsuario
+	-cantidad a apostar
+Excepcion:InstanceNotFoundException
+Base de datos arrancada con una categoria, un evento(con fecha anterior al instante actual), un TipoApuesta y una OpcionApuesta insertados
+*/
+
+/*
+PR-UN-099
+
+UserService
+
+apostar
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idOpcionApuesta
+	-idUsuario de base datos
+	-cantidad a apostar
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-100
+
+UserService
+
+especificarganadoras
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idTipoApuesta
+	-Lista de idOpcionApuesta de dicho TipoApuesta
+No salida
+Base de datos arrancada con una categoria, un evento(con fecha anterior al instante actual), un TipoApuesta y una OpcionApuesta insertados
+*/
+
+/*
+PR-UN-101
+
+UserService
+
+especificarganadoras
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idTipoApuesta
+	-Lista de idOpcionApuesta de dicho TipoApuesta
+Excepcion:EventoNotStartedException
+Base de datos arrancada con una categoria, un evento(con fecha posterior al instante actual), un TipoApuesta y una OpcionApuesta insertados
+*/
+
+/*
+PR-UN-102
+
+UserService
+
+especificarganadoras
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idTipoApuesta
+	-Lista de idOpcionApuesta de dicho TipoApuesta
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-103
+
+UserService
+
+especificarganadoras
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idTipoApuesta con las opcionesApuesta resueltas
+	-Lista de idOpcionApuesta de dicho TipoApuesta
+Excepcion:OpcionApuestaAlreadySolvedException
+Base de datos arrancada con una categoria, un evento(con fecha posterior al instante actual), un TipoApuesta y una/s OpcionApuesta(resueltas) insertados
+*/
+
+
+/*
+
+PR-UN-104
+
+UserService
+
+especificarganadoras
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idTipoApuesta de TipoApuesta(simple ganadora) con las opcionesApuesta
+	-Lista con 1 o más idOpcionApuesta de dicho TipoApuesta
+Excepcion:SimpleWinnerException
+Base de datos arrancada con una categoria, un evento(con fecha posterior al instante actual), un TipoApuesta(con simple ganadora) y unas OpcionApuesta insertados
+*/
+
+/*
+PR-UN-105
+
+UserService
+
+especificarganadoras
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idTipoApuesta
+	-Lista con varios idOpcionApuesta en la que uno no pertenece a dicho TipoApuesta
+Excepcion:InvalidOptionException
+Base de datos arrancada con una categoria, un evento(con fecha posterior al instante actual), un TipoApuesta y unas OpcionApuesta insertados
+*/
+
+/*
+PR-UN-106
+
+UserService
+
+consultarapuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idUsuario
+	-0
+	-10
+ApuestaBlock (lista de 10 ApuestaRealizadas,TRUE)
+Base de datos arrancada con una categoria, un Evento(con fecha anterior al instante actual), un TipoApuesta, unas OpcionApuesta, un UserProfile  y 11 ApuestasRealizadas insertados
+ */
+
+/*
+PR-UN-107
+
+UserService
+
+consultarapuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idUsuario
+	-10
+	-10
+ApuestaBlock (lista de 2 ApuestasRealizadas,FALSE)
+Base de datos arrancada con una categoria, un Evento(con fecha anterior al instante actual), un TipoApuesta, unas OpcionApuesta, un UserProfile  y 12 ApuestasRealizadas insertados
+ */
+
+/*
+PR-UN-108
+
+UserService
+
+consultarapuesta
+Aplicacion de particiones equivalentes en la entrada del metodo
+	-idUsuario
+	-0
+	-10
+ApuestaBlock (lista de 2 ApuestasRealizadas,FALSE)
+Base de datos arrancada con una categoria, un Evento(con fecha anterior al instante actual), un TipoApuesta, unas OpcionApuesta, un UserProfile  y 2 ApuestasRealizadas insertados
+ */
+
+------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+* Implementadas las pruebas de los metodos crud de Evento y los que no son crud de todos.
+* Implementadas las perubas de todos los metodos del servicio excepto:
+
+	-findCategories
+	-findEventoById
+	-findTipoApuestaById
+	-findOpcionApuestaById
+	-getNumberOfEventos
+	-findApuestaById
+
+
+
+
+
+
+
+

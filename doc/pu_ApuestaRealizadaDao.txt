@@ -1,0 +1,127 @@
+
+/*
+PR-UN-044
+
+ApuestaRealizadaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+ApuestaRealizada sin idApuestaRealizada
+Mismo objeto ApuestaRealizada con idApuestaRealizada
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta y una OpcionApuesta
+*/
+
+/*
+PR-UN-045
+
+ApuestaRealizadaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+ApuestaRealizada con idApuestaRealizada
+Mismo objeto ApuestaRealizada
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta y una OpcionApuesta
+*/
+
+/*
+PR-UN-046
+
+ApuestaRealizadaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idApuestaRealizada existente en la base de datos
+No existen fallos
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta,un Usuario y una ApuestaRealizada
+*/
+
+/*
+PR-UN-047
+
+ApuestaRealizadaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idApuestaRealizada no existente en la bd
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-048
+
+ApuestaRealizadaDAO
+
+find
+Comprobacion de búsqueda de una ApuestaRealizada inexistente por su idApuestaRealizada
+idApuestaRealizada inexistente en la bd
+Excepcion:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-049
+
+ApuestaRealizadaDAO
+
+find
+Comprobacion de búsqueda de una ApuestaRealizada existente por su idApuestaRealizada 
+idApuestaRealizada existente en la bd
+ApuestaRealizada coincidente con el idApuestaRealizada
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y una ApuestaRealizada
+*/
+
+/*
+PR-UN-050
+
+ApuestaRealizadaDAO
+
+findByUser
+Comprobacion de búsqueda de todos las apuestasrealizadas de un usuario 
+	-userId id del usuario propietario de las apuestas
+	-startindex=0
+	-count=10
+	Lista de ApuestasRealizadas del usuario
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y una ApuestaRealizada
+*/
+
+/*
+PR-UN-051
+
+ApuestaRealizadaDAO
+
+findByUser
+Comprobacion de paginacion de apuesta
+	-userId id del usuario propietario de las apuestas
+	-startindex=1
+	-count=10
+Lista sin la apuesta mas reciente
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y varias ApuestaRealizada
+*/
+/*
+PR-UN-052
+
+ApuestaRealizadaDAO
+
+findByUser
+Comprobacion de paginacion de apuesta
+	-userId id del usuario propietario de las apuestas
+	-startindex=0
+	-count=1
+Lista con la apuesta mas reciente del usuario
+Base de datos arrancada con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y varias ApuestaRealizada
+*/
+
+/*
+PR-UN-053
+
+ApuestaRealizadaDAO
+
+findByUser
+Comprobacion de búsqueda de todos las apuestasrealizadas de un usuario 
+	-userId id del usuario propietario de las apuestas
+	-startindex=0
+	-count=10
+Lista vacia
+Base de datos arrancada.
+*/

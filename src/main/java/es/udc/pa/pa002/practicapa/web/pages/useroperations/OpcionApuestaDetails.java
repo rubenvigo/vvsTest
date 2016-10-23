@@ -15,6 +15,7 @@ import es.udc.pa.pa002.practicapa.model.evento.Evento;
 import es.udc.pa.pa002.practicapa.model.opcionapuesta.OpcionApuesta;
 import es.udc.pa.pa002.practicapa.model.tipoapuesta.TipoApuesta;
 import es.udc.pa.pa002.practicapa.model.userservice.EventoStartedException;
+import es.udc.pa.pa002.practicapa.model.userservice.InvalidValueException;
 import es.udc.pa.pa002.practicapa.model.userservice.UserService;
 import es.udc.pa.pa002.practicapa.web.pages.user.Login;
 import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicy;
@@ -24,98 +25,99 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class OpcionApuestaDetails {
-	
+
 	@Component
 	private Form apostarForm;
-	
+
 	@Inject
 	private Messages messages;
-	
+
 	private Long idOpcionApuesta;
-	
+
 	private OpcionApuesta opcionApuesta;
-	
+
 	private ApuestaRealizada apuesta;
-	
+
 	@Property
 	private Float importe;
-	
+
 	@Inject
 	private UserService userService;
-	
+
 	@Property
-	@SessionState(create=false)
+	@SessionState(create = false)
 	private UserSession userSession;
-	
+
 	@InjectPage
 	private ApuestaCreada apuestaCreada;
-	
+
 	@InjectPage
 	private Login login;
-	
-	public Evento getEvento(){
+
+	public Evento getEvento() {
 		return opcionApuesta.getTipoApuesta().getEvento();
 	}
-	
-	public boolean getPastEvent(){
+
+	public boolean getPastEvent() {
 		Calendar now = Calendar.getInstance();
 		return this.getEvento().getFecha().before(now);
 	}
-	
-	public TipoApuesta getTipoApuesta(){
+
+	public TipoApuesta getTipoApuesta() {
 		return opcionApuesta.getTipoApuesta();
 	}
-	
+
 	public OpcionApuesta getOpcionApuesta() {
 		return opcionApuesta;
 	}
 
-	public void setIdOpcionApuesta(Long idOpcionApuesta){
-		this.idOpcionApuesta=idOpcionApuesta;
+	public void setIdOpcionApuesta(Long idOpcionApuesta) {
+		this.idOpcionApuesta = idOpcionApuesta;
 	}
-	
-	public boolean getIsUsuario(){
-		return userSession==null || !userSession.isAdmin();
+
+	public boolean getIsUsuario() {
+		return userSession == null || !userSession.isAdmin();
 	}
-	public void onActivate(Long idOpcionApuesta){
-		this.idOpcionApuesta=idOpcionApuesta;
+
+	public void onActivate(Long idOpcionApuesta) {
+		this.idOpcionApuesta = idOpcionApuesta;
 		try {
-			opcionApuesta=userService.findOpcionApuestaById(idOpcionApuesta);
+			opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);
 		} catch (InstanceNotFoundException e) {
-			
+
 		}
 	}
-	
-	Long onPassivate(){
+
+	Long onPassivate() {
 		return idOpcionApuesta;
 	}
-	
-	void onValidateFromApostarForm(){
+
+	void onValidateFromApostarForm() throws InvalidValueException {
 		if (!apostarForm.isValid()) {
 			return;
-			}
-		if(userSession!=null){
+		}
+		if (userSession != null) {
 			try {
-				apuesta = userService.apostar(idOpcionApuesta, importe, userSession.getUserProfileId());
+				apuesta = userService.apostar(idOpcionApuesta, importe,
+						userSession.getUserProfileId());
 			} catch (EventoStartedException e) {
-				apostarForm.recordError(messages.format("error-eventoStarted", this.getEvento().getNombre()));
+				apostarForm.recordError(messages.format("error-eventoStarted",
+						this.getEvento().getNombre()));
 			} catch (InstanceNotFoundException e) {
-				
+
 			}
 		}
-		
+
 	}
-	
-	
-	Object onSuccess(){
-		if(userSession==null){
+
+	Object onSuccess() {
+		if (userSession == null) {
 			login.setIdOpcionApuesta(idOpcionApuesta);
 			return login;
 		}
-				
+
 		apuestaCreada.setIdApuesta(apuesta.getIdApuestaRealizada());
 		return apuestaCreada;
 	}
-	
 
 }

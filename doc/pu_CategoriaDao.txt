@@ -1,0 +1,84 @@
+/*
+PR-UN-037
+
+CategoriaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+Categoria sin idCategoria
+Mismo objeto Categoria con idCategoria
+Base de datos arrancada
+*/
+
+/*
+PR-UN-038
+
+CategoriaDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+Categoria con idCategoria
+Mismo objeto Categoria
+Base de datos arrancada con categoria insertada
+*/
+
+
+/*
+PR-UN-039
+
+CategoriaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idCategoria existente en la base de datos
+No existen fallos
+Base de datos arrancada con un Categoria insertado
+*/
+
+/*
+PR-UN-040
+
+CategoriaDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+idCategoria no existente en la bd
+Exception:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-041
+
+CategoriaDAO
+
+find
+Comprobacion de búsqueda de uan Categoria inexistente por su idCategoria
+idCategoria inexistente en la bd
+Exception:InstanceNotFoundException
+Base de datos arrancada
+*/
+ 
+/*
+PR-UN-042
+
+CategoriaDAO
+
+find
+Comprobacion de búsqueda de una Categoria existente por su idCategoria
+idCategoria existente en la bd
+Categoria coincidente con el idCAtegoria
+Base de datos arrancada con una categoria insertada
+*/
+
+/*
+PR-UN-043
+
+CategoriaDAO
+
+findAll
+Comprobacion de búsqueda de todas las Categorias 
+no hay entrada
+Lista de categorias
+Base de datos arrancada con categorias insertadas
+*/

@@ -1,0 +1,97 @@
+/*
+PR-UN-001
+
+UserProfileDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+UserProfile sin userProfileId
+Mismo objeto UserProfile con userProfileId
+Base de datos arrancada
+*/
+
+/*
+PR-UN-002
+
+UserProfileDAO
+
+saveOrUpdate
+Recorrido del diagrama de estados de la unidad
+UserProfile con userProfileId existente en base de datos
+Mismo objeto UserProfile
+Base de datos arrancada con userprofile insertado
+*/
+
+
+/*
+
+PR-UN-003
+
+UserProfileDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+userPofileId existente en la base de datos
+No existen fallos
+Base de datos arrancada con un userprofile insertado
+*/
+
+/*
+PR-UN-004
+
+UserProfileDAO
+
+remove
+Recorrido del diagrama de estados de la unidad
+userPofileId no existente en la bd
+Exception:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-005
+
+UserProfileDAO
+
+findByLoginName
+Comprobacion de búsqueda de un usuario por su login name
+loginName existente en la bd
+UserProfile con el loginName de entrada
+Base de datos arrancada con un UserProfile insertado
+*/
+
+/*
+PR-UN-006
+
+UserProfileDAO
+
+findByLoginName
+Comprobacion de búsqueda de un usuario inexistente
+loginName inexistente en la bd
+Exception:InstanceNotFoundException
+Base de datos arrancada
+*/
+
+/*
+PR-UN-007
+
+UserProfileDAO
+
+find
+Comprobacion de búsqueda de un usuario inexistente por su userProfileId
+serProfileId existente en la bd
+Exception:InstanceNotFoundException
+Base de datos arrancada 
+*/
+
+/*
+PR-UN-008
+
+UserProfileDAO
+
+find
+Comprobacion de búsqueda de un usuario existente por su userProfileId 
+userProfileId existente en la bd
+UserProfile con el userProfileId de entrada
+base de datos arrancada con un UserProfile insertado
+*/
