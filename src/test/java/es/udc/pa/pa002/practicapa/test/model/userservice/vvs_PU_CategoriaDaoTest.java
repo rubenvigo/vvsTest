@@ -51,12 +51,13 @@ public class vvs_PU_CategoriaDaoTest {
 	}
 
 	/*
+	 * Antes de cada método de test se encuentra su identificador, mediante el
+	 * cual podemos visualizar el diseño de dicho metodo. Los ficheros de diseño
+	 * se encuentran en el directorio doc del proyecto.
+	 */
+
+	/*
 	 * PR-UN-043
-	 * 
-	 * CategoriaDAO
-	 * 
-	 * findAll Comprobacion de búsqueda de todas las Categorias no hay entrada
-	 * Lista de categorias Base de datos arrancada con categorias insertadas
 	 */
 	@Test
 	public void testFindAllCategories() {

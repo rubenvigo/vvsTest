@@ -35,7 +35,7 @@ import es.udc.pa.pa002.practicapa.model.userservice.util.PasswordEncrypter;
 @RunWith(SpringJUnit4ClassRunner.class)
 @ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
 @Transactional
-public class vvs_PU_ApuestaReliazdaDaoTest {
+public class vvs_PU_ApuestaRealizadaDaoTest {
 
 	@Autowired
 	private EventoDao eventoDao;
@@ -61,15 +61,13 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 	}
 
 	/*
+	 * Antes de cada método de test se encuentra su identificador, mediante el
+	 * cual podemos visualizar el diseño de dicho metodo. Los ficheros de diseño
+	 * se encuentran en el directorio doc del proyecto.
+	 */
+
+	/*
 	 * PR-UN-050
-	 * 
-	 * ApuestaRealizadaDAO
-	 * 
-	 * findByUser Comprobacion de búsqueda de todos las apuestasrealizadas de un
-	 * usuario -userId id del usuario propietario de las apuestas -startindex=0
-	 * -count=10 Lista de ApuestasRealizadas del usuario Base de datos arrancada
-	 * con al menos una Categoria,un Evento, un TipoApuesta, una OpcionApuesta
-	 * ,un Usuario y una ApuestaRealizada
 	 */
 	@Test
 	public void findApuestasUsuario() {
@@ -112,14 +110,6 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 
 	/*
 	 * PR-UN-051
-	 * 
-	 * ApuestaRealizadaDAO
-	 * 
-	 * findByUser Comprobacion de paginacion de apuesta -userId id del usuario
-	 * propietario de las apuestas -startindex=1 -count=10 Lista sin la apuesta
-	 * mas reciente Base de datos arrancada con al menos una Categoria,un
-	 * Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y varias
-	 * ApuestaRealizada
 	 */
 	@Test
 	public void findApuestasUsuarioPageStartIndex() {
@@ -161,14 +151,6 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 
 	/*
 	 * PR-UN-052
-	 * 
-	 * ApuestaRealizadaDAO
-	 * 
-	 * findByUser Comprobacion de paginacion de apuesta -userId id del usuario
-	 * propietario de las apuestas -startindex=0 -count=1 Lista con la apuesta
-	 * mas reciente del usuario Base de datos arrancada con al menos una
-	 * Categoria,un Evento, un TipoApuesta, una OpcionApuesta ,un Usuario y
-	 * varias ApuestaRealizada
 	 */
 	@Test
 	public void findApuestasUsuarioPageCount() {
@@ -210,12 +192,6 @@ public class vvs_PU_ApuestaReliazdaDaoTest {
 
 	/*
 	 * PR-UN-053
-	 * 
-	 * ApuestaRealizadaDAO
-	 * 
-	 * findByUser Comprobacion de búsqueda de todos las apuestasrealizadas de un
-	 * usuario -userId id del usuario propietario de las apuestas -startindex=0
-	 * -count=10 Lista vacia Base de datos arrancada.
 	 */
 	@Test
 	public void findApuestasUsuarioNotFound() {
