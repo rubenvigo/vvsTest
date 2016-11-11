@@ -1,5 +1,6 @@
 package es.udc.pa.pa002.practicapa.test.model.userservice;
 
+import static com.pholser.junit.quickcheck.internal.Ranges.checkRange;
 import static es.udc.pa.pa002.practicapa.model.util.GlobalNames.SPRING_CONFIG_FILE;
 import static es.udc.pa.pa002.practicapa.test.util.GlobalNames.SPRING_CONFIG_TEST_FILE;
 import static org.junit.Assert.assertEquals;
@@ -11,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Random;
 import java.util.Set;
 
 import org.junit.Test;
@@ -68,6 +70,8 @@ public class vvs_PI_UserServiceTest {
 	@Autowired
 	private ApuestaRealizadaDao apuestaRealizadaDao;
 
+	private Random delegate = new Random();
+
 	/*
 	 * Antes de cada método de test se encuentra su identificador, mediante el
 	 * cual podemos visualizar el diseño de dicho metodo. Los ficheros de diseño
@@ -89,6 +93,15 @@ public class vvs_PI_UserServiceTest {
 			throw new RuntimeException(e);
 		}
 
+	}
+
+	public double nextDouble() {
+		return delegate.nextDouble();
+	}
+
+	public double nextDouble(double min, double max) {
+		int comparison = checkRange(null, min, max);
+		return comparison == 0 ? min : min + (max - min) * nextDouble();
 	}
 
 	/*
@@ -168,7 +181,7 @@ public class vvs_PI_UserServiceTest {
 	@Test(expected = InstanceNotFoundException.class)
 	public void testFindUserNotFound() throws InstanceNotFoundException {
 
-		userService.findUserProfile(500L);
+		userService.findUserProfile((long) nextDouble(-100000, 1000000));
 
 	}
 
@@ -438,6 +451,7 @@ public class vvs_PI_UserServiceTest {
 	 * PR-IN-020
 	 */
 
+	@Test
 	public void apostar() throws InstanceNotFoundException,
 			EventoStartedException, InvalidDateException,
 			InstanceAlreadyCreatedException, InstanceAlreadyCreatedException,
@@ -456,7 +470,7 @@ public class vvs_PI_UserServiceTest {
 				"1X2", opcionesApuesta, false));
 		String clearPassword = "userPassword";
 		UserProfile userProfile = registerUser("user", clearPassword);
-		float cantidadApostada = 100;
+		float cantidadApostada = (float) nextDouble(0, 1000);
 
 		ApuestaRealizada apuestaRealizada = userService.apostar(
 				opcionApuesta.getIdOpcionApuesta(), cantidadApostada,
@@ -489,7 +503,7 @@ public class vvs_PI_UserServiceTest {
 				"1X2", opcionesApuesta, false));
 		String clearPassword = "userPassword";
 		UserProfile userProfile = registerUser("user", clearPassword);
-		float cantidadApostada = -5;
+		float cantidadApostada = (float) nextDouble(-10000, 0);
 
 		userService.apostar(opcionApuesta.getIdOpcionApuesta(),
 				cantidadApostada, userProfile.getUserProfileId());
@@ -518,7 +532,7 @@ public class vvs_PI_UserServiceTest {
 				"1X2", opcionesApuesta, false));
 		String clearPassword = "userPassword";
 		UserProfile userProfile = registerUser("user", clearPassword);
-		float cantidadApostada = 100;
+		float cantidadApostada = (float) nextDouble(0, 10000);
 		Calendar fechanueva = Calendar.getInstance();
 		fechanueva.set(2015, Calendar.AUGUST, 11, 10, 30);
 

@@ -214,6 +214,7 @@ public class UserServiceImpl implements UserService {
 	public ApuestaRealizada apostar(Long idOpcionApuesta,
 			float cantidadApostada, Long userId) throws EventoStartedException,
 			InstanceNotFoundException, InvalidValueException {
+
 		Calendar hoy = Calendar.getInstance();
 		if (cantidadApostada <= 0)
 			throw new InvalidValueException(

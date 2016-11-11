@@ -75,7 +75,7 @@ UserService
 
 findUserProfile
 Comprobacion busqueda de un usuario inexistente por su userProfileId
-userProfileId inexistente en la base de datos
+userProfileId inexistente generado aleatoriamente
 Excepcion:"InstanceNotFoundException"
 Base de datos arrancada 
 */
@@ -269,7 +269,7 @@ apostar
 Aplicacion de particiones equivalentes en la entrada del metodo
 	-idOpcionApuesta de base de datos
 	-idUsuario de base datos
-	-cantidad a apostar
+	-cantidad a apostar  positiva generada aleatoriamente
 ApuestaRealizada(con el usuario correspondiente al idUsuario,con la OpcionApuesta correspondiente al idOpcionApuesta y la cantidad de entrada)
 Base de datos arrancada con una categoria, un evento, un TipoApuesta, una OpcionApuesta y un UserProfile insertados
 */
@@ -282,7 +282,7 @@ apostar
 Aplicacion de particiones equivalentes en la entrada del metodo
 	-idOpcionApuesta de base de datos 
 	-idUsuario de base datos 
-	-cantidad negativa 
+	-cantidad negativa generada aleatoriamente
 Excepcion:"InvalidValueExcepition" 
 Base de datos arrancada con una categoria, un evento, un TipoApuesta, una OpcionApuesta y un UserProfile insertados
 */
@@ -295,7 +295,7 @@ apostar
 Aplicacion de particiones equivalentes en la entrada del metodo
 	-idOpcionApuesta de base de datos
 	-idUsuario de base datos
-	-cantidad a apostar
+	-cantidad a apostar positiva generada aleatoriamente
 Excepcion:EventoStartedException
 Base de datos arrancada con una categoria, un evento(con fecha anterior al instante actual), un TipoApuesta y una OpcionApuesta insertados
 */
