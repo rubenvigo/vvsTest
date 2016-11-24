@@ -152,7 +152,7 @@ public EventoBlock findEventos(String keywords, Long idCategoria,
 
     listaEventos = eventoDao.findByParameters(keywords, idCategoria, admin,
             startIndex, count + 1);
-    boolean existMoreEventos = listaEventos.size() == (count + 1);
+    boolean existMoreEventos = listaEventos.size() == count + 1;
 
     if (existMoreEventos) {
         listaEventos.remove(listaEventos.size() - 1);
@@ -165,11 +165,10 @@ private void validarOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta)
 
     for (OpcionApuesta opcion : opcionesApuesta) {
         for (OpcionApuesta opcion2 : opcionesApuesta) {
-            if (!opcion.equals(opcion2)) {
-                if (opcion.getRespuesta().equals(opcion2.getRespuesta())) {
-                    throw new RepeatedOpcionApuestaException(
-                            "No está permitido introducir opciones de apuesta repetidas");
-                }
+            if (!opcion.equals(opcion2)
+                    && opcion.getRespuesta().equals(opcion2.getRespuesta())) {
+                throw new RepeatedOpcionApuestaException(
+                        "No está permitido introducir opciones de apuesta repetidas");
             }
         }
 
@@ -281,7 +280,7 @@ public ApuestaBlock consultarApuestas(Long idUsuario, int startIndex, int count)
 
     apuestas = apuestaRealizadaDao.findByUser(idUsuario, startIndex, count + 1);
 
-    boolean existMoreApuestas = apuestas.size() == (count + 1);
+    boolean existMoreApuestas = apuestas.size() == count + 1;
 
     if (existMoreApuestas) {
         apuestas.remove(apuestas.size() - 1);
