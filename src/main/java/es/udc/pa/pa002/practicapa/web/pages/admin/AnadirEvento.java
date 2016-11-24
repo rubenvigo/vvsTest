@@ -94,7 +94,6 @@ void OnValidateFromAddEventosForm() {
 
     SimpleDateFormat sdf = new SimpleDateFormat("HH:mm");
     Calendar horaCalendar = Calendar.getInstance();
-    ;
     try {
         horaCalendar.setTime(sdf.parse(hora));
     } catch (ParseException e1) {
