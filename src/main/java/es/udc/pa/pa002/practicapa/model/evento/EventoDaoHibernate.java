@@ -22,7 +22,7 @@ public List<Evento> findByParameters(String keywords, Long idCategoria,
 
     String[] words = keywords != null ? keywords.split(" ") : null;
 
-    if ((keywords != null) || (idCategoria != null) || (!admin)) {
+    if (keywords != null || idCategoria != null || !admin) {
         query = query + " WHERE";
     }
     String nombre;
@@ -43,14 +43,14 @@ public List<Evento> findByParameters(String keywords, Long idCategoria,
         query += " a.categoria.idCategoria = :idCategoria";
     }
     if (!admin) {
-        if ((keywords != null) || (idCategoria != null)) {
+        if (keywords != null || idCategoria != null) {
             query += " AND";
         }
         query += " a.fecha > :fecha";
     }
     query += " ORDER BY a.fecha";
 
-    if ((keywords == null) && (idCategoria == null) && (admin)) {
+    if (keywords == null && idCategoria == null && admin) {
         return getSession().createQuery(query).setFirstResult(startIndex)
                 .setMaxResults(count).list();
     }
@@ -86,7 +86,7 @@ public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
     query.setCalendar("fecha", fecha);
     // List<Evento> eventos = new ArrayList();
     int eventos = ((Long) query.uniqueResult()).intValue();
-    return (eventos > 0);
+    return eventos > 0;
 }
 
 @Override
@@ -96,7 +96,7 @@ public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin) 
 
     String[] words = keywords != null ? keywords.split(" ") : null;
 
-    if ((keywords != null) || (idCategoria != null) || (!admin)) {
+    if (keywords != null || idCategoria != null || !admin) {
         query = query + " WHERE";
     }
     String nombre;
@@ -117,13 +117,13 @@ public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin) 
         query += " a.categoria.idCategoria = :idCategoria";
     }
     if (!admin) {
-        if ((keywords != null) || (idCategoria != null)) {
+        if (keywords != null || idCategoria != null) {
             query += " AND";
         }
         query += " a.fecha > :fecha";
     }
 
-    if ((keywords == null) && (idCategoria == null) && (admin)) {
+    if (keywords == null && idCategoria == null && admin) {
         long numEvents = (Long) getSession().createQuery(query).uniqueResult();
         return (int) numEvents;
     }
