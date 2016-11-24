@@ -82,18 +82,13 @@ public TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
-void onActivate(Long idTipoApuesta) {
+void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     opcionApuesta = new OpcionApuesta();
     this.idTipoApuesta = idTipoApuesta;
-    try {
-        tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
-    } catch (InstanceNotFoundException e) {
-
-    }
+    tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
     if (tipoApuesta != null)
         opcionApuestaSelectModel = selectModelFactory.create(
                 this.getOpcionesApuesta(), "respuesta");
-
 }
 
 public void setIdTipoApuesta(Long idTipoApuesta) {
@@ -108,7 +103,7 @@ public OpcionApuestaEncoder getOpcionApuestaEncoder() {
     return new OpcionApuestaEncoder(userService);
 }
 
-void onValidateFromEspecificarGanadorasForm() {
+void onValidateFromEspecificarGanadorasForm() throws InstanceNotFoundException {
 
     try {
         List<Long> ids = new ArrayList<Long>();
@@ -124,8 +119,6 @@ void onValidateFromEspecificarGanadorasForm() {
         userService.EspecificarGanadoras(idTipoApuesta, ids);
         ids.clear();
         ganadoras.clear();
-
-    } catch (InstanceNotFoundException e) {
 
     } catch (EventoNotStartedException e) {
         especificarGanadorasForm.recordError(messages.format(
