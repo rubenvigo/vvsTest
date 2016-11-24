@@ -24,11 +24,10 @@ public OpcionApuesta toValue(String id) {
     try {
         return userService.findOpcionApuestaById(Long.parseLong(id));
     } catch (NumberFormatException e) {
-
+        return null;
     } catch (InstanceNotFoundException e) {
-
+        return null;
     }
-    return null;
 }
 
 }
