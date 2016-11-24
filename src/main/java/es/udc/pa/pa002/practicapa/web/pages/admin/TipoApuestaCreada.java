@@ -52,16 +52,12 @@ public void setTipoApuesta(TipoApuesta tipoApuesta) {
 }
 
 public boolean getIsAdmin() {
-    return (userSession != null) && (userSession.isAdmin());
+    return userSession != null && userSession.isAdmin();
 }
 
-void onActivate(Long idTipoApuesta) {
+void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     this.idTipoApuesta = idTipoApuesta;
-    try {
-        tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
-    } catch (InstanceNotFoundException e) {
-
-    }
+    tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
 }
 
 Long onPassivate() {
