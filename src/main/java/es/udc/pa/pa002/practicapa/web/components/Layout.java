@@ -13,44 +13,43 @@ import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.CookiesManager;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 
-@Import(library = {"tapestry5/bootstrap/js/collapse.js", "tapestry5/bootstrap/js/dropdown.js"},
-        stylesheet="tapestry5/bootstrap/css/bootstrap-theme.css")
+@Import(library = { "tapestry5/bootstrap/js/collapse.js",
+        "tapestry5/bootstrap/js/dropdown.js" }, stylesheet = "tapestry5/bootstrap/css/bootstrap-theme.css")
 public class Layout {
 
-    @Property
-    @Parameter(required = true, defaultPrefix = "message")
-    private String title;
-    
-    @Parameter(defaultPrefix = "literal")
-    private Boolean showTitleInBody;
+@Property
+@Parameter(required = true, defaultPrefix = "message")
+private String title;
 
-    @Property
-    @SessionState(create=false)
-    private UserSession userSession;
-    
-    @Inject
-    private Cookies cookies;
-    
-    
-    public int getStartIndex(){
-    	return 0;
+@Parameter(defaultPrefix = "literal")
+private Boolean showTitleInBody;
+
+@Property
+@SessionState(create = false)
+private UserSession userSession;
+
+@Inject
+private Cookies cookies;
+
+public int getStartIndex() {
+    return 0;
+}
+
+public boolean getShowTitleInBody() {
+
+    if (showTitleInBody == null) {
+        return true;
+    } else {
+        return showTitleInBody;
     }
-    
-    public boolean getShowTitleInBody() {
-    	
-    	if (showTitleInBody == null) {
-    		return true;
-    	} else {
-    		return showTitleInBody;
-    	}
-    	
-    }
-    
-    @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
-    Object onActionFromLogout() {
-        userSession = null;
-        CookiesManager.removeCookies(cookies);
-        return Index.class;
-    }
+
+}
+
+@AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
+Object onActionFromLogout() {
+    userSession = null;
+    CookiesManager.removeCookies(cookies);
+    return Index.class;
+}
 
 }

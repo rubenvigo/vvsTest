@@ -26,56 +26,55 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 @Transactional
 public class vvs_PU_UserProfileDaoTest {
 
-	@Autowired
-	private EventoDao eventoDao;
+@Autowired
+private EventoDao eventoDao;
 
-	@Autowired
-	private CategoriaDao categoriaDao;
+@Autowired
+private CategoriaDao categoriaDao;
 
-	@Autowired
-	private UserProfileDao userProfileDao;
+@Autowired
+private UserProfileDao userProfileDao;
 
-	@Autowired
-	private ApuestaRealizadaDao apuestaRealizadaDao;
+@Autowired
+private ApuestaRealizadaDao apuestaRealizadaDao;
 
-	private SessionFactory sessionFactory;
+private SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+@Autowired
+public void setSessionFactory(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+}
 
-	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+protected Session getSession() {
+    return sessionFactory.getCurrentSession();
+}
 
-	/*
-	 * Antes de cada método de test se encuentra su identificador, mediante el
-	 * cual podemos visualizar el diseño de dicho metodo. Los ficheros de diseño
-	 * se encuentran en el directorio doc del proyecto.
-	 */
+/*
+ * Antes de cada método de test se encuentra su identificador, mediante el cual
+ * podemos visualizar el diseño de dicho metodo. Los ficheros de diseño se
+ * encuentran en el directorio doc del proyecto.
+ */
 
-	/*
-	 * PR-UN-005
-	 */
-	@Test
-	public void findUserProfileByLogin() throws InstanceNotFoundException {
-		String encPass = PasswordEncrypter.crypt("pass");
-		UserProfile user = new UserProfile("name", encPass, "firstName",
-				"lastName", "email");
-		getSession().save(user);
-		assertEquals(user, userProfileDao.findByLoginName("name"));
-	}
+/*
+ * PR-UN-005
+ */
+@Test
+public void findUserProfileByLogin() throws InstanceNotFoundException {
+    String encPass = PasswordEncrypter.crypt("pass");
+    UserProfile user = new UserProfile("name", encPass, "firstName",
+            "lastName", "email");
+    getSession().save(user);
+    assertEquals(user, userProfileDao.findByLoginName("name"));
+}
 
-	/*
-	 * PR-UN-006
-	 */
-	@Test(expected = InstanceNotFoundException.class)
-	public void findUserProfileByLoginNotFound()
-			throws InstanceNotFoundException {
+/*
+ * PR-UN-006
+ */
+@Test(expected = InstanceNotFoundException.class)
+public void findUserProfileByLoginNotFound() throws InstanceNotFoundException {
 
-		userProfileDao.findByLoginName("notExists");
+    userProfileDao.findByLoginName("notExists");
 
-	}
+}
 
 }

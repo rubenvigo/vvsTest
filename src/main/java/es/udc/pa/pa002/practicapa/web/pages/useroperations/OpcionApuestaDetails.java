@@ -26,98 +26,98 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class OpcionApuestaDetails {
 
-	@Component
-	private Form apostarForm;
+@Component
+private Form apostarForm;
 
-	@Inject
-	private Messages messages;
+@Inject
+private Messages messages;
 
-	private Long idOpcionApuesta;
+private Long idOpcionApuesta;
 
-	private OpcionApuesta opcionApuesta;
+private OpcionApuesta opcionApuesta;
 
-	private ApuestaRealizada apuesta;
+private ApuestaRealizada apuesta;
 
-	@Property
-	private Float importe;
+@Property
+private Float importe;
 
-	@Inject
-	private UserService userService;
+@Inject
+private UserService userService;
 
-	@Property
-	@SessionState(create = false)
-	private UserSession userSession;
+@Property
+@SessionState(create = false)
+private UserSession userSession;
 
-	@InjectPage
-	private ApuestaCreada apuestaCreada;
+@InjectPage
+private ApuestaCreada apuestaCreada;
 
-	@InjectPage
-	private Login login;
+@InjectPage
+private Login login;
 
-	public Evento getEvento() {
-		return opcionApuesta.getTipoApuesta().getEvento();
-	}
+public Evento getEvento() {
+    return opcionApuesta.getTipoApuesta().getEvento();
+}
 
-	public boolean getPastEvent() {
-		Calendar now = Calendar.getInstance();
-		return this.getEvento().getFecha().before(now);
-	}
+public boolean getPastEvent() {
+    Calendar now = Calendar.getInstance();
+    return this.getEvento().getFecha().before(now);
+}
 
-	public TipoApuesta getTipoApuesta() {
-		return opcionApuesta.getTipoApuesta();
-	}
+public TipoApuesta getTipoApuesta() {
+    return opcionApuesta.getTipoApuesta();
+}
 
-	public OpcionApuesta getOpcionApuesta() {
-		return opcionApuesta;
-	}
+public OpcionApuesta getOpcionApuesta() {
+    return opcionApuesta;
+}
 
-	public void setIdOpcionApuesta(Long idOpcionApuesta) {
-		this.idOpcionApuesta = idOpcionApuesta;
-	}
+public void setIdOpcionApuesta(Long idOpcionApuesta) {
+    this.idOpcionApuesta = idOpcionApuesta;
+}
 
-	public boolean getIsUsuario() {
-		return userSession == null || !userSession.isAdmin();
-	}
+public boolean getIsUsuario() {
+    return userSession == null || !userSession.isAdmin();
+}
 
-	public void onActivate(Long idOpcionApuesta) {
-		this.idOpcionApuesta = idOpcionApuesta;
-		try {
-			opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);
-		} catch (InstanceNotFoundException e) {
+public void onActivate(Long idOpcionApuesta) {
+    this.idOpcionApuesta = idOpcionApuesta;
+    try {
+        opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);
+    } catch (InstanceNotFoundException e) {
 
-		}
-	}
+    }
+}
 
-	Long onPassivate() {
-		return idOpcionApuesta;
-	}
+Long onPassivate() {
+    return idOpcionApuesta;
+}
 
-	void onValidateFromApostarForm() throws InvalidValueException {
-		if (!apostarForm.isValid()) {
-			return;
-		}
-		if (userSession != null) {
-			try {
-				apuesta = userService.apostar(idOpcionApuesta, importe,
-						userSession.getUserProfileId());
-			} catch (EventoStartedException e) {
-				apostarForm.recordError(messages.format("error-eventoStarted",
-						this.getEvento().getNombre()));
-			} catch (InstanceNotFoundException e) {
+void onValidateFromApostarForm() throws InvalidValueException {
+    if (!apostarForm.isValid()) {
+        return;
+    }
+    if (userSession != null) {
+        try {
+            apuesta = userService.apostar(idOpcionApuesta, importe,
+                    userSession.getUserProfileId());
+        } catch (EventoStartedException e) {
+            apostarForm.recordError(messages.format("error-eventoStarted", this
+                    .getEvento().getNombre()));
+        } catch (InstanceNotFoundException e) {
 
-			}
-		}
+        }
+    }
 
-	}
+}
 
-	Object onSuccess() {
-		if (userSession == null) {
-			login.setIdOpcionApuesta(idOpcionApuesta);
-			return login;
-		}
+Object onSuccess() {
+    if (userSession == null) {
+        login.setIdOpcionApuesta(idOpcionApuesta);
+        return login;
+    }
 
-		apuestaCreada.setIdApuesta(apuesta.getIdApuestaRealizada());
-		return apuestaCreada;
-	}
+    apuestaCreada.setIdApuesta(apuesta.getIdApuestaRealizada());
+    return apuestaCreada;
+}
 
 }

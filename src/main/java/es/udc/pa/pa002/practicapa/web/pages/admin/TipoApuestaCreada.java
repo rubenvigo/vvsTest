@@ -17,55 +17,55 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 public class TipoApuestaCreada {
 
-	
-	private Long idTipoApuesta;
-	
-	private TipoApuesta tipoApuesta;
-	
-	@Inject
-	private UserService userService;
-	
-	@Property
-	@SessionState(create=false)
-	private UserSession userSession;
+private Long idTipoApuesta;
 
-	@Property
-	private OpcionApuesta opcion;
-	
-	public Long getIdTipoApuesta() {
-		return idTipoApuesta;
-	}
+private TipoApuesta tipoApuesta;
 
-	public void setIdTipoApuesta(Long idTipoApuesta) {
-		this.idTipoApuesta = idTipoApuesta;
-	}
-	
-	public Set<OpcionApuesta> getOpciones(){
-		return tipoApuesta.getOpcionesApuesta();
-	}
-	public TipoApuesta getTipoApuesta() {
-		return tipoApuesta;
-	}
+@Inject
+private UserService userService;
 
-	public void setTipoApuesta(TipoApuesta tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
-	}
+@Property
+@SessionState(create = false)
+private UserSession userSession;
 
-	public boolean getIsAdmin(){
-		return (userSession!= null) && (userSession.isAdmin());
-	}
-	
-	void onActivate(Long idTipoApuesta){
-		this.idTipoApuesta=idTipoApuesta;
-		try {
-			tipoApuesta=userService.findTipoApuestaById(idTipoApuesta);
-		} catch (InstanceNotFoundException e) {
-			
-		}
-	}
-	
-	Long onPassivate() {
-		return idTipoApuesta;
-	}
-	
+@Property
+private OpcionApuesta opcion;
+
+public Long getIdTipoApuesta() {
+    return idTipoApuesta;
+}
+
+public void setIdTipoApuesta(Long idTipoApuesta) {
+    this.idTipoApuesta = idTipoApuesta;
+}
+
+public Set<OpcionApuesta> getOpciones() {
+    return tipoApuesta.getOpcionesApuesta();
+}
+
+public TipoApuesta getTipoApuesta() {
+    return tipoApuesta;
+}
+
+public void setTipoApuesta(TipoApuesta tipoApuesta) {
+    this.tipoApuesta = tipoApuesta;
+}
+
+public boolean getIsAdmin() {
+    return (userSession != null) && (userSession.isAdmin());
+}
+
+void onActivate(Long idTipoApuesta) {
+    this.idTipoApuesta = idTipoApuesta;
+    try {
+        tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
+    } catch (InstanceNotFoundException e) {
+
+    }
+}
+
+Long onPassivate() {
+    return idTipoApuesta;
+}
+
 }

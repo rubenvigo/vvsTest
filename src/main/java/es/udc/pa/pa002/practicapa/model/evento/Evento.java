@@ -25,91 +25,91 @@ import es.udc.pa.pa002.practicapa.model.tipoapuesta.TipoApuesta;
 @BatchSize(size = 10)
 public class Evento {
 
-	private Long idEvento;
-	private String nombre;
+private Long idEvento;
+private String nombre;
 
-	private Calendar fecha;
-	private Categoria categoria;
-	private Set<TipoApuesta> tipoApuesta = new HashSet<>();
+private Calendar fecha;
+private Categoria categoria;
+private Set<TipoApuesta> tipoApuesta = new HashSet<>();
 
-	public Evento() {
-	}
+public Evento() {
+}
 
-	public Evento(String nombre, Calendar fecha, Categoria categoria) {
-		super();
-		this.nombre = nombre;
-		if (fecha != null) {
-			fecha.set(Calendar.SECOND, 0);
-			fecha.set(Calendar.MILLISECOND, 0);
-		}
-		this.fecha = fecha;
-		this.categoria = categoria;
-	}
+public Evento(String nombre, Calendar fecha, Categoria categoria) {
+    super();
+    this.nombre = nombre;
+    if (fecha != null) {
+        fecha.set(Calendar.SECOND, 0);
+        fecha.set(Calendar.MILLISECOND, 0);
+    }
+    this.fecha = fecha;
+    this.categoria = categoria;
+}
 
-	@SequenceGenerator( // It only takes effect for
-	name = "idEventoGenerator", // databases providing identifier
-	sequenceName = "EventoSeq")
-	// generators.
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO, generator = "idEventoGenerator")
-	public Long getIdEvento() {
-		return idEvento;
-	}
+@SequenceGenerator(// It only takes effect for
+name = "idEventoGenerator", // databases providing identifier
+sequenceName = "EventoSeq")
+// generators.
+@Id
+@GeneratedValue(strategy = GenerationType.AUTO, generator = "idEventoGenerator")
+public Long getIdEvento() {
+    return idEvento;
+}
 
-	public void setIdEvento(Long idEvento) {
-		this.idEvento = idEvento;
-	}
+public void setIdEvento(Long idEvento) {
+    this.idEvento = idEvento;
+}
 
-	public String getNombre() {
-		return nombre;
-	}
+public String getNombre() {
+    return nombre;
+}
 
-	public void setNombre(String nombre) {
-		this.nombre = nombre;
-	}
+public void setNombre(String nombre) {
+    this.nombre = nombre;
+}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	public Calendar getFecha() {
-		return fecha;
-	}
+@Temporal(TemporalType.TIMESTAMP)
+public Calendar getFecha() {
+    return fecha;
+}
 
-	public void setFecha(Calendar fecha) {
-		if (fecha != null) {
-			fecha.set(Calendar.SECOND, 0);
-			fecha.set(Calendar.MILLISECOND, 0);
-		}
-		this.fecha = fecha;
-	}
+public void setFecha(Calendar fecha) {
+    if (fecha != null) {
+        fecha.set(Calendar.SECOND, 0);
+        fecha.set(Calendar.MILLISECOND, 0);
+    }
+    this.fecha = fecha;
+}
 
-	@ManyToOne(optional = false, fetch = FetchType.LAZY)
-	@JoinColumn(name = "idCategoria")
-	public Categoria getCategoria() {
-		return categoria;
-	}
+@ManyToOne(optional = false, fetch = FetchType.LAZY)
+@JoinColumn(name = "idCategoria")
+public Categoria getCategoria() {
+    return categoria;
+}
 
-	public void setCategoria(Categoria categoria) {
-		this.categoria = categoria;
-	}
+public void setCategoria(Categoria categoria) {
+    this.categoria = categoria;
+}
 
-	@OneToMany(mappedBy = "evento")
-	public Set<TipoApuesta> getTipoApuesta() {
-		return tipoApuesta;
-	}
+@OneToMany(mappedBy = "evento")
+public Set<TipoApuesta> getTipoApuesta() {
+    return tipoApuesta;
+}
 
-	public void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
-		this.tipoApuesta = tipoApuesta;
-	}
+public void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
+    this.tipoApuesta = tipoApuesta;
+}
 
-	public void addTipoApuesta(TipoApuesta tipoApuesta) {
-		this.tipoApuesta.add(tipoApuesta);
-	}
+public void addTipoApuesta(TipoApuesta tipoApuesta) {
+    this.tipoApuesta.add(tipoApuesta);
+}
 
-	public boolean existsTipoApuesta(String nombre) {
-		for (TipoApuesta tA : tipoApuesta) {
-			if (tA.getPregunta().equals(nombre))
-				return true;
-		}
-		return false;
-	}
+public boolean existsTipoApuesta(String nombre) {
+    for (TipoApuesta tA : tipoApuesta) {
+        if (tA.getPregunta().equals(nombre))
+            return true;
+    }
+    return false;
+}
 
 }

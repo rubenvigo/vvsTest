@@ -13,59 +13,59 @@ import org.apache.tapestry5.services.PageRenderRequestHandler;
 import org.apache.tapestry5.services.PageRenderRequestParameters;
 
 public class ComponentEventAuthenticationFilter implements
-		ComponentEventRequestFilter {
+        ComponentEventRequestFilter {
 
-	private ApplicationStateManager applicationStateManager;
-	private ComponentSource componentSource;
-	private MetaDataLocator locator;
-	private PageRenderRequestHandler pageRenderRequestHandler;
+private ApplicationStateManager applicationStateManager;
+private ComponentSource componentSource;
+private MetaDataLocator locator;
+private PageRenderRequestHandler pageRenderRequestHandler;
 
-	public ComponentEventAuthenticationFilter(
-			ApplicationStateManager applicationStateManager,
-			ComponentSource componentSource, MetaDataLocator locator,
-			PageRenderRequestHandler pageRenderRequestHandler) {
+public ComponentEventAuthenticationFilter(
+        ApplicationStateManager applicationStateManager,
+        ComponentSource componentSource, MetaDataLocator locator,
+        PageRenderRequestHandler pageRenderRequestHandler) {
 
-		this.applicationStateManager = applicationStateManager;
-		this.componentSource = componentSource;
-		this.locator = locator;
-		this.pageRenderRequestHandler = pageRenderRequestHandler;
+    this.applicationStateManager = applicationStateManager;
+    this.componentSource = componentSource;
+    this.locator = locator;
+    this.pageRenderRequestHandler = pageRenderRequestHandler;
 
-	}
+}
 
-	public void handle(ComponentEventRequestParameters parameters,
-			ComponentEventRequestHandler handler) throws IOException {
+public void handle(ComponentEventRequestParameters parameters,
+        ComponentEventRequestHandler handler) throws IOException {
 
-		ComponentEventRequestParameters handlerParameters = parameters;
-		String redirectPage = AuthenticationValidator.checkForPage(parameters
-				.getActivePageName(), applicationStateManager, componentSource,
-				locator);
-		if (redirectPage == null) {
-			String componentId = parameters.getNestedComponentId();
-			if (componentId != null) {
-				String mainComponentId = null;
-				String eventId = null;
-				if (componentId.indexOf(".") != -1) {
-					mainComponentId = componentId.substring(0, componentId
-							.lastIndexOf("."));
-					eventId = componentId.substring(componentId
-							.lastIndexOf(".") + 1);
-				} else {
-					eventId = componentId;
-				}
+    ComponentEventRequestParameters handlerParameters = parameters;
+    String redirectPage = AuthenticationValidator.checkForPage(
+            parameters.getActivePageName(), applicationStateManager,
+            componentSource, locator);
+    if (redirectPage == null) {
+        String componentId = parameters.getNestedComponentId();
+        if (componentId != null) {
+            String mainComponentId = null;
+            String eventId = null;
+            if (componentId.indexOf(".") != -1) {
+                mainComponentId = componentId.substring(0,
+                        componentId.lastIndexOf("."));
+                eventId = componentId
+                        .substring(componentId.lastIndexOf(".") + 1);
+            } else {
+                eventId = componentId;
+            }
 
-				redirectPage = AuthenticationValidator.checkForComponentEvent(
-						parameters.getActivePageName(), mainComponentId,
-						eventId, parameters.getEventType(),
-						applicationStateManager, componentSource, locator);
+            redirectPage = AuthenticationValidator.checkForComponentEvent(
+                    parameters.getActivePageName(), mainComponentId, eventId,
+                    parameters.getEventType(), applicationStateManager,
+                    componentSource, locator);
 
-			}
-		}
+        }
+    }
 
-		if (redirectPage != null) {
-			pageRenderRequestHandler.handle(new PageRenderRequestParameters(
-					redirectPage, new EmptyEventContext(), false));
-		} else {
-			handler.handle(handlerParameters);
-		}
-	}
+    if (redirectPage != null) {
+        pageRenderRequestHandler.handle(new PageRenderRequestParameters(
+                redirectPage, new EmptyEventContext(), false));
+    } else {
+        handler.handle(handlerParameters);
+    }
+}
 }

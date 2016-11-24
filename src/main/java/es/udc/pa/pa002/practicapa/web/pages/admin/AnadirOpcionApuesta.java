@@ -3,7 +3,6 @@ package es.udc.pa.pa002.practicapa.web.pages.admin;
 import java.util.HashSet;
 import java.util.Set;
 
-
 import org.apache.tapestry5.annotations.Component;
 import org.apache.tapestry5.annotations.InjectComponent;
 import org.apache.tapestry5.annotations.InjectPage;
@@ -18,13 +17,13 @@ import org.apache.tapestry5.ioc.annotations.Inject;
 import org.apache.tapestry5.services.Request;
 import org.apache.tapestry5.services.ajax.AjaxResponseRenderer;
 
+import es.udc.pa.pa002.practicapa.model.evento.Evento;
+import es.udc.pa.pa002.practicapa.model.opcionapuesta.OpcionApuesta;
+import es.udc.pa.pa002.practicapa.model.tipoapuesta.TipoApuesta;
 import es.udc.pa.pa002.practicapa.model.userservice.EventoStartedException;
 import es.udc.pa.pa002.practicapa.model.userservice.InstanceAlreadyCreatedException;
 import es.udc.pa.pa002.practicapa.model.userservice.RepeatedOpcionApuestaException;
 import es.udc.pa.pa002.practicapa.model.userservice.UserService;
-import es.udc.pa.pa002.practicapa.model.evento.Evento;
-import es.udc.pa.pa002.practicapa.model.opcionapuesta.OpcionApuesta;
-import es.udc.pa.pa002.practicapa.model.tipoapuesta.TipoApuesta;
 import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicy;
 import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
@@ -33,177 +32,175 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_ADMIN)
 public class AnadirOpcionApuesta {
 
-	@Persist
-	Set<OpcionApuesta> opciones;
-	
-	@InjectComponent
-	private Zone zonaOpcionesRegistradas;
+@Persist
+Set<OpcionApuesta> opciones;
 
-	@Inject
-	private Request request;
-	
-	@Inject
-	private AjaxResponseRenderer ajaxResponseRenderer;
-	
-	private Evento evento;
+@InjectComponent
+private Zone zonaOpcionesRegistradas;
 
-	private OpcionApuesta opcionApuesta;
-	
-	private TipoApuesta tipoApuesta;
+@Inject
+private Request request;
 
-	private String pregunta;
+@Inject
+private AjaxResponseRenderer ajaxResponseRenderer;
 
-	@Persist
-	private boolean clickFinalizar;
+private Evento evento;
 
-	private Long idEvento;
-	
-	private boolean multiplesganadoras;
+private OpcionApuesta opcionApuesta;
 
-	@Component
-	private Form anadirOpcionApuestaForm;
+private TipoApuesta tipoApuesta;
 
-	@Inject
-	private UserService userService;
+private String pregunta;
 
-	@Property
-	private String respuesta;
+@Persist
+private boolean clickFinalizar;
 
-	@Property
-	private float cuota = 1F;
+private Long idEvento;
 
-	@Property
-	@SessionState(create = false)
-	private UserSession userSession;
+private boolean multiplesganadoras;
 
-	@InjectPage
-	private TipoApuestaCreada tipoApuestaCreada;
+@Component
+private Form anadirOpcionApuestaForm;
 
-	@Inject
-	private Messages messages;
+@Inject
+private UserService userService;
 
-	public Set<OpcionApuesta> getOpciones() {
-		return opciones;
-	}
+@Property
+private String respuesta;
 
-	public void setOpciones(Set<OpcionApuesta> opciones) {
-		this.opciones = opciones;
-	}
+@Property
+private float cuota = 1F;
 
-	public int getNumOpciones() {
-		return opciones.size();
-	}
+@Property
+@SessionState(create = false)
+private UserSession userSession;
 
-	public void setPregunta(String pregunta) {
-		this.pregunta = pregunta;
-	}
+@InjectPage
+private TipoApuestaCreada tipoApuestaCreada;
 
-	public String getPregunta() {
-		return pregunta;
-	}
+@Inject
+private Messages messages;
 
-	public OpcionApuesta getOpcionApuesta() {
-		return opcionApuesta;
-	}
+public Set<OpcionApuesta> getOpciones() {
+    return opciones;
+}
 
-	public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
-		this.opcionApuesta = opcionApuesta;
-	}
-	
-	public Evento getEvento() {
-		return evento;
-	}
+public void setOpciones(Set<OpcionApuesta> opciones) {
+    this.opciones = opciones;
+}
 
-	public void setIdEvento(Long idEvento) {
-		this.idEvento = idEvento;
-	}
+public int getNumOpciones() {
+    return opciones.size();
+}
 
-	public void setMultiplesganadoras(boolean multiplesganadoras) {
-		this.multiplesganadoras = multiplesganadoras;
-	}
+public void setPregunta(String pregunta) {
+    this.pregunta = pregunta;
+}
 
-	public boolean getIsAdmin() {
-		return (userSession != null) && (userSession.isAdmin());
-	}
+public String getPregunta() {
+    return pregunta;
+}
 
-	void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras) {
-		this.idEvento = idEvento;
-		this.pregunta = pregunta;
-		this.multiplesganadoras = multiplesganadoras;
-		
+public OpcionApuesta getOpcionApuesta() {
+    return opcionApuesta;
+}
 
-		try {
-			evento = userService.findEventoById(idEvento);
-		} catch (InstanceNotFoundException e) {
+public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
+    this.opcionApuesta = opcionApuesta;
+}
 
-		}
-	}
+public Evento getEvento() {
+    return evento;
+}
 
-	Object[] onPassivate() {
-		return new Object[] { idEvento, pregunta, multiplesganadoras };
-	}
+public void setIdEvento(Long idEvento) {
+    this.idEvento = idEvento;
+}
 
-	@OnEvent(value = "validate", component = "anadirOpcionApuestaForm")
-	void OnValidateFromAnadirOpcionApuestaForm() {
+public void setMultiplesganadoras(boolean multiplesganadoras) {
+    this.multiplesganadoras = multiplesganadoras;
+}
 
-		if (!anadirOpcionApuestaForm.isValid()) {
-			return;
-		}
-		if (opciones != null) {
-			opciones.add(new OpcionApuesta(respuesta, cuota, null));
-		} else {
-			opciones = new HashSet<OpcionApuesta>();
-			opciones.add(new OpcionApuesta(respuesta, cuota, null));
-		}
-		respuesta = "";
-		cuota = 1;
-		
-		if (clickFinalizar) {
+public boolean getIsAdmin() {
+    return (userSession != null) && (userSession.isAdmin());
+}
 
-			try {
-				tipoApuesta = userService.addTipoApuesta(idEvento,new TipoApuesta(evento, pregunta, opciones,multiplesganadoras));
-				tipoApuestaCreada.setIdTipoApuesta(tipoApuesta.getIdTipoApuesta());
-				
-			} catch (EventoStartedException e) {
-				clickFinalizar=false;
-				anadirOpcionApuestaForm.recordError(messages
-						.get("error-eventoStarted"));
-			} catch (InstanceAlreadyCreatedException e) {
-				clickFinalizar=false;
-				anadirOpcionApuestaForm.recordError(messages
-						.get("error-instanceCreated"));
-			} catch (RepeatedOpcionApuestaException e) {
-				clickFinalizar=false;
-				anadirOpcionApuestaForm.recordError(messages
-						.get("error-repeatedOpcion"));
-			} catch (InstanceNotFoundException e) {
-				clickFinalizar=false;
-				anadirOpcionApuestaForm.recordError(messages
-						.get("error-instanceNotFound"));
-			}
-			
-			opciones.clear();
-		}
+void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras) {
+    this.idEvento = idEvento;
+    this.pregunta = pregunta;
+    this.multiplesganadoras = multiplesganadoras;
 
-	}
+    try {
+        evento = userService.findEventoById(idEvento);
+    } catch (InstanceNotFoundException e) {
 
+    }
+}
 
-	Object onSuccess(){
-		if (clickFinalizar){
-			clickFinalizar=false;
-			return tipoApuestaCreada;	
-		}
+Object[] onPassivate() {
+    return new Object[] {idEvento, pregunta, multiplesganadoras };
+}
 
-		return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
-	}
-	
-	Object onFailure(){
-		return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
-	}
+@OnEvent(value = "validate", component = "anadirOpcionApuestaForm")
+void OnValidateFromAnadirOpcionApuestaForm() {
 
+    if (!anadirOpcionApuestaForm.isValid()) {
+        return;
+    }
+    if (opciones != null) {
+        opciones.add(new OpcionApuesta(respuesta, cuota, null));
+    } else {
+        opciones = new HashSet<OpcionApuesta>();
+        opciones.add(new OpcionApuesta(respuesta, cuota, null));
+    }
+    respuesta = "";
+    cuota = 1;
 
-	void onSelectedFromFinalizar() {
-		clickFinalizar = true;
-		
-	}
+    if (clickFinalizar) {
+
+        try {
+            tipoApuesta = userService.addTipoApuesta(idEvento, new TipoApuesta(
+                    evento, pregunta, opciones, multiplesganadoras));
+            tipoApuestaCreada.setIdTipoApuesta(tipoApuesta.getIdTipoApuesta());
+
+        } catch (EventoStartedException e) {
+            clickFinalizar = false;
+            anadirOpcionApuestaForm.recordError(messages
+                    .get("error-eventoStarted"));
+        } catch (InstanceAlreadyCreatedException e) {
+            clickFinalizar = false;
+            anadirOpcionApuestaForm.recordError(messages
+                    .get("error-instanceCreated"));
+        } catch (RepeatedOpcionApuestaException e) {
+            clickFinalizar = false;
+            anadirOpcionApuestaForm.recordError(messages
+                    .get("error-repeatedOpcion"));
+        } catch (InstanceNotFoundException e) {
+            clickFinalizar = false;
+            anadirOpcionApuestaForm.recordError(messages
+                    .get("error-instanceNotFound"));
+        }
+
+        opciones.clear();
+    }
+
+}
+
+Object onSuccess() {
+    if (clickFinalizar) {
+        clickFinalizar = false;
+        return tipoApuestaCreada;
+    }
+
+    return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
+}
+
+Object onFailure() {
+    return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
+}
+
+void onSelectedFromFinalizar() {
+    clickFinalizar = true;
+
+}
 }

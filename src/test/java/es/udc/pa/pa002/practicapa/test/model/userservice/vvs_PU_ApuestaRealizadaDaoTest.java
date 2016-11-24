@@ -37,167 +37,166 @@ import es.udc.pa.pa002.practicapa.model.userservice.util.PasswordEncrypter;
 @Transactional
 public class vvs_PU_ApuestaRealizadaDaoTest {
 
-	@Autowired
-	private EventoDao eventoDao;
+@Autowired
+private EventoDao eventoDao;
 
-	@Autowired
-	private CategoriaDao categoriaDao;
+@Autowired
+private CategoriaDao categoriaDao;
 
-	@Autowired
-	private UserProfileDao userProfileDao;
+@Autowired
+private UserProfileDao userProfileDao;
 
-	@Autowired
-	private ApuestaRealizadaDao apuestaRealizadaDao;
+@Autowired
+private ApuestaRealizadaDao apuestaRealizadaDao;
 
-	private SessionFactory sessionFactory;
+private SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+@Autowired
+public void setSessionFactory(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+}
 
-	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+protected Session getSession() {
+    return sessionFactory.getCurrentSession();
+}
 
-	/*
-	 * Antes de cada método de test se encuentra su identificador, mediante el
-	 * cual podemos visualizar el diseño de dicho metodo. Los ficheros de diseño
-	 * se encuentran en el directorio doc del proyecto.
-	 */
+/*
+ * Antes de cada método de test se encuentra su identificador, mediante el cual
+ * podemos visualizar el diseño de dicho metodo. Los ficheros de diseño se
+ * encuentran en el directorio doc del proyecto.
+ */
 
-	/*
-	 * PR-UN-050
-	 */
-	@Test
-	public void findApuestasUsuario() {
-		Categoria categoria = new Categoria("Futbol");
-		getSession().save(categoria);
-		Calendar fecha = Calendar.getInstance();
-		fecha.set(2017, Calendar.AUGUST, 11, 10, 30);
-		Evento evento = new Evento("nombre", fecha, categoria);
-		getSession().save(evento);
-		Set<OpcionApuesta> opcionesApuesta = new HashSet<OpcionApuesta>();
-		TipoApuesta tipoApuesta = new TipoApuesta(evento, "pregunta",
-				opcionesApuesta, false);
-		tipoApuesta.setEvento(evento);
-		getSession().save(tipoApuesta);
-		OpcionApuesta opcionApuesta = new OpcionApuesta("1", 2, null);
-		opcionApuesta.setTipoApuesta(tipoApuesta);
-		getSession().save(opcionApuesta);
-		OpcionApuesta opcionApuesta2 = new OpcionApuesta("2", 2, null);
-		opcionApuesta2.setTipoApuesta(tipoApuesta);
-		getSession().save(opcionApuesta2);
-		String encPass = PasswordEncrypter.crypt("pass");
-		UserProfile user = new UserProfile("name", encPass, "firstName",
-				"lastName", "email");
-		getSession().save(user);
-		ApuestaRealizada apuesta = new ApuestaRealizada(user, opcionApuesta, 2,
-				fecha);
-		getSession().save(apuesta);
+/*
+ * PR-UN-050
+ */
+@Test
+public void findApuestasUsuario() {
+    Categoria categoria = new Categoria("Futbol");
+    getSession().save(categoria);
+    Calendar fecha = Calendar.getInstance();
+    fecha.set(2017, Calendar.AUGUST, 11, 10, 30);
+    Evento evento = new Evento("nombre", fecha, categoria);
+    getSession().save(evento);
+    Set<OpcionApuesta> opcionesApuesta = new HashSet<OpcionApuesta>();
+    TipoApuesta tipoApuesta = new TipoApuesta(evento, "pregunta",
+            opcionesApuesta, false);
+    tipoApuesta.setEvento(evento);
+    getSession().save(tipoApuesta);
+    OpcionApuesta opcionApuesta = new OpcionApuesta("1", 2, null);
+    opcionApuesta.setTipoApuesta(tipoApuesta);
+    getSession().save(opcionApuesta);
+    OpcionApuesta opcionApuesta2 = new OpcionApuesta("2", 2, null);
+    opcionApuesta2.setTipoApuesta(tipoApuesta);
+    getSession().save(opcionApuesta2);
+    String encPass = PasswordEncrypter.crypt("pass");
+    UserProfile user = new UserProfile("name", encPass, "firstName",
+            "lastName", "email");
+    getSession().save(user);
+    ApuestaRealizada apuesta = new ApuestaRealizada(user, opcionApuesta, 2,
+            fecha);
+    getSession().save(apuesta);
 
-		ApuestaRealizada apuesta2 = new ApuestaRealizada(user, opcionApuesta2,
-				5, fecha);
-		getSession().save(apuesta2);
-		List<ApuestaRealizada> apuestas = new ArrayList<ApuestaRealizada>();
-		apuestas.add(apuesta);
-		apuestas.add(apuesta2);
-		assertEquals(
-				apuestaRealizadaDao.findByUser(user.getUserProfileId(), 0, 10),
-				apuestas);
+    ApuestaRealizada apuesta2 = new ApuestaRealizada(user, opcionApuesta2, 5,
+            fecha);
+    getSession().save(apuesta2);
+    List<ApuestaRealizada> apuestas = new ArrayList<ApuestaRealizada>();
+    apuestas.add(apuesta);
+    apuestas.add(apuesta2);
+    assertEquals(
+            apuestaRealizadaDao.findByUser(user.getUserProfileId(), 0, 10),
+            apuestas);
 
-	}
+}
 
-	/*
-	 * PR-UN-051
-	 */
-	@Test
-	public void findApuestasUsuarioPageStartIndex() {
-		Categoria categoria = new Categoria("Futbol");
-		getSession().save(categoria);
-		Calendar fecha = Calendar.getInstance();
-		fecha.set(2017, Calendar.AUGUST, 11, 10, 30);
-		Evento evento = new Evento("nombre", fecha, categoria);
-		getSession().save(evento);
-		Set<OpcionApuesta> opcionesApuesta = new HashSet<OpcionApuesta>();
-		TipoApuesta tipoApuesta = new TipoApuesta(evento, "pregunta",
-				opcionesApuesta, false);
-		tipoApuesta.setEvento(evento);
-		getSession().save(tipoApuesta);
-		OpcionApuesta opcionApuesta = new OpcionApuesta("1", 2, null);
-		opcionApuesta.setTipoApuesta(tipoApuesta);
-		getSession().save(opcionApuesta);
-		OpcionApuesta opcionApuesta2 = new OpcionApuesta("2", 2, null);
-		opcionApuesta2.setTipoApuesta(tipoApuesta);
-		getSession().save(opcionApuesta2);
-		String encPass = PasswordEncrypter.crypt("pass");
-		UserProfile user = new UserProfile("name", encPass, "firstName",
-				"lastName", "email");
-		getSession().save(user);
-		ApuestaRealizada apuesta = new ApuestaRealizada(user, opcionApuesta, 2,
-				fecha);
-		getSession().save(apuesta);
+/*
+ * PR-UN-051
+ */
+@Test
+public void findApuestasUsuarioPageStartIndex() {
+    Categoria categoria = new Categoria("Futbol");
+    getSession().save(categoria);
+    Calendar fecha = Calendar.getInstance();
+    fecha.set(2017, Calendar.AUGUST, 11, 10, 30);
+    Evento evento = new Evento("nombre", fecha, categoria);
+    getSession().save(evento);
+    Set<OpcionApuesta> opcionesApuesta = new HashSet<OpcionApuesta>();
+    TipoApuesta tipoApuesta = new TipoApuesta(evento, "pregunta",
+            opcionesApuesta, false);
+    tipoApuesta.setEvento(evento);
+    getSession().save(tipoApuesta);
+    OpcionApuesta opcionApuesta = new OpcionApuesta("1", 2, null);
+    opcionApuesta.setTipoApuesta(tipoApuesta);
+    getSession().save(opcionApuesta);
+    OpcionApuesta opcionApuesta2 = new OpcionApuesta("2", 2, null);
+    opcionApuesta2.setTipoApuesta(tipoApuesta);
+    getSession().save(opcionApuesta2);
+    String encPass = PasswordEncrypter.crypt("pass");
+    UserProfile user = new UserProfile("name", encPass, "firstName",
+            "lastName", "email");
+    getSession().save(user);
+    ApuestaRealizada apuesta = new ApuestaRealizada(user, opcionApuesta, 2,
+            fecha);
+    getSession().save(apuesta);
 
-		ApuestaRealizada apuesta2 = new ApuestaRealizada(user, opcionApuesta2,
-				5, fecha);
-		getSession().save(apuesta2);
-		List<ApuestaRealizada> apuestas = new ArrayList<ApuestaRealizada>();
-		apuestas.add(apuesta2);
-		assertEquals(
-				apuestaRealizadaDao.findByUser(user.getUserProfileId(), 1, 10),
-				apuestas);
+    ApuestaRealizada apuesta2 = new ApuestaRealizada(user, opcionApuesta2, 5,
+            fecha);
+    getSession().save(apuesta2);
+    List<ApuestaRealizada> apuestas = new ArrayList<ApuestaRealizada>();
+    apuestas.add(apuesta2);
+    assertEquals(
+            apuestaRealizadaDao.findByUser(user.getUserProfileId(), 1, 10),
+            apuestas);
 
-	}
+}
 
-	/*
-	 * PR-UN-052
-	 */
-	@Test
-	public void findApuestasUsuarioPageCount() {
-		Categoria categoria = new Categoria("Futbol");
-		getSession().save(categoria);
-		Calendar fecha = Calendar.getInstance();
-		fecha.set(2017, Calendar.AUGUST, 11, 10, 30);
-		Evento evento = new Evento("nombre", fecha, categoria);
-		getSession().save(evento);
-		Set<OpcionApuesta> opcionesApuesta = new HashSet<OpcionApuesta>();
-		TipoApuesta tipoApuesta = new TipoApuesta(evento, "pregunta",
-				opcionesApuesta, false);
-		tipoApuesta.setEvento(evento);
-		getSession().save(tipoApuesta);
-		OpcionApuesta opcionApuesta = new OpcionApuesta("1", 2, null);
-		opcionApuesta.setTipoApuesta(tipoApuesta);
-		getSession().save(opcionApuesta);
-		OpcionApuesta opcionApuesta2 = new OpcionApuesta("2", 2, null);
-		opcionApuesta2.setTipoApuesta(tipoApuesta);
-		getSession().save(opcionApuesta2);
-		String encPass = PasswordEncrypter.crypt("pass");
-		UserProfile user = new UserProfile("name", encPass, "firstName",
-				"lastName", "email");
-		getSession().save(user);
-		ApuestaRealizada apuesta = new ApuestaRealizada(user, opcionApuesta, 2,
-				fecha);
-		getSession().save(apuesta);
+/*
+ * PR-UN-052
+ */
+@Test
+public void findApuestasUsuarioPageCount() {
+    Categoria categoria = new Categoria("Futbol");
+    getSession().save(categoria);
+    Calendar fecha = Calendar.getInstance();
+    fecha.set(2017, Calendar.AUGUST, 11, 10, 30);
+    Evento evento = new Evento("nombre", fecha, categoria);
+    getSession().save(evento);
+    Set<OpcionApuesta> opcionesApuesta = new HashSet<OpcionApuesta>();
+    TipoApuesta tipoApuesta = new TipoApuesta(evento, "pregunta",
+            opcionesApuesta, false);
+    tipoApuesta.setEvento(evento);
+    getSession().save(tipoApuesta);
+    OpcionApuesta opcionApuesta = new OpcionApuesta("1", 2, null);
+    opcionApuesta.setTipoApuesta(tipoApuesta);
+    getSession().save(opcionApuesta);
+    OpcionApuesta opcionApuesta2 = new OpcionApuesta("2", 2, null);
+    opcionApuesta2.setTipoApuesta(tipoApuesta);
+    getSession().save(opcionApuesta2);
+    String encPass = PasswordEncrypter.crypt("pass");
+    UserProfile user = new UserProfile("name", encPass, "firstName",
+            "lastName", "email");
+    getSession().save(user);
+    ApuestaRealizada apuesta = new ApuestaRealizada(user, opcionApuesta, 2,
+            fecha);
+    getSession().save(apuesta);
 
-		ApuestaRealizada apuesta2 = new ApuestaRealizada(user, opcionApuesta2,
-				5, fecha);
-		getSession().save(apuesta2);
-		List<ApuestaRealizada> apuestas = new ArrayList<ApuestaRealizada>();
-		apuestas.add(apuesta);
-		assertEquals(
-				apuestaRealizadaDao.findByUser(user.getUserProfileId(), 0, 1),
-				apuestas);
+    ApuestaRealizada apuesta2 = new ApuestaRealizada(user, opcionApuesta2, 5,
+            fecha);
+    getSession().save(apuesta2);
+    List<ApuestaRealizada> apuestas = new ArrayList<ApuestaRealizada>();
+    apuestas.add(apuesta);
+    assertEquals(apuestaRealizadaDao.findByUser(user.getUserProfileId(), 0, 1),
+            apuestas);
 
-	}
+}
 
-	/*
-	 * PR-UN-053
-	 */
-	@Test
-	public void findApuestasUsuarioNotFound() {
+/*
+ * PR-UN-053
+ */
+@Test
+public void findApuestasUsuarioNotFound() {
 
-		assertTrue(apuestaRealizadaDao.findByUser(1L, 0, 1).isEmpty());
+    assertTrue(apuestaRealizadaDao.findByUser(1L, 0, 1).isEmpty());
 
-	}
+}
 
 }

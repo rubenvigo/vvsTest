@@ -24,95 +24,96 @@ import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 @AuthenticationPolicy(AuthenticationPolicyType.NON_AUTHENTICATED_USERS)
 public class Register {
 
-    @Property
-    private String loginName;
+@Property
+private String loginName;
 
-    @Property
-    private String password;
+@Property
+private String password;
 
-    @Property
-    private String retypePassword;
+@Property
+private String retypePassword;
 
-    @Property
-    private String firstName;
+@Property
+private String firstName;
 
-    @Property
-    private String lastName;
-    
-    @Persist
-    private Long idOpcionApuesta;
+@Property
+private String lastName;
 
-    @Property
-    private String email;
+@Persist
+private Long idOpcionApuesta;
 
-    @SessionState(create=false)
-    private UserSession userSession;
+@Property
+private String email;
 
-    @Inject
-    private UserService userService;
-    
-    @InjectPage
-    private OpcionApuestaDetails opcionApuestaDetails;
+@SessionState(create = false)
+private UserSession userSession;
 
-    @Component
-    private Form registrationForm;
+@Inject
+private UserService userService;
 
-    @Component(id = "loginName")
-    private TextField loginNameField;
+@InjectPage
+private OpcionApuestaDetails opcionApuestaDetails;
 
-    @Component(id = "password")
-    private PasswordField passwordField;
+@Component
+private Form registrationForm;
 
-    @Inject
-    private Messages messages;
+@Component(id = "loginName")
+private TextField loginNameField;
 
-    private Long userProfileId;
-    
-    public void setIdOpcionApuesta(long idOpcionApuesta){
-    	this.idOpcionApuesta = idOpcionApuesta;
+@Component(id = "password")
+private PasswordField passwordField;
+
+@Inject
+private Messages messages;
+
+private Long userProfileId;
+
+public void setIdOpcionApuesta(long idOpcionApuesta) {
+    this.idOpcionApuesta = idOpcionApuesta;
+}
+
+void onValidateFromRegistrationForm() {
+
+    if (!registrationForm.isValid()) {
+        return;
     }
 
+    if (!password.equals(retypePassword)) {
+        registrationForm.recordError(passwordField,
+                messages.get("error-passwordsDontMatch"));
+    } else {
 
-    void onValidateFromRegistrationForm() {
-
-        if (!registrationForm.isValid()) {
-            return;
-        }
-
-        if (!password.equals(retypePassword)) {
-            registrationForm.recordError(passwordField, messages
-                    .get("error-passwordsDontMatch"));
-        } else {
-
-            try {
-                UserProfile userProfile = userService.registerUser(loginName, password,
+        try {
+            UserProfile userProfile = userService.registerUser(loginName,
+                    password,
                     new UserProfileDetails(firstName, lastName, email));
-                userProfileId = userProfile.getUserProfileId();
-            } catch (DuplicateInstanceException e) {
-                registrationForm.recordError(loginNameField, messages
-                        .get("error-loginNameAlreadyExists"));
-            }
-
+            userProfileId = userProfile.getUserProfileId();
+        } catch (DuplicateInstanceException e) {
+            registrationForm.recordError(loginNameField,
+                    messages.get("error-loginNameAlreadyExists"));
         }
 
     }
-    void onActivate(Long idOpcionApuesta){
-    	this.idOpcionApuesta = idOpcionApuesta;
+
+}
+
+void onActivate(Long idOpcionApuesta) {
+    this.idOpcionApuesta = idOpcionApuesta;
+}
+
+Object onSuccess() {
+
+    userSession = new UserSession();
+    userSession.setUserProfileId(userProfileId);
+    userSession.setFirstName(firstName);
+    userSession.setAdmin(loginName.equals("Admin"));
+    if (idOpcionApuesta != null) {
+        opcionApuestaDetails.setIdOpcionApuesta(idOpcionApuesta);
+        idOpcionApuesta = null;
+        return opcionApuestaDetails;
     }
+    return Index.class;
 
-    Object onSuccess() {
-
-        userSession = new UserSession();
-        userSession.setUserProfileId(userProfileId);
-        userSession.setFirstName(firstName);
-        userSession.setAdmin(loginName.equals("Admin"));
-        if(idOpcionApuesta!=null){
-        	opcionApuestaDetails.setIdOpcionApuesta(idOpcionApuesta);
-        	idOpcionApuesta=null;
-        	return opcionApuestaDetails;
-        }
-        return Index.class;
-
-    }
+}
 
 }

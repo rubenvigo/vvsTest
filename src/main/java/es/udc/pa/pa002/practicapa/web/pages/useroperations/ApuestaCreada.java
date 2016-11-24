@@ -13,49 +13,52 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 public class ApuestaCreada {
-	
-	
-	private Long idApuesta;
-	
-	@Property
-	private ApuestaRealizada apuesta;
-	
-	@Inject
-	private UserService userService;
-	
-	public Long getIdApuesta() {
-		return idApuesta;
-	}
 
-	public void setIdApuesta(Long idApuesta) {
-		this.idApuesta = idApuesta;	
-	}
+private Long idApuesta;
 
-	public String getDataEvento(){
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyy HH:mm");
-		return sdf.format(apuesta.getOpcionApuesta().getTipoApuesta().getEvento().getFecha().getTime());
-	}
-	
-	public float getGanancia(){
-		float ganancia = apuesta.getCantidadApostada()*apuesta.getOpcionApuesta().getCuota();
+@Property
+private ApuestaRealizada apuesta;
 
-		return ganancia;
-	}
-	public String getFechaApuesta(){
-		SimpleDateFormat sdf=new SimpleDateFormat("dd/MM/yyy HH:mm");
-		return sdf.format(apuesta.getFecha().getTime());
-	}
-	Long onPassivate() {
-		return idApuesta;
-	}
-	
-	void onActivate(Long idApuesta) {
-		this.idApuesta = idApuesta;
-		try {
-			apuesta=userService.findApuestaById(idApuesta);
-		} catch (InstanceNotFoundException e) {
-			
-		}
-	}
+@Inject
+private UserService userService;
+
+public Long getIdApuesta() {
+    return idApuesta;
+}
+
+public void setIdApuesta(Long idApuesta) {
+    this.idApuesta = idApuesta;
+}
+
+public String getDataEvento() {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
+    return sdf.format(apuesta.getOpcionApuesta().getTipoApuesta().getEvento()
+            .getFecha().getTime());
+}
+
+public float getGanancia() {
+    float ganancia = apuesta.getCantidadApostada()
+            * apuesta.getOpcionApuesta().getCuota();
+
+    return ganancia;
+}
+
+public String getFechaApuesta() {
+    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
+    return sdf.format(apuesta.getFecha().getTime());
+}
+
+Long onPassivate() {
+    return idApuesta;
+}
+
+void onActivate(Long idApuesta) {
+    this.idApuesta = idApuesta;
+    try {
+        apuesta = userService.findApuestaById(idApuesta);
+    } catch (InstanceNotFoundException e) {
+
+    }
+}
 
 }

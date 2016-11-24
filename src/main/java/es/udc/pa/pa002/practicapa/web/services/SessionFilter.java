@@ -18,58 +18,57 @@ import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 public class SessionFilter implements RequestFilter {
 
-	private ApplicationStateManager applicationStateManager;
-	private Cookies cookies;
-	private UserService userService;
+private ApplicationStateManager applicationStateManager;
+private Cookies cookies;
+private UserService userService;
 
-	public SessionFilter(ApplicationStateManager applicationStateManager,
-			Cookies cookies, UserService userService) {
+public SessionFilter(ApplicationStateManager applicationStateManager,
+        Cookies cookies, UserService userService) {
 
-		this.applicationStateManager = applicationStateManager;
-		this.cookies = cookies;
-		this.userService = userService;
+    this.applicationStateManager = applicationStateManager;
+    this.cookies = cookies;
+    this.userService = userService;
 
-	}
+}
 
-	public boolean service(Request request, Response response,
-			RequestHandler handler) throws IOException {
+public boolean service(Request request, Response response,
+        RequestHandler handler) throws IOException {
 
-		if (!applicationStateManager.exists(UserSession.class)) {
+    if (!applicationStateManager.exists(UserSession.class)) {
 
-			String loginName = CookiesManager.getLoginName(cookies);
-			if (loginName != null) {
+        String loginName = CookiesManager.getLoginName(cookies);
+        if (loginName != null) {
 
-				String encryptedPassword = CookiesManager
-						.getEncryptedPassword(cookies);
-				if (encryptedPassword != null) {
+            String encryptedPassword = CookiesManager
+                    .getEncryptedPassword(cookies);
+            if (encryptedPassword != null) {
 
-					try {
+                try {
 
-						UserProfile userProfile = userService.login(loginName,
-								encryptedPassword, true);
-						UserSession userSession = new UserSession();
-						userSession.setUserProfileId(userProfile
-								.getUserProfileId());
-						userSession.setFirstName(userProfile.getFirstName());
-				        userSession.setAdmin(loginName.equals("Admin"));
-						applicationStateManager.set(UserSession.class,
-								userSession);
+                    UserProfile userProfile = userService.login(loginName,
+                            encryptedPassword, true);
+                    UserSession userSession = new UserSession();
+                    userSession
+                            .setUserProfileId(userProfile.getUserProfileId());
+                    userSession.setFirstName(userProfile.getFirstName());
+                    userSession.setAdmin(loginName.equals("Admin"));
+                    applicationStateManager.set(UserSession.class, userSession);
 
-					} catch (InstanceNotFoundException e) {
-						CookiesManager.removeCookies(cookies);
-					} catch (IncorrectPasswordException e) {
-						CookiesManager.removeCookies(cookies);
-					}
+                } catch (InstanceNotFoundException e) {
+                    CookiesManager.removeCookies(cookies);
+                } catch (IncorrectPasswordException e) {
+                    CookiesManager.removeCookies(cookies);
+                }
 
-				}
+            }
 
-			}
+        }
 
-		}
+    }
 
-		handler.service(request, response);
+    handler.service(request, response);
 
-		return true;
-	}
+    return true;
+}
 
 }

@@ -27,54 +27,54 @@ import es.udc.pa.pa002.practicapa.model.userprofile.UserProfileDao;
 @Transactional
 public class vvs_PU_CategoriaDaoTest {
 
-	@Autowired
-	private EventoDao eventoDao;
+@Autowired
+private EventoDao eventoDao;
 
-	@Autowired
-	private CategoriaDao categoriaDao;
+@Autowired
+private CategoriaDao categoriaDao;
 
-	@Autowired
-	private UserProfileDao userProfileDao;
+@Autowired
+private UserProfileDao userProfileDao;
 
-	@Autowired
-	private ApuestaRealizadaDao apuestaRealizadaDao;
+@Autowired
+private ApuestaRealizadaDao apuestaRealizadaDao;
 
-	private SessionFactory sessionFactory;
+private SessionFactory sessionFactory;
 
-	@Autowired
-	public void setSessionFactory(SessionFactory sessionFactory) {
-		this.sessionFactory = sessionFactory;
-	}
+@Autowired
+public void setSessionFactory(SessionFactory sessionFactory) {
+    this.sessionFactory = sessionFactory;
+}
 
-	protected Session getSession() {
-		return sessionFactory.getCurrentSession();
-	}
+protected Session getSession() {
+    return sessionFactory.getCurrentSession();
+}
 
-	/*
-	 * Antes de cada método de test se encuentra su identificador, mediante el
-	 * cual podemos visualizar el diseño de dicho metodo. Los ficheros de diseño
-	 * se encuentran en el directorio doc del proyecto.
-	 */
+/*
+ * Antes de cada método de test se encuentra su identificador, mediante el cual
+ * podemos visualizar el diseño de dicho metodo. Los ficheros de diseño se
+ * encuentran en el directorio doc del proyecto.
+ */
 
-	/*
-	 * PR-UN-043
-	 */
-	@Test
-	public void testFindAllCategories() {
-		Categoria categoria1 = new Categoria("Futbol");
-		getSession().save(categoria1);
-		Categoria categoria2 = new Categoria("Baloncesto");
-		getSession().save(categoria2);
-		Categoria categoria3 = new Categoria("Tenis");
-		getSession().save(categoria3);
+/*
+ * PR-UN-043
+ */
+@Test
+public void testFindAllCategories() {
+    Categoria categoria1 = new Categoria("Futbol");
+    getSession().save(categoria1);
+    Categoria categoria2 = new Categoria("Baloncesto");
+    getSession().save(categoria2);
+    Categoria categoria3 = new Categoria("Tenis");
+    getSession().save(categoria3);
 
-		List<Categoria> categorias = new ArrayList<Categoria>();
-		categorias.add(categoria1);
-		categorias.add(categoria2);
-		categorias.add(categoria3);
+    List<Categoria> categorias = new ArrayList<Categoria>();
+    categorias.add(categoria1);
+    categorias.add(categoria2);
+    categorias.add(categoria3);
 
-		List<Categoria> foundCategorias = categoriaDao.findAll();
-		assertEquals(categorias, foundCategorias);
-	}
+    List<Categoria> foundCategorias = categoriaDao.findAll();
+    assertEquals(categorias, foundCategorias);
+}
 
 }
