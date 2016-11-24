@@ -43,13 +43,13 @@ public Evento getEvento() {
 }
 
 public boolean getIsAdmin() {
-    return (userSession != null) && (userSession.isAdmin());
+    return userSession != null && userSession.isAdmin();
 }
 
 public boolean getNotResolved() {
     boolean resuelta = true;
     for (OpcionApuesta opcion : tipoApuesta.getOpcionesApuesta()) {
-        resuelta = (opcion.getEstado() == null);
+        resuelta = opcion.getEstado() == null;
     }
     return resuelta;
 }
@@ -60,7 +60,7 @@ public Set<OpcionApuesta> getOpcionesApuesta() {
 
 public boolean getEventoStart() {
     Calendar now = Calendar.getInstance();
-    return (tipoApuesta.getEvento().getFecha().before(now));
+    return tipoApuesta.getEvento().getFecha().before(now);
 }
 
 public TipoApuesta getTipoApuesta() {
@@ -71,14 +71,9 @@ public void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
-void onActivate(Long idTipoApuesta) {
+void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     this.idTipoApuesta = idTipoApuesta;
-    try {
-        tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
-    } catch (InstanceNotFoundException e) {
-
-    }
-
+    tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
 }
 
 Long onPassivate() {
