@@ -52,13 +52,9 @@ Long onPassivate() {
     return idApuesta;
 }
 
-void onActivate(Long idApuesta) {
+void onActivate(Long idApuesta) throws InstanceNotFoundException {
     this.idApuesta = idApuesta;
-    try {
-        apuesta = userService.findApuestaById(idApuesta);
-    } catch (InstanceNotFoundException e) {
-
-    }
+    apuesta = userService.findApuestaById(idApuesta);
 }
 
 }
