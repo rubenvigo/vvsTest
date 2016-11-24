@@ -122,19 +122,16 @@ public void setMultiplesganadoras(boolean multiplesganadoras) {
 }
 
 public boolean getIsAdmin() {
-    return (userSession != null) && (userSession.isAdmin());
+    return userSession != null && userSession.isAdmin();
 }
 
-void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras) {
+void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
+        throws InstanceNotFoundException {
     this.idEvento = idEvento;
     this.pregunta = pregunta;
     this.multiplesganadoras = multiplesganadoras;
 
-    try {
-        evento = userService.findEventoById(idEvento);
-    } catch (InstanceNotFoundException e) {
-
-    }
+    evento = userService.findEventoById(idEvento);
 }
 
 Object[] onPassivate() {
