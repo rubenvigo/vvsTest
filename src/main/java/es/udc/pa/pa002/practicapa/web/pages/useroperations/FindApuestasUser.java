@@ -34,12 +34,12 @@ private UserSession userSession;
 private ApuestaRealizada apuesta;
 
 public boolean getIsPendiente() {
-    return (apuesta.getOpcionApuesta().getEstado() == null);
+    return apuesta.getOpcionApuesta().getEstado() == null;
 }
 
 public boolean getIsWinner() {
-    return (apuesta.getOpcionApuesta().getEstado() != null && apuesta
-            .getOpcionApuesta().getEstado() == true);
+    return apuesta.getOpcionApuesta().getEstado() != null
+            && apuesta.getOpcionApuesta().getEstado() == true;
 }
 
 public String getDataEvento() {
