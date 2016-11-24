@@ -79,20 +79,17 @@ public boolean getIsUsuario() {
     return userSession == null || !userSession.isAdmin();
 }
 
-public void onActivate(Long idOpcionApuesta) {
+public void onActivate(Long idOpcionApuesta) throws InstanceNotFoundException {
     this.idOpcionApuesta = idOpcionApuesta;
-    try {
-        opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);
-    } catch (InstanceNotFoundException e) {
-
-    }
+    opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);
 }
 
 Long onPassivate() {
     return idOpcionApuesta;
 }
 
-void onValidateFromApostarForm() throws InvalidValueException {
+void onValidateFromApostarForm() throws InvalidValueException,
+        InstanceNotFoundException {
     if (!apostarForm.isValid()) {
         return;
     }
@@ -103,8 +100,6 @@ void onValidateFromApostarForm() throws InvalidValueException {
         } catch (EventoStartedException e) {
             apostarForm.recordError(messages.format("error-eventoStarted", this
                     .getEvento().getNombre()));
-        } catch (InstanceNotFoundException e) {
-
         }
     }
 
