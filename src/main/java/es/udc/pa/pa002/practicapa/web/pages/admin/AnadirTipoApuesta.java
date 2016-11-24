@@ -47,16 +47,14 @@ public Evento getEvento() {
 }
 
 public boolean getIsAdmin() {
-    return (userSession != null) && (userSession.isAdmin());
+    return userSession != null && userSession.isAdmin();
 }
 
-void onActivate(Long idEvento) {
+void onActivate(Long idEvento) throws InstanceNotFoundException {
     this.idEvento = idEvento;
-    try {
-        evento = userService.findEventoById(idEvento);
-    } catch (InstanceNotFoundException e) {
 
-    }
+    evento = userService.findEventoById(idEvento);
+
 }
 
 Long onPassivate() {
