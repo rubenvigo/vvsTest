@@ -278,7 +278,7 @@ private static final int cov_2char[] = {0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33,
         0x65, 0x66, 0x67, 0x68, 0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E, 0x6F, 0x70,
         0x71, 0x72, 0x73, 0x74, 0x75, 0x76, 0x77, 0x78, 0x79, 0x7A };
 
-private static final int byteToUnsigned(byte b) {
+private static int byteToUnsigned(byte b) {
     int value = b;
 
     return (value >= 0 ? value : value + 256);
@@ -288,21 +288,21 @@ private static int fourBytesToInt(byte b[], int offset) {
     int value;
 
     value = byteToUnsigned(b[offset++]);
-    value |= (byteToUnsigned(b[offset++]) << 8);
-    value |= (byteToUnsigned(b[offset++]) << 16);
-    value |= (byteToUnsigned(b[offset++]) << 24);
+    value |= byteToUnsigned(b[offset++]) << 8;
+    value |= byteToUnsigned(b[offset++]) << 16;
+    value |= byteToUnsigned(b[offset++]) << 24;
 
-    return (value);
+    return value;
 }
 
-private static final void intToFourBytes(int iValue, byte b[], int offset) {
+private static void intToFourBytes(int iValue, byte b[], int offset) {
     b[offset++] = (byte) ((iValue) & 0xff);
     b[offset++] = (byte) ((iValue >>> 8) & 0xff);
     b[offset++] = (byte) ((iValue >>> 16) & 0xff);
     b[offset++] = (byte) ((iValue >>> 24) & 0xff);
 }
 
-private static final void PERM_OP(int a, int b, int n, int m, int results[]) {
+private static void PERM_OP(int a, int b, int n, int m, int results[]) {
     int t;
 
     t = ((a >>> n) ^ b) & m;
@@ -313,13 +313,13 @@ private static final void PERM_OP(int a, int b, int n, int m, int results[]) {
     results[1] = b;
 }
 
-private static final int HPERM_OP(int a, int n, int m) {
+private static int HPERM_OP(int a, int n, int m) {
     int t;
 
     t = ((a << (16 - n)) ^ a) & m;
     a = a ^ t ^ (t >>> (16 - n));
 
-    return (a);
+    return a;
 }
 
 private static int[] des_set_key(byte key[]) {
@@ -349,8 +349,8 @@ private static int[] des_set_key(byte key[]) {
     d = results[0];
     c = results[1];
 
-    d = (((d & 0x000000ff) << 16) | (d & 0x0000ff00)
-            | ((d & 0x00ff0000) >>> 16) | ((c & 0xf0000000) >>> 4));
+    d = ((d & 0x000000ff) << 16) | (d & 0x0000ff00) | ((d & 0x00ff0000) >>> 16)
+            | ((c & 0xf0000000) >>> 4);
     c &= 0x0fffffff;
 
     int s, t;
@@ -380,15 +380,15 @@ private static int[] des_set_key(byte key[]) {
                 | skb[7][((d >>> 21) & 0x0f) | ((d >>> 22) & 0x30)];
 
         schedule[j++] = ((t << 16) | (s & 0x0000ffff)) & 0xffffffff;
-        s = ((s >>> 16) | (t & 0xffff0000));
+        s = (s >>> 16) | (t & 0xffff0000);
 
         s = (s << 4) | (s >>> 28);
         schedule[j++] = s & 0xffffffff;
     }
-    return (schedule);
+    return schedule;
 }
 
-private static final int D_ENCRYPT(int L, int R, int S, int E0, int E1, int s[]) {
+private static int D_ENCRYPT(int L, int R, int S, int E0, int E1, int s[]) {
     int t, u, v;
 
     v = R ^ (R >>> 16);
@@ -403,10 +403,10 @@ private static final int D_ENCRYPT(int L, int R, int S, int E0, int E1, int s[])
             | SPtrans[0][(u) & 0x3f] | SPtrans[2][(u >>> 8) & 0x3f]
             | SPtrans[4][(u >>> 16) & 0x3f] | SPtrans[6][(u >>> 24) & 0x3f];
 
-    return (L);
+    return L;
 }
 
-private static final int[] body(int schedule[], int Eswap0, int Eswap1) {
+private static int[] body(int schedule[], int Eswap0, int Eswap1) {
     int left = 0;
     int right = 0;
     int t = 0;
@@ -456,10 +456,10 @@ private static final int[] body(int schedule[], int Eswap0, int Eswap1) {
     out[0] = left;
     out[1] = right;
 
-    return (out);
+    return out;
 }
 
-public static final String crypt(String salt, String original) {
+public static String crypt(String salt, String original) {
     while (salt.length() < 2)
         salt += "A";
 
@@ -510,7 +510,7 @@ public static final String crypt(String salt, String original) {
             buffer.setCharAt(i, (char) cov_2char[c]);
         }
     }
-    return (buffer.toString());
+    return buffer.toString();
 }
 
 public static void main(String args[]) {
