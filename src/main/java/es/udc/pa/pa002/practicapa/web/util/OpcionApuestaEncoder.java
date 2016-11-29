@@ -6,10 +6,20 @@ import es.udc.pa.pa002.practicapa.model.opcionapuesta.OpcionApuesta;
 import es.udc.pa.pa002.practicapa.model.userservice.UserService;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class OpcionApuestaEncoder.
+ */
 public class OpcionApuestaEncoder implements ValueEncoder<OpcionApuesta> {
 
+/** The user service. */
 private UserService userService;
 
+/**
+ * Instantiates a new opcion apuesta encoder.
+ *
+ * @param userService
+ *            the user service
+ */
 public OpcionApuestaEncoder(UserService userService) {
     this.userService = userService;
 }

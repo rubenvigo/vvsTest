@@ -29,102 +29,195 @@ import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class AnadirOpcionApuesta.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_ADMIN)
 public class AnadirOpcionApuesta {
 
+/** The opciones. */
 @Persist
 Set<OpcionApuesta> opciones;
 
+/** The zona opciones registradas. */
 @InjectComponent
 private Zone zonaOpcionesRegistradas;
 
+/** The request. */
 @Inject
 private Request request;
 
+/** The ajax response renderer. */
 @Inject
 private AjaxResponseRenderer ajaxResponseRenderer;
 
+/** The evento. */
 private Evento evento;
 
+/** The opcion apuesta. */
 private OpcionApuesta opcionApuesta;
 
+/** The tipo apuesta. */
 private TipoApuesta tipoApuesta;
 
+/** The pregunta. */
 private String pregunta;
 
+/** The click finalizar. */
 @Persist
 private boolean clickFinalizar;
 
+/** The id evento. */
 private Long idEvento;
 
+/** The multiplesganadoras. */
 private boolean multiplesganadoras;
 
+/** The anadir opcion apuesta form. */
 @Component
 private Form anadirOpcionApuestaForm;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/** The respuesta. */
 @Property
 private String respuesta;
 
+/** The cuota. */
 @Property
 private float cuota = 1F;
 
+/** The user session. */
 @Property
 @SessionState(create = false)
 private UserSession userSession;
 
+/** The tipo apuesta creada. */
 @InjectPage
 private TipoApuestaCreada tipoApuestaCreada;
 
+/** The messages. */
 @Inject
 private Messages messages;
 
+/**
+ * Gets the opciones.
+ *
+ * @return the opciones
+ */
 public Set<OpcionApuesta> getOpciones() {
     return opciones;
 }
 
+/**
+ * Sets the opciones.
+ *
+ * @param opciones
+ *            the new opciones
+ */
 public void setOpciones(Set<OpcionApuesta> opciones) {
     this.opciones = opciones;
 }
 
+/**
+ * Gets the num opciones.
+ *
+ * @return the num opciones
+ */
 public int getNumOpciones() {
     return opciones.size();
 }
 
+/**
+ * Sets the pregunta.
+ *
+ * @param pregunta
+ *            the new pregunta
+ */
 public void setPregunta(String pregunta) {
     this.pregunta = pregunta;
 }
 
+/**
+ * Gets the pregunta.
+ *
+ * @return the pregunta
+ */
 public String getPregunta() {
     return pregunta;
 }
 
+/**
+ * Gets the opcion apuesta.
+ *
+ * @return the opcion apuesta
+ */
 public OpcionApuesta getOpcionApuesta() {
     return opcionApuesta;
 }
 
+/**
+ * Sets the opcion apuesta.
+ *
+ * @param opcionApuesta
+ *            the new opcion apuesta
+ */
 public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
     this.opcionApuesta = opcionApuesta;
 }
 
+/**
+ * Gets the evento.
+ *
+ * @return the evento
+ */
 public Evento getEvento() {
     return evento;
 }
 
+/**
+ * Sets the id evento.
+ *
+ * @param idEvento
+ *            the new id evento
+ */
 public void setIdEvento(Long idEvento) {
     this.idEvento = idEvento;
 }
 
+/**
+ * Sets the multiplesganadoras.
+ *
+ * @param multiplesganadoras
+ *            the new multiplesganadoras
+ */
 public void setMultiplesganadoras(boolean multiplesganadoras) {
     this.multiplesganadoras = multiplesganadoras;
 }
 
+/**
+ * Gets the checks if is admin.
+ *
+ * @return the checks if is admin
+ */
 public boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
+/**
+ * On activate.
+ *
+ * @param idEvento
+ *            the id evento
+ * @param pregunta
+ *            the pregunta
+ * @param multiplesganadoras
+ *            the multiplesganadoras
+ * @throws InstanceNotFoundException
+ *             the instance not found exception
+ */
 void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
         throws InstanceNotFoundException {
     this.idEvento = idEvento;
@@ -134,10 +227,18 @@ void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
     evento = userService.findEventoById(idEvento);
 }
 
+/**
+ * On passivate.
+ *
+ * @return the object[]
+ */
 Object[] onPassivate() {
     return new Object[] {idEvento, pregunta, multiplesganadoras };
 }
 
+/**
+ * On validate from anadir opcion apuesta form.
+ */
 @OnEvent(value = "validate", component = "anadirOpcionApuestaForm")
 void OnValidateFromAnadirOpcionApuestaForm() {
 
@@ -183,6 +284,11 @@ void OnValidateFromAnadirOpcionApuestaForm() {
 
 }
 
+/**
+ * On success.
+ *
+ * @return the object
+ */
 Object onSuccess() {
     if (clickFinalizar) {
         clickFinalizar = false;
@@ -192,10 +298,18 @@ Object onSuccess() {
     return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
 }
 
+/**
+ * On failure.
+ *
+ * @return the object
+ */
 Object onFailure() {
     return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
 }
 
+/**
+ * On selected from finalizar.
+ */
 void onSelectedFromFinalizar() {
     clickFinalizar = true;
 

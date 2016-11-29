@@ -12,14 +12,36 @@ import org.apache.tapestry5.services.MetaDataLocator;
 import org.apache.tapestry5.services.PageRenderRequestHandler;
 import org.apache.tapestry5.services.PageRenderRequestParameters;
 
+/**
+ * The Class ComponentEventAuthenticationFilter.
+ */
 public class ComponentEventAuthenticationFilter implements
         ComponentEventRequestFilter {
 
+/** The application state manager. */
 private ApplicationStateManager applicationStateManager;
+
+/** The component source. */
 private ComponentSource componentSource;
+
+/** The locator. */
 private MetaDataLocator locator;
+
+/** The page render request handler. */
 private PageRenderRequestHandler pageRenderRequestHandler;
 
+/**
+ * Instantiates a new component event authentication filter.
+ *
+ * @param applicationStateManager
+ *            the application state manager
+ * @param componentSource
+ *            the component source
+ * @param locator
+ *            the locator
+ * @param pageRenderRequestHandler
+ *            the page render request handler
+ */
 public ComponentEventAuthenticationFilter(
         ApplicationStateManager applicationStateManager,
         ComponentSource componentSource, MetaDataLocator locator,
@@ -32,6 +54,7 @@ public ComponentEventAuthenticationFilter(
 
 }
 
+@Override
 public void handle(ComponentEventRequestParameters parameters,
         ComponentEventRequestHandler handler) throws IOException {
 

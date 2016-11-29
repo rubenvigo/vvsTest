@@ -6,10 +6,20 @@ import es.udc.pa.pa002.practicapa.model.categoria.Categoria;
 import es.udc.pa.pa002.practicapa.model.userservice.UserService;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class CategoriaEncoder.
+ */
 public class CategoriaEncoder implements ValueEncoder<Categoria> {
 
+/** The user service. */
 private UserService userService;
 
+/**
+ * Instantiates a new categoria encoder.
+ *
+ * @param userService
+ *            the user service
+ */
 public CategoriaEncoder(UserService userService) {
     super();
     this.userService = userService;

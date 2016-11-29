@@ -26,61 +26,95 @@ import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicy;
 import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.CategoriaEncoder;
 
+/**
+ * The Class AnadirEvento.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_ADMIN)
 public class AnadirEvento {
 
+/** The categoria select model. */
 @Property
 private SelectModel categoriaSelectModel;
 
+/** The select model factory. */
 @Inject
 SelectModelFactory selectModelFactory;
 
+/** The nombre. */
 @Property
 private String nombre;
 
+/** The categoria. */
 @Property
 private Categoria categoria;
 
+/** The fecha. */
 @Property
 private Calendar fecha;
 
+/** The hora. */
 @Property
 private String hora;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/** The evento. */
 private Evento evento;
 
+/** The evento creado. */
 @InjectPage
 private EventoCreado eventoCreado;
 
+/** The add eventos form. */
 @Component
 private Form addEventosForm;
 
+/** The fecha date field. */
 @Component(id = "fecha")
 private DateField fechaDateField;
 
+/** The hora field. */
 @Component(id = "hora")
 private TextField horaField;
 
+/** The messages. */
 @Inject
 private Messages messages;
 
+/**
+ * Gets the categoria encoder.
+ *
+ * @return the categoria encoder
+ */
 public CategoriaEncoder getCategoriaEncoder() {
     return new CategoriaEncoder(userService);
 }
 
+/**
+ * On activate.
+ */
 void onActivate() {
     List<Categoria> categorias = userService.findCategories();
     categoriaSelectModel = selectModelFactory.create(categorias, "nombre");
 }
 
+/**
+ * Validate fecha.
+ *
+ * @param fecha
+ *            the fecha
+ * @return true, if successful
+ */
 boolean validateFecha(String fecha) {
     return Integer.valueOf(fecha.substring(0, 2)) > 23
             || Integer.valueOf(fecha.substring(3)) > 60;
 }
 
+/**
+ * On validate from add eventos form.
+ */
 @OnEvent(value = "validate", component = "addEventosForm")
 void OnValidateFromAddEventosForm() {
     if (!addEventosForm.isValid()) {
@@ -116,6 +150,11 @@ void OnValidateFromAddEventosForm() {
 
 }
 
+/**
+ * On success.
+ *
+ * @return the object
+ */
 Object onSuccess() {
     eventoCreado.setIdEvento(evento.getIdEvento());
     return eventoCreado;

@@ -18,34 +18,58 @@ import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class TipoApuestaDetails.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.ALL_USERS)
 public class TipoApuestaDetails {
 
+/** The id tipo apuesta. */
 private Long idTipoApuesta;
 
+/** The tipo apuesta. */
 private TipoApuesta tipoApuesta;
 
+/** The opcion apuesta. */
 @Property
 private OpcionApuesta opcionApuesta;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/** The user session. */
 @Property
 @SessionState(create = false)
 private UserSession userSession;
 
+/** The especificar ganadoras. */
 @InjectPage
 private EspecificarGanadoras especificarGanadoras;
 
+/**
+ * Gets the evento.
+ *
+ * @return the evento
+ */
 public Evento getEvento() {
     return tipoApuesta.getEvento();
 }
 
+/**
+ * Gets the checks if is admin.
+ *
+ * @return the checks if is admin
+ */
 public boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
+/**
+ * Gets the not resolved.
+ *
+ * @return the not resolved
+ */
 public boolean getNotResolved() {
     boolean resuelta = true;
     for (OpcionApuesta opcion : tipoApuesta.getOpcionesApuesta()) {
@@ -54,32 +78,71 @@ public boolean getNotResolved() {
     return resuelta;
 }
 
+/**
+ * Gets the opciones apuesta.
+ *
+ * @return the opciones apuesta
+ */
 public Set<OpcionApuesta> getOpcionesApuesta() {
     return tipoApuesta.getOpcionesApuesta();
 }
 
+/**
+ * Gets the evento start.
+ *
+ * @return the evento start
+ */
 public boolean getEventoStart() {
     Calendar now = Calendar.getInstance();
     return tipoApuesta.getEvento().getFecha().before(now);
 }
 
+/**
+ * Gets the tipo apuesta.
+ *
+ * @return the tipo apuesta
+ */
 public TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
+/**
+ * Sets the id tipo apuesta.
+ *
+ * @param idTipoApuesta
+ *            the new id tipo apuesta
+ */
 public void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
+/**
+ * On activate.
+ *
+ * @param idTipoApuesta
+ *            the id tipo apuesta
+ * @throws InstanceNotFoundException
+ *             the instance not found exception
+ */
 void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
 }
 
+/**
+ * On passivate.
+ *
+ * @return the long
+ */
 Long onPassivate() {
     return idTipoApuesta;
 }
 
+/**
+ * On success.
+ *
+ * @return the object
+ */
 Object onSuccess() {
     especificarGanadoras.setIdTipoApuesta(idTipoApuesta);
     return especificarGanadoras;

@@ -17,33 +17,50 @@ import es.udc.pa.pa002.practicapa.web.util.CookiesManager;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class ChangePassword.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 public class ChangePassword {
 
+/** The old password. */
 @Property
 private String oldPassword;
 
+/** The new password. */
 @Property
 private String newPassword;
 
+/** The retype new password. */
 @Property
 private String retypeNewPassword;
 
+/** The user session. */
 @SessionState(create = false)
 private UserSession userSession;
 
+/** The change password form. */
 @Component
 private Form changePasswordForm;
 
+/** The cookies. */
 @Inject
 private Cookies cookies;
 
+/** The messages. */
 @Inject
 private Messages messages;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/**
+ * On validate from change password form.
+ *
+ * @throws InstanceNotFoundException
+ *             the instance not found exception
+ */
 void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
 
     if (!changePasswordForm.isValid()) {
@@ -67,6 +84,11 @@ void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
 
 }
 
+/**
+ * On success.
+ *
+ * @return the object
+ */
 Object onSuccess() {
 
     CookiesManager.removeCookies(cookies);

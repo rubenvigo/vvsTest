@@ -12,19 +12,45 @@ import org.hibernate.annotations.BatchSize;
 
 import es.udc.pa.pa002.practicapa.model.tipoapuesta.TipoApuesta;
 
+/**
+ * The Class OpcionApuesta.
+ */
 @Entity
 @BatchSize(size = 10)
 public class OpcionApuesta {
+
+/** The id opcion apuesta. */
 private Long idOpcionApuesta;
+
+/** The respuesta. */
 private String respuesta;
+
+/** The cuota. */
 private float cuota;
+
+/** The estado. */
 private Boolean estado;
+
+/** The tipo apuesta. */
 private TipoApuesta tipoApuesta;
 
+/**
+ * Instantiates a new opcion apuesta.
+ */
 public OpcionApuesta() {
 
 }
 
+/**
+ * Instantiates a new opcion apuesta.
+ *
+ * @param respuesta
+ *            the respuesta
+ * @param cuota
+ *            the cuota
+ * @param estado
+ *            the estado
+ */
 public OpcionApuesta(String respuesta, float cuota, Boolean estado) {
     super();
     this.respuesta = respuesta;
@@ -32,6 +58,11 @@ public OpcionApuesta(String respuesta, float cuota, Boolean estado) {
     this.estado = estado;
 }
 
+/**
+ * Gets the id opcion apuesta.
+ *
+ * @return the id opcion apuesta
+ */
 @SequenceGenerator(// It only takes effect for
 name = "OpcionApuestaIdGenerator", // databases providing identifier
 sequenceName = "OpcionApuestaSeq")
@@ -42,40 +73,90 @@ public Long getIdOpcionApuesta() {
     return idOpcionApuesta;
 }
 
+/**
+ * Sets the id opcion apuesta.
+ *
+ * @param idOpcionApuesta
+ *            the new id opcion apuesta
+ */
 public void setIdOpcionApuesta(Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
+/**
+ * Gets the respuesta.
+ *
+ * @return the respuesta
+ */
 public String getRespuesta() {
     return respuesta;
 }
 
+/**
+ * Sets the respuesta.
+ *
+ * @param respuesta
+ *            the new respuesta
+ */
 public void setRespuesta(String respuesta) {
     this.respuesta = respuesta;
 }
 
+/**
+ * Gets the cuota.
+ *
+ * @return the cuota
+ */
 public float getCuota() {
     return cuota;
 }
 
+/**
+ * Sets the cuota.
+ *
+ * @param cuota
+ *            the new cuota
+ */
 public void setCuota(float cuota) {
     this.cuota = cuota;
 }
 
+/**
+ * Gets the estado.
+ *
+ * @return the estado
+ */
 public Boolean getEstado() {
     return estado;
 }
 
+/**
+ * Sets the estado.
+ *
+ * @param estado
+ *            the new estado
+ */
 public void setEstado(Boolean estado) {
     this.estado = estado;
 }
 
+/**
+ * Gets the tipo apuesta.
+ *
+ * @return the tipo apuesta
+ */
 @ManyToOne(optional = false)
 @JoinColumn(name = "idTipoApuesta")
 public TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
+/**
+ * Sets the tipo apuesta.
+ *
+ * @param tipoApuesta
+ *            the new tipo apuesta
+ */
 public void setTipoApuesta(TipoApuesta tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }

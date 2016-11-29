@@ -7,15 +7,36 @@ import org.apache.tapestry5.services.MetaDataLocator;
 
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 
+/**
+ * The Class AuthenticationValidator.
+ */
 public class AuthenticationValidator {
 
+/** The Constant LOGIN_PAGE. */
 private final static String LOGIN_PAGE = "user/Login";
 
+/** The Constant INIT_PAGE. */
 private final static String INIT_PAGE = "Index";
 
+/** The Constant PAGE_AUTHENTICATION_TYPE. */
 public static final String PAGE_AUTHENTICATION_TYPE = "page-authentication-type";
+
+/** The Constant EVENT_HANDLER_AUTHENTICATION_TYPE. */
 public static final String EVENT_HANDLER_AUTHENTICATION_TYPE = "event-handler-authentication-type";
 
+/**
+ * Check for page.
+ *
+ * @param pageName
+ *            the page name
+ * @param applicationStateManager
+ *            the application state manager
+ * @param componentSource
+ *            the component source
+ * @param locator
+ *            the locator
+ * @return the string
+ */
 public static String checkForPage(String pageName,
         ApplicationStateManager applicationStateManager,
         ComponentSource componentSource, MetaDataLocator locator) {
@@ -36,6 +57,25 @@ public static String checkForPage(String pageName,
 
 }
 
+/**
+ * Check for component event.
+ *
+ * @param pageName
+ *            the page name
+ * @param componentId
+ *            the component id
+ * @param eventId
+ *            the event id
+ * @param eventType
+ *            the event type
+ * @param applicationStateManager
+ *            the application state manager
+ * @param componentSource
+ *            the component source
+ * @param locator
+ *            the locator
+ * @return the string
+ */
 public static String checkForComponentEvent(String pageName,
         String componentId, String eventId, String eventType,
         ApplicationStateManager applicationStateManager,
@@ -67,6 +107,15 @@ public static String checkForComponentEvent(String pageName,
 
 }
 
+/**
+ * Check.
+ *
+ * @param policy
+ *            the policy
+ * @param applicationStateManager
+ *            the application state manager
+ * @return the string
+ */
 public static String check(AuthenticationPolicy policy,
         ApplicationStateManager applicationStateManager) {
 
@@ -78,6 +127,15 @@ public static String check(AuthenticationPolicy policy,
 
 }
 
+/**
+ * Check.
+ *
+ * @param policyType
+ *            the policy type
+ * @param applicationStateManager
+ *            the application state manager
+ * @return the string
+ */
 public static String check(AuthenticationPolicyType policyType,
         ApplicationStateManager applicationStateManager) {
     String redirectPage = null;

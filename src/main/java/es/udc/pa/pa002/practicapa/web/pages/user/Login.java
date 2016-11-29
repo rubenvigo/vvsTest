@@ -21,49 +21,77 @@ import es.udc.pa.pa002.practicapa.web.util.CookiesManager;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class Login.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.NON_AUTHENTICATED_USERS)
 public class Login {
 
+/** The login name. */
 @Property
 private String loginName;
 
+/** The password. */
 @Property
 private String password;
 
+/** The remember my password. */
 @Property
 private boolean rememberMyPassword;
 
+/** The user session. */
 @SessionState(create = false)
 private UserSession userSession;
 
+/** The cookies. */
 @Inject
 private Cookies cookies;
 
+/** The login form. */
 @Component
 private Form loginForm;
 
+/** The messages. */
 @Inject
 private Messages messages;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/** The user profile. */
 private UserProfile userProfile = null;
 
+/** The id opcion apuesta. */
 @Persist
 private Long idOpcionApuesta;
 
+/** The opcion apuesta details. */
 @InjectPage
 private OpcionApuestaDetails opcionApuestaDetails;
 
+/**
+ * Sets the id opcion apuesta.
+ *
+ * @param idOpcionApuesta
+ *            the new id opcion apuesta
+ */
 public void setIdOpcionApuesta(Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
+/**
+ * Gets the id opcion apuesta.
+ *
+ * @return the id opcion apuesta
+ */
 public Long getIdOpcionApuesta() {
     return this.idOpcionApuesta;
 }
 
+/**
+ * On validate from login form.
+ */
 void onValidateFromLoginForm() {
 
     if (!loginForm.isValid()) {
@@ -80,6 +108,11 @@ void onValidateFromLoginForm() {
 
 }
 
+/**
+ * On success.
+ *
+ * @return the object
+ */
 Object onSuccess() {
 
     userSession = new UserSession();

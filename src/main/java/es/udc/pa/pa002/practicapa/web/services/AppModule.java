@@ -16,6 +16,12 @@ import org.apache.tapestry5.services.transform.ComponentClassTransformWorker2;
  */
 public class AppModule {
 
+/**
+ * Bind.
+ *
+ * @param binder
+ *            the binder
+ */
 public static void bind(ServiceBinder binder) {
 
     /* Bind filters. */
@@ -25,6 +31,12 @@ public static void bind(ServiceBinder binder) {
 
 }
 
+/**
+ * Contribute application defaults.
+ *
+ * @param configuration
+ *            the configuration
+ */
 public static void contributeApplicationDefaults(
         MappedConfiguration<String, Object> configuration) {
 
@@ -36,7 +48,7 @@ public static void contributeApplicationDefaults(
 
 /**
  * Contribute our {@link ComponentClassTransformWorker2} to transformation
- * pipeline to add our code to loaded classes
+ * pipeline to add our code to loaded classes.
  *
  * @param configuration
  *            component class transformer configuration
@@ -48,6 +60,14 @@ public static void contributeComponentClassTransformWorker(
 
 }
 
+/**
+ * Contribute request handler.
+ *
+ * @param configuration
+ *            the configuration
+ * @param sessionFilter
+ *            the session filter
+ */
 public static void contributeRequestHandler(
         OrderedConfiguration<RequestFilter> configuration,
         SessionFilter sessionFilter) {
@@ -60,6 +80,11 @@ public static void contributeRequestHandler(
 /**
  * Contributes "PageRenderAuthenticationFilter" filter which checks for access
  * rights of requests.
+ *
+ * @param configuration
+ *            the configuration
+ * @param pageRenderAuthenticationFilter
+ *            the page render authentication filter
  */
 public void contributePageRenderRequestHandler(
         OrderedConfiguration<PageRenderRequestFilter> configuration,
@@ -77,6 +102,11 @@ public void contributePageRenderRequestHandler(
 /**
  * Contribute "PageRenderAuthenticationFilter" filter to determine if the event
  * can be processed and the user has enough rights to do so.
+ *
+ * @param configuration
+ *            the configuration
+ * @param componentEventAuthenticationFilter
+ *            the component event authentication filter
  */
 public void contributeComponentEventRequestHandler(
         OrderedConfiguration<ComponentEventRequestFilter> configuration,

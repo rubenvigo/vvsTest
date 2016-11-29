@@ -25,23 +25,38 @@ import es.udc.pa.pa002.practicapa.model.userservice.util.PasswordEncrypter;
 import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class UserServiceImpl.
+ */
 @Service("userService")
 @Transactional
 public class UserServiceImpl implements UserService {
 
+/** The user profile dao. */
 @Autowired
 private UserProfileDao userProfileDao;
+
+/** The evento dao. */
 @Autowired
 private EventoDao eventoDao;
+
+/** The tipo apuesta dao. */
 @Autowired
 private TipoApuestaDao tipoApuestaDao;
+
+/** The opcion apuesta dao. */
 @Autowired
 private OpcionApuestaDao opcionApuestaDao;
+
+/** The apuesta realizada dao. */
 @Autowired
 private ApuestaRealizadaDao apuestaRealizadaDao;
+
+/** The categoria dao. */
 @Autowired
 private CategoriaDao categoriaDao;
 
+@Override
 public UserProfile registerUser(String loginName, String clearPassword,
         UserProfileDetails userProfileDetails)
         throws DuplicateInstanceException {
@@ -63,6 +78,7 @@ public UserProfile registerUser(String loginName, String clearPassword,
 
 }
 
+@Override
 @Transactional(readOnly = true)
 public UserProfile login(String loginName, String password,
         boolean passwordIsEncrypted) throws InstanceNotFoundException,
@@ -84,6 +100,7 @@ public UserProfile login(String loginName, String password,
 
 }
 
+@Override
 @Transactional(readOnly = true)
 public UserProfile findUserProfile(Long userProfileId)
         throws InstanceNotFoundException {
@@ -91,6 +108,7 @@ public UserProfile findUserProfile(Long userProfileId)
     return userProfileDao.find(userProfileId);
 }
 
+@Override
 public void updateUserProfileDetails(Long userProfileId,
         UserProfileDetails userProfileDetails) throws InstanceNotFoundException {
 
@@ -101,6 +119,7 @@ public void updateUserProfileDetails(Long userProfileId,
 
 }
 
+@Override
 public void changePassword(Long userProfileId, String oldClearPassword,
         String newClearPassword) throws IncorrectPasswordException,
         InstanceNotFoundException {
@@ -119,6 +138,16 @@ public void changePassword(Long userProfileId, String oldClearPassword,
 
 }
 
+/**
+ * Validar evento.
+ *
+ * @param evento
+ *            the evento
+ * @throws InvalidDateException
+ *             the invalid date exception
+ * @throws InstanceAlreadyCreatedException
+ *             the instance already created exception
+ */
 private void validarEvento(Evento evento) throws InvalidDateException,
         InstanceAlreadyCreatedException {
     if (evento.getFecha().before(Calendar.getInstance())) {
@@ -160,6 +189,14 @@ public EventoBlock findEventos(String keywords, Long idCategoria,
     return new EventoBlock(listaEventos, existMoreEventos);
 }
 
+/**
+ * Validar opciones apuesta.
+ *
+ * @param opcionesApuesta
+ *            the opciones apuesta
+ * @throws RepeatedOpcionApuestaException
+ *             the repeated opcion apuesta exception
+ */
 private void validarOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta)
         throws RepeatedOpcionApuestaException {
 

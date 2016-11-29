@@ -14,40 +14,69 @@ import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicy;
 import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 
+/**
+ * The Class FindApuestasUser.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 public class FindApuestasUser {
 
+/** The Constant APUESTAS_PER_PAGE. */
 private final static int APUESTAS_PER_PAGE = 10;
 
+/** The apuesta block. */
 private ApuestaBlock apuestaBlock;
 
+/** The start index. */
 private int startIndex = 0;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/** The user session. */
 @Property
 @SessionState(create = false)
 private UserSession userSession;
 
+/** The apuesta. */
 @Property
 private ApuestaRealizada apuesta;
 
+/**
+ * Gets the checks if is pendiente.
+ *
+ * @return the checks if is pendiente
+ */
 public boolean getIsPendiente() {
     return apuesta.getOpcionApuesta().getEstado() == null;
 }
 
+/**
+ * Gets the checks if is winner.
+ *
+ * @return the checks if is winner
+ */
 public boolean getIsWinner() {
     return apuesta.getOpcionApuesta().getEstado() != null
             && apuesta.getOpcionApuesta().getEstado() == true;
 }
 
+/**
+ * Gets the data evento.
+ *
+ * @return the data evento
+ */
 public String getDataEvento() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
     return sdf.format(apuesta.getOpcionApuesta().getTipoApuesta().getEvento()
             .getFecha().getTime());
 }
 
+/**
+ * Gets the ganancia.
+ *
+ * @return the ganancia
+ */
 public float getGanancia() {
     float ganancia = apuesta.getCantidadApostada()
             * apuesta.getOpcionApuesta().getCuota();
@@ -55,19 +84,39 @@ public float getGanancia() {
     return ganancia;
 }
 
+/**
+ * Gets the fecha apuesta.
+ *
+ * @return the fecha apuesta
+ */
 public String getFechaApuesta() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
     return sdf.format(apuesta.getFecha().getTime());
 }
 
+/**
+ * Gets the apuestas user.
+ *
+ * @return the apuestas user
+ */
 public List<ApuestaRealizada> getApuestasUser() {
     return apuestaBlock.getApuestas();
 }
 
+/**
+ * Gets the apuestas per page.
+ *
+ * @return the apuestas per page
+ */
 public static int getApuestasPerPage() {
     return APUESTAS_PER_PAGE;
 }
 
+/**
+ * Gets the previous link context.
+ *
+ * @return the previous link context
+ */
 public Object[] getPreviousLinkContext() {
 
     if (startIndex - APUESTAS_PER_PAGE >= 0) {
@@ -78,6 +127,11 @@ public Object[] getPreviousLinkContext() {
 
 }
 
+/**
+ * Gets the next link context.
+ *
+ * @return the next link context
+ */
 public Object[] getNextLinkContext() {
 
     if (apuestaBlock.getExistMoreApuestas()) {
@@ -88,6 +142,12 @@ public Object[] getNextLinkContext() {
 
 }
 
+/**
+ * On activate.
+ *
+ * @param startIndex
+ *            the start index
+ */
 void onActivate(int startIndex) {
     this.startIndex = startIndex;
     apuestaBlock = userService.consultarApuestas(

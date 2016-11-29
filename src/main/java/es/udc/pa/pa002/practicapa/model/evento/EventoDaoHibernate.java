@@ -9,10 +9,28 @@ import org.springframework.stereotype.Repository;
 
 import es.udc.pojo.modelutil.dao.GenericDaoHibernate;
 
+/**
+ * The Class EventoDaoHibernate.
+ */
 @Repository("eventoDao")
 public class EventoDaoHibernate extends GenericDaoHibernate<Evento, Long>
         implements EventoDao {
 
+/**
+ * Find by parameters.
+ *
+ * @param keywords
+ *            the keywords
+ * @param categoriaId
+ *            the categoria id
+ * @param admin
+ *            the admin
+ * @param startIndex
+ *            the start index
+ * @param count
+ *            the count
+ * @return the list
+ */
 @SuppressWarnings("unchecked")
 @Override
 public List<Evento> findByParameters(String keywords, Long idCategoria,
@@ -74,6 +92,13 @@ public List<Evento> findByParameters(String keywords, Long idCategoria,
     return consulta.setFirstResult(startIndex).setMaxResults(count).list();
 }
 
+/*
+ * (non-Javadoc)
+ * 
+ * @see
+ * es.udc.pa.pa002.practicapa.model.evento.EventoDao#existsEvent(java.lang.String
+ * , java.lang.Long, java.util.Calendar)
+ */
 @Override
 public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
     Session session = getSession();
@@ -89,6 +114,13 @@ public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
     return eventos > 0;
 }
 
+/*
+ * (non-Javadoc)
+ * 
+ * @see
+ * es.udc.pa.pa002.practicapa.model.evento.EventoDao#getNumberOfEventos(java
+ * .lang.String, java.lang.Long, boolean)
+ */
 @Override
 public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin) {
 

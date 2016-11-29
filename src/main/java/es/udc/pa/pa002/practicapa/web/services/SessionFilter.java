@@ -16,12 +16,30 @@ import es.udc.pa.pa002.practicapa.web.util.CookiesManager;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class SessionFilter.
+ */
 public class SessionFilter implements RequestFilter {
 
+/** The application state manager. */
 private ApplicationStateManager applicationStateManager;
+
+/** The cookies. */
 private Cookies cookies;
+
+/** The user service. */
 private UserService userService;
 
+/**
+ * Instantiates a new session filter.
+ *
+ * @param applicationStateManager
+ *            the application state manager
+ * @param cookies
+ *            the cookies
+ * @param userService
+ *            the user service
+ */
 public SessionFilter(ApplicationStateManager applicationStateManager,
         Cookies cookies, UserService userService) {
 
@@ -31,6 +49,7 @@ public SessionFilter(ApplicationStateManager applicationStateManager,
 
 }
 
+@Override
 public boolean service(Request request, Response response,
         RequestHandler handler) throws IOException {
 

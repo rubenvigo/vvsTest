@@ -29,45 +29,69 @@ import es.udc.pa.pa002.practicapa.web.util.OpcionApuestaEncoder;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
+/**
+ * The Class EspecificarGanadoras.
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_ADMIN)
 public class EspecificarGanadoras {
 
+/** The especificar ganadoras form. */
 @Component
 private Form especificarGanadorasForm;
 
+/** The id tipo apuesta. */
 private Long idTipoApuesta;
 
+/** The tipo apuesta. */
 private TipoApuesta tipoApuesta;
 
+/** The opcion apuesta. */
 @Property
 private OpcionApuesta opcionApuesta;
 
+/** The ganadoras. */
 @Property
 private List<OpcionApuesta> ganadoras;
 
+/** The opcion apuesta select model. */
 @Property
 private SelectModel opcionApuestaSelectModel;
 
+/** The select model factory. */
 @Inject
 SelectModelFactory selectModelFactory;
 
+/** The messages. */
 @Inject
 private Messages messages;
 
+/** The user service. */
 @Inject
 private UserService userService;
 
+/** The tipo apuesta details. */
 @InjectPage
 private TipoApuestaDetails tipoApuestaDetails;
 
+/** The user session. */
 @Property
 @SessionState(create = false)
 private UserSession userSession;
 
+/**
+ * Gets the evento.
+ *
+ * @return the evento
+ */
 public Evento getEvento() {
     return tipoApuesta.getEvento();
 }
 
+/**
+ * Gets the opciones apuesta.
+ *
+ * @return the opciones apuesta
+ */
 public List<OpcionApuesta> getOpcionesApuesta() {
     List<OpcionApuesta> opciones = new ArrayList<OpcionApuesta>();
 
@@ -78,10 +102,23 @@ public List<OpcionApuesta> getOpcionesApuesta() {
     return opciones;
 }
 
+/**
+ * Gets the tipo apuesta.
+ *
+ * @return the tipo apuesta
+ */
 public TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
+/**
+ * On activate.
+ *
+ * @param idTipoApuesta
+ *            the id tipo apuesta
+ * @throws InstanceNotFoundException
+ *             the instance not found exception
+ */
 void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     opcionApuesta = new OpcionApuesta();
     this.idTipoApuesta = idTipoApuesta;
@@ -91,18 +128,40 @@ void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
                 this.getOpcionesApuesta(), "respuesta");
 }
 
+/**
+ * Sets the id tipo apuesta.
+ *
+ * @param idTipoApuesta
+ *            the new id tipo apuesta
+ */
 public void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
+/**
+ * On passivate.
+ *
+ * @return the long
+ */
 Long onPassivate() {
     return idTipoApuesta;
 }
 
+/**
+ * Gets the opcion apuesta encoder.
+ *
+ * @return the opcion apuesta encoder
+ */
 public OpcionApuestaEncoder getOpcionApuestaEncoder() {
     return new OpcionApuestaEncoder(userService);
 }
 
+/**
+ * On validate from especificar ganadoras form.
+ *
+ * @throws InstanceNotFoundException
+ *             the instance not found exception
+ */
 void onValidateFromEspecificarGanadorasForm() throws InstanceNotFoundException {
 
     try {
@@ -136,6 +195,11 @@ void onValidateFromEspecificarGanadorasForm() throws InstanceNotFoundException {
 
 }
 
+/**
+ * On success.
+ *
+ * @return the object
+ */
 Object onSuccess() {
     tipoApuestaDetails.setIdTipoApuesta(idTipoApuesta);
     return tipoApuestaDetails;

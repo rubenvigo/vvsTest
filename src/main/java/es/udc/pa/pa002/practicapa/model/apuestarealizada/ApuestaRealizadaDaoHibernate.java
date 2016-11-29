@@ -6,6 +6,9 @@ import org.springframework.stereotype.Repository;
 
 import es.udc.pojo.modelutil.dao.GenericDaoHibernate;
 
+/**
+ * The Class ApuestaRealizadaDaoHibernate.
+ */
 @Repository("apuestaRealizadaDao")
 public class ApuestaRealizadaDaoHibernate extends
         GenericDaoHibernate<ApuestaRealizada, Long> implements

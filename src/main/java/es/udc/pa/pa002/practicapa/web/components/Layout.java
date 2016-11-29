@@ -13,28 +13,45 @@ import es.udc.pa.pa002.practicapa.web.services.AuthenticationPolicyType;
 import es.udc.pa.pa002.practicapa.web.util.CookiesManager;
 import es.udc.pa.pa002.practicapa.web.util.UserSession;
 
-@Import(library = { "tapestry5/bootstrap/js/collapse.js",
+/**
+ * The Class Layout.
+ */
+@Import(library = {"tapestry5/bootstrap/js/collapse.js",
         "tapestry5/bootstrap/js/dropdown.js" }, stylesheet = "tapestry5/bootstrap/css/bootstrap-theme.css")
 public class Layout {
 
+/** The title. */
 @Property
 @Parameter(required = true, defaultPrefix = "message")
 private String title;
 
+/** The show title in body. */
 @Parameter(defaultPrefix = "literal")
 private Boolean showTitleInBody;
 
+/** The user session. */
 @Property
 @SessionState(create = false)
 private UserSession userSession;
 
+/** The cookies. */
 @Inject
 private Cookies cookies;
 
+/**
+ * Gets the start index.
+ *
+ * @return the start index
+ */
 public int getStartIndex() {
     return 0;
 }
 
+/**
+ * Gets the show title in body.
+ *
+ * @return the show title in body
+ */
 public boolean getShowTitleInBody() {
 
     if (showTitleInBody == null) {
@@ -45,6 +62,11 @@ public boolean getShowTitleInBody() {
 
 }
 
+/**
+ * On action from logout.
+ *
+ * @return the object
+ */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
 Object onActionFromLogout() {
     userSession = null;
