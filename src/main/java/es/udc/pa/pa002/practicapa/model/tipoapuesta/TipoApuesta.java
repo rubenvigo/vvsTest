@@ -193,8 +193,9 @@ public void setMultiplesGanadoras(boolean multiplesGanadoras) {
  */
 public boolean existsOpcionApuesta(String nombre) {
     for (OpcionApuesta opcionApuesta : opcionesApuesta) {
-        if (opcionApuesta.getRespuesta().equals(nombre))
+        if (opcionApuesta.getRespuesta().equals(nombre)) {
             return true;
+        }
     }
     return false;
 }

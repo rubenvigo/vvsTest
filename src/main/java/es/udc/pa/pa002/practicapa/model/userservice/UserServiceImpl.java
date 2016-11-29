@@ -245,9 +245,10 @@ public ApuestaRealizada apostar(Long idOpcionApuesta, float cantidadApostada,
         InvalidValueException {
 
     Calendar hoy = Calendar.getInstance();
-    if (cantidadApostada <= 0)
+    if (cantidadApostada <= 0) {
         throw new InvalidValueException(
                 "No es posible apostar una cantidad inferior o igual a cero");
+    }
     OpcionApuesta opcionApuesta = opcionApuestaDao.find(idOpcionApuesta);
     if (opcionApuesta.getTipoApuesta().getEvento().getFecha().before(hoy)) {
         throw new EventoStartedException(

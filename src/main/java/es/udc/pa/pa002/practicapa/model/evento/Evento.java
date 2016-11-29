@@ -198,8 +198,9 @@ public void addTipoApuesta(TipoApuesta tipoApuesta) {
  */
 public boolean existsTipoApuesta(String nombre) {
     for (TipoApuesta tA : tipoApuesta) {
-        if (tA.getPregunta().equals(nombre))
+        if (tA.getPregunta().equals(nombre)) {
             return true;
+        }
     }
     return false;
 }

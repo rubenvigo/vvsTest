@@ -565,8 +565,9 @@ private static int[] body(int schedule[], int Eswap0, int Eswap1) {
  * @return the string
  */
 public static String crypt(String salt, String original) {
-    while (salt.length() < 2)
+    while (salt.length() < 2) {
         salt += "A";
+    }
 
     StringBuffer buffer = new StringBuffer("             ");
 
@@ -581,8 +582,9 @@ public static String crypt(String salt, String original) {
 
     byte key[] = new byte[8];
 
-    for (int i = 0; i < key.length; i++)
+    for (int i = 0; i < key.length; i++) {
         key[i] = (byte) 0;
+    }
 
     for (int i = 0; i < key.length && i < original.length(); i++) {
         int iChar = original.charAt(i);
@@ -603,8 +605,9 @@ public static String crypt(String salt, String original) {
         for (int j = 0, c = 0; j < 6; j++) {
             c <<= 1;
 
-            if ((b[y] & u) != 0)
+            if ((b[y] & u) != 0) {
                 c |= 1;
+            }
 
             u >>>= 1;
 

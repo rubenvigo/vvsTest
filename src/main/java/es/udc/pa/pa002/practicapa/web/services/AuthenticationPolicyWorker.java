@@ -99,15 +99,17 @@ private void processEventHandlerAnnotations(PlasticClass plasticClass,
  * @return the string
  */
 private String extractComponentId(String methodName, OnEvent annotation) {
-    if (annotation != null)
+    if (annotation != null) {
         return annotation.component();
+    }
 
     // Method name started with "on". Extract the component id, if present.
 
     int fromx = methodName.indexOf("From");
 
-    if (fromx < 0)
+    if (fromx < 0) {
         return "";
+    }
 
     return methodName.substring(fromx + 4);
 }
@@ -128,8 +130,9 @@ private String extractComponentId(String methodName, OnEvent annotation) {
  * @return the string
  */
 private String extractEventType(String methodName, OnEvent annotation) {
-    if (annotation != null)
+    if (annotation != null) {
         return annotation.value();
+    }
 
     int fromx = methodName.indexOf("From");
 

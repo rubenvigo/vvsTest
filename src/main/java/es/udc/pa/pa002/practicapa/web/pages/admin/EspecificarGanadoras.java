@@ -123,9 +123,10 @@ void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     opcionApuesta = new OpcionApuesta();
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
-    if (tipoApuesta != null)
+    if (tipoApuesta != null) {
         opcionApuestaSelectModel = selectModelFactory.create(
                 this.getOpcionesApuesta(), "respuesta");
+    }
 }
 
 /**

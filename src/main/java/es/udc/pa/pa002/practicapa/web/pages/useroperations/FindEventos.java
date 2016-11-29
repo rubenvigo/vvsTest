@@ -101,8 +101,9 @@ Object onSuccess() {
     foundEventos.setKeywords(keywords);
     if (categoria != null) {
         foundEventos.setIdCategoria(categoria.getIdCategoria());
-    } else
+    } else {
         foundEventos.setIdCategoria(null);
+    }
     return foundEventos;
 
 }
