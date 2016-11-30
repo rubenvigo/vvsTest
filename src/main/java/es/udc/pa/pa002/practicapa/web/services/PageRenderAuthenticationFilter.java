@@ -45,7 +45,7 @@ public PageRenderAuthenticationFilter(
 }
 
 @Override
-public void handle(PageRenderRequestParameters parameters,
+public final void handle(PageRenderRequestParameters parameters,
         PageRenderRequestHandler handler) throws IOException {
 
     PageRenderRequestParameters handlerParameters = parameters;

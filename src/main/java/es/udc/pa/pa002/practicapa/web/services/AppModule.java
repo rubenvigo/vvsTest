@@ -86,7 +86,7 @@ public static void contributeRequestHandler(
  * @param pageRenderAuthenticationFilter
  *            the page render authentication filter
  */
-public void contributePageRenderRequestHandler(
+public final void contributePageRenderRequestHandler(
         OrderedConfiguration<PageRenderRequestFilter> configuration,
         PageRenderRequestFilter pageRenderAuthenticationFilter) {
 
@@ -108,7 +108,7 @@ public void contributePageRenderRequestHandler(
  * @param componentEventAuthenticationFilter
  *            the component event authentication filter
  */
-public void contributeComponentEventRequestHandler(
+public final void contributeComponentEventRequestHandler(
         OrderedConfiguration<ComponentEventRequestFilter> configuration,
         ComponentEventRequestFilter componentEventAuthenticationFilter) {
 

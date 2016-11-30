@@ -20,7 +20,7 @@ public class CategoriaDaoHibernate extends GenericDaoHibernate<Categoria, Long>
  */
 @SuppressWarnings("unchecked")
 @Override
-public List<Categoria> findAll() {
+public final List<Categoria> findAll() {
     return getSession().createQuery("SELECT a FROM Categoria a ").list();
 }
 

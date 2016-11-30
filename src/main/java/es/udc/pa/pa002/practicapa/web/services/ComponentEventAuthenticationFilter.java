@@ -55,7 +55,7 @@ public ComponentEventAuthenticationFilter(
 }
 
 @Override
-public void handle(ComponentEventRequestParameters parameters,
+public final void handle(ComponentEventRequestParameters parameters,
         ComponentEventRequestHandler handler) throws IOException {
 
     ComponentEventRequestParameters handlerParameters = parameters;

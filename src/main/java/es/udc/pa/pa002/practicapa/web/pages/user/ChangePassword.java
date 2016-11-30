@@ -61,7 +61,7 @@ private UserService userService;
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
+final void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
 
     if (!changePasswordForm.isValid()) {
         return;
@@ -89,7 +89,7 @@ void onValidateFromChangePasswordForm() throws InstanceNotFoundException {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
 
     CookiesManager.removeCookies(cookies);
     return Index.class;

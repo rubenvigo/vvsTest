@@ -51,7 +51,7 @@ sequenceName = "CategoriaSeq")
 // generators.
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "idCategoriaGenerator")
-public Long getIdCategoria() {
+public final Long getIdCategoria() {
     return idCategoria;
 }
 
@@ -61,7 +61,7 @@ public Long getIdCategoria() {
  * @param idCategoria
  *            the new id categoria
  */
-public void setIdCategoria(Long idCategoria) {
+public final void setIdCategoria(Long idCategoria) {
     this.idCategoria = idCategoria;
 }
 
@@ -70,7 +70,7 @@ public void setIdCategoria(Long idCategoria) {
  *
  * @return the nombre
  */
-public String getNombre() {
+public final String getNombre() {
     return nombre;
 }
 
@@ -80,7 +80,7 @@ public String getNombre() {
  * @param nombre
  *            the new nombre
  */
-public void setNombre(String nombre) {
+public final void setNombre(String nombre) {
     this.nombre = nombre;
 }
 

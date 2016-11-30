@@ -91,7 +91,7 @@ public TipoApuesta(String pregunta, Set<OpcionApuesta> opcionesApuesta,
 @SequenceGenerator(name = "idTipoApuestaGenerator", sequenceName = "tipoApuestaSeq")
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "idTipoApuestaGenerator")
-public Long getIdTipoApuesta() {
+public final Long getIdTipoApuesta() {
     return idTipoApuesta;
 }
 
@@ -101,7 +101,7 @@ public Long getIdTipoApuesta() {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
@@ -110,7 +110,7 @@ public void setIdTipoApuesta(Long idTipoApuesta) {
  *
  * @return the pregunta
  */
-public String getPregunta() {
+public final String getPregunta() {
     return pregunta;
 }
 
@@ -120,7 +120,7 @@ public String getPregunta() {
  * @param pregunta
  *            the new pregunta
  */
-public void setPregunta(String pregunta) {
+public final void setPregunta(String pregunta) {
     this.pregunta = pregunta;
 }
 
@@ -131,7 +131,7 @@ public void setPregunta(String pregunta) {
  */
 @ManyToOne(optional = false)
 @JoinColumn(name = "idEvento")
-public Evento getEvento() {
+public final Evento getEvento() {
     return evento;
 }
 
@@ -141,7 +141,7 @@ public Evento getEvento() {
  * @param evento
  *            the new evento
  */
-public void setEvento(Evento evento) {
+public final void setEvento(Evento evento) {
     this.evento = evento;
 }
 
@@ -151,7 +151,7 @@ public void setEvento(Evento evento) {
  * @return the opciones apuesta
  */
 @OneToMany(mappedBy = "tipoApuesta")
-public Set<OpcionApuesta> getOpcionesApuesta() {
+public final Set<OpcionApuesta> getOpcionesApuesta() {
     return opcionesApuesta;
 }
 
@@ -161,7 +161,7 @@ public Set<OpcionApuesta> getOpcionesApuesta() {
  * @param opcionesApuesta
  *            the new opciones apuesta
  */
-public void setOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta) {
+public final void setOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta) {
     this.opcionesApuesta = opcionesApuesta;
 }
 
@@ -170,7 +170,7 @@ public void setOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta) {
  *
  * @return true, if is multiples ganadoras
  */
-public boolean isMultiplesGanadoras() {
+public final boolean isMultiplesGanadoras() {
     return multiplesGanadoras;
 }
 
@@ -180,7 +180,7 @@ public boolean isMultiplesGanadoras() {
  * @param multiplesGanadoras
  *            the new multiples ganadoras
  */
-public void setMultiplesGanadoras(boolean multiplesGanadoras) {
+public final void setMultiplesGanadoras(boolean multiplesGanadoras) {
     this.multiplesGanadoras = multiplesGanadoras;
 }
 
@@ -191,7 +191,7 @@ public void setMultiplesGanadoras(boolean multiplesGanadoras) {
  *            the nombre
  * @return true, if successful
  */
-public boolean existsOpcionApuesta(String nombre) {
+public final boolean existsOpcionApuesta(String nombre) {
     for (OpcionApuesta opcionApuesta : opcionesApuesta) {
         if (opcionApuesta.getRespuesta().equals(nombre)) {
             return true;

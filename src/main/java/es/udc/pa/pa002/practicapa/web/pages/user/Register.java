@@ -92,14 +92,14 @@ private Long userProfileId;
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public void setIdOpcionApuesta(long idOpcionApuesta) {
+public final void setIdOpcionApuesta(long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
 /**
  * On validate from registration form.
  */
-void onValidateFromRegistrationForm() {
+final void onValidateFromRegistrationForm() {
 
     if (!registrationForm.isValid()) {
         return;
@@ -130,7 +130,7 @@ void onValidateFromRegistrationForm() {
  * @param idOpcionApuesta
  *            the id opcion apuesta
  */
-void onActivate(Long idOpcionApuesta) {
+final void onActivate(Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
@@ -139,7 +139,7 @@ void onActivate(Long idOpcionApuesta) {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
 
     userSession = new UserSession();
     userSession.setUserProfileId(userProfileId);

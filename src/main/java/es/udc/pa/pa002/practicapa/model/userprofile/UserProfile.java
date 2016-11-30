@@ -78,7 +78,7 @@ sequenceName = "UserProfileSeq")
 // generators.
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "UserProfileIdGenerator")
-public Long getUserProfileId() {
+public final Long getUserProfileId() {
     return userProfileId;
 }
 
@@ -88,7 +88,7 @@ public Long getUserProfileId() {
  * @param userProfileId
  *            the new user profile id
  */
-public void setUserProfileId(Long userProfileId) {
+public final void setUserProfileId(Long userProfileId) {
     this.userProfileId = userProfileId;
 }
 
@@ -97,7 +97,7 @@ public void setUserProfileId(Long userProfileId) {
  *
  * @return the login name
  */
-public String getLoginName() {
+public final String getLoginName() {
     return loginName;
 }
 
@@ -107,7 +107,7 @@ public String getLoginName() {
  * @param loginName
  *            the new login name
  */
-public void setLoginName(String loginName) {
+public final void setLoginName(String loginName) {
     this.loginName = loginName;
 }
 
@@ -117,7 +117,7 @@ public void setLoginName(String loginName) {
  * @return the encrypted password
  */
 @Column(name = "enPassword")
-public String getEncryptedPassword() {
+public final String getEncryptedPassword() {
     return encryptedPassword;
 }
 
@@ -127,7 +127,7 @@ public String getEncryptedPassword() {
  * @param encryptedPassword
  *            the new encrypted password
  */
-public void setEncryptedPassword(String encryptedPassword) {
+public final void setEncryptedPassword(String encryptedPassword) {
     this.encryptedPassword = encryptedPassword;
 }
 
@@ -136,7 +136,7 @@ public void setEncryptedPassword(String encryptedPassword) {
  *
  * @return the first name
  */
-public String getFirstName() {
+public final String getFirstName() {
     return firstName;
 }
 
@@ -146,7 +146,7 @@ public String getFirstName() {
  * @param firstName
  *            the new first name
  */
-public void setFirstName(String firstName) {
+public final void setFirstName(String firstName) {
     this.firstName = firstName;
 }
 
@@ -155,7 +155,7 @@ public void setFirstName(String firstName) {
  *
  * @return the last name
  */
-public String getLastName() {
+public final String getLastName() {
     return lastName;
 }
 
@@ -165,7 +165,7 @@ public String getLastName() {
  * @param lastName
  *            the new last name
  */
-public void setLastName(String lastName) {
+public final void setLastName(String lastName) {
     this.lastName = lastName;
 }
 
@@ -174,7 +174,7 @@ public void setLastName(String lastName) {
  *
  * @return the email
  */
-public String getEmail() {
+public final String getEmail() {
     return email;
 }
 
@@ -184,17 +184,12 @@ public String getEmail() {
  * @param email
  *            the new email
  */
-public void setEmail(String email) {
+public final void setEmail(String email) {
     this.email = email;
 }
 
-/*
- * (non-Javadoc)
- * 
- * @see java.lang.Object#toString()
- */
 @Override
-public String toString() {
+public final String toString() {
     return "UserProfile [userProfileId=" + userProfileId + ", loginName="
             + loginName + ", encryptedPassword=" + encryptedPassword
             + ", firstName=" + firstName + ", lastName=" + lastName

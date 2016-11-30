@@ -38,7 +38,7 @@ private SelectModel categoriaSelectModel;
 
 /** The select model factory. */
 @Inject
-SelectModelFactory selectModelFactory;
+private SelectModelFactory selectModelFactory;
 
 /** The nombre. */
 @Property
@@ -88,14 +88,14 @@ private Messages messages;
  *
  * @return the categoria encoder
  */
-public CategoriaEncoder getCategoriaEncoder() {
+public final CategoriaEncoder getCategoriaEncoder() {
     return new CategoriaEncoder(userService);
 }
 
 /**
  * On activate.
  */
-void onActivate() {
+final void onActivate() {
     List<Categoria> categorias = userService.findCategories();
     categoriaSelectModel = selectModelFactory.create(categorias, "nombre");
 }
@@ -107,7 +107,7 @@ void onActivate() {
  *            the fecha
  * @return true, if successful
  */
-boolean validateFecha(String fecha) {
+final boolean validateFecha(String fecha) {
     return Integer.valueOf(fecha.substring(0, 2)) > 23
             || Integer.valueOf(fecha.substring(3)) > 60;
 }
@@ -116,7 +116,7 @@ boolean validateFecha(String fecha) {
  * On validate from add eventos form.
  */
 @OnEvent(value = "validate", component = "addEventosForm")
-void OnValidateFromAddEventosForm() {
+final void OnValidateFromAddEventosForm() {
     if (!addEventosForm.isValid()) {
         return;
     }
@@ -155,7 +155,7 @@ void OnValidateFromAddEventosForm() {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     eventoCreado.setIdEvento(evento.getIdEvento());
     return eventoCreado;
 

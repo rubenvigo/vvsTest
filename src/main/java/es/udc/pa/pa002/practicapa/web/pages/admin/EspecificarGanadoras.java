@@ -59,7 +59,7 @@ private SelectModel opcionApuestaSelectModel;
 
 /** The select model factory. */
 @Inject
-SelectModelFactory selectModelFactory;
+private SelectModelFactory selectModelFactory;
 
 /** The messages. */
 @Inject
@@ -83,7 +83,7 @@ private UserSession userSession;
  *
  * @return the evento
  */
-public Evento getEvento() {
+public final Evento getEvento() {
     return tipoApuesta.getEvento();
 }
 
@@ -92,7 +92,7 @@ public Evento getEvento() {
  *
  * @return the opciones apuesta
  */
-public List<OpcionApuesta> getOpcionesApuesta() {
+public final List<OpcionApuesta> getOpcionesApuesta() {
     List<OpcionApuesta> opciones = new ArrayList<OpcionApuesta>();
 
     Set<OpcionApuesta> opcionesSet = tipoApuesta.getOpcionesApuesta();
@@ -107,7 +107,7 @@ public List<OpcionApuesta> getOpcionesApuesta() {
  *
  * @return the tipo apuesta
  */
-public TipoApuesta getTipoApuesta() {
+public final TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
@@ -119,7 +119,7 @@ public TipoApuesta getTipoApuesta() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
+final void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     opcionApuesta = new OpcionApuesta();
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
@@ -135,7 +135,7 @@ void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
@@ -144,7 +144,7 @@ public void setIdTipoApuesta(Long idTipoApuesta) {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idTipoApuesta;
 }
 
@@ -153,7 +153,7 @@ Long onPassivate() {
  *
  * @return the opcion apuesta encoder
  */
-public OpcionApuestaEncoder getOpcionApuestaEncoder() {
+public final OpcionApuestaEncoder getOpcionApuestaEncoder() {
     return new OpcionApuestaEncoder(userService);
 }
 
@@ -163,7 +163,8 @@ public OpcionApuestaEncoder getOpcionApuestaEncoder() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onValidateFromEspecificarGanadorasForm() throws InstanceNotFoundException {
+final void onValidateFromEspecificarGanadorasForm()
+        throws InstanceNotFoundException {
 
     try {
         List<Long> ids = new ArrayList<Long>();
@@ -201,7 +202,7 @@ void onValidateFromEspecificarGanadorasForm() throws InstanceNotFoundException {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     tipoApuestaDetails.setIdTipoApuesta(idTipoApuesta);
     return tipoApuestaDetails;
 }

@@ -52,7 +52,7 @@ private UserSession userSession;
  *
  * @return the tipos apuesta
  */
-public Set<TipoApuesta> getTiposApuesta() {
+public final Set<TipoApuesta> getTiposApuesta() {
     return evento.getTipoApuesta();
 }
 
@@ -61,7 +61,7 @@ public Set<TipoApuesta> getTiposApuesta() {
  *
  * @return the checks if is resolved
  */
-public boolean getIsResolved() {
+public final boolean getIsResolved() {
     boolean resuelta = false;
     for (OpcionApuesta opcion : tipoApuesta.getOpcionesApuesta()) {
         resuelta = opcion.getEstado() != null;
@@ -75,7 +75,7 @@ public boolean getIsResolved() {
  * @param idEvento
  *            the new id evento
  */
-public void setIdEvento(Long idEvento) {
+public final void setIdEvento(Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -84,7 +84,7 @@ public void setIdEvento(Long idEvento) {
  *
  * @return the evento
  */
-public Evento getEvento() {
+public final Evento getEvento() {
     return evento;
 }
 
@@ -93,7 +93,7 @@ public Evento getEvento() {
  *
  * @return the checks if is admin
  */
-public boolean getIsAdmin() {
+public final boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
@@ -102,7 +102,7 @@ public boolean getIsAdmin() {
  *
  * @return the evento start
  */
-public boolean getEventoStart() {
+public final boolean getEventoStart() {
     Calendar now = Calendar.getInstance();
     return evento.getFecha().before(now);
 }
@@ -115,7 +115,7 @@ public boolean getEventoStart() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idEvento) throws InstanceNotFoundException {
+final void onActivate(Long idEvento) throws InstanceNotFoundException {
     this.idEvento = idEvento;
     evento = userService.findEventoById(idEvento);
 }
@@ -125,7 +125,7 @@ void onActivate(Long idEvento) throws InstanceNotFoundException {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idEvento;
 }
 
@@ -134,7 +134,7 @@ Long onPassivate() {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     anadirTipoApuesta.setIdEvento(idEvento);
     return anadirTipoApuesta;
 }

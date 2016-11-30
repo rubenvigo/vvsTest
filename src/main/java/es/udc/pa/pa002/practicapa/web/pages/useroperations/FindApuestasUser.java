@@ -47,7 +47,7 @@ private ApuestaRealizada apuesta;
  *
  * @return the checks if is pendiente
  */
-public boolean getIsPendiente() {
+public final boolean getIsPendiente() {
     return apuesta.getOpcionApuesta().getEstado() == null;
 }
 
@@ -56,7 +56,7 @@ public boolean getIsPendiente() {
  *
  * @return the checks if is winner
  */
-public boolean getIsWinner() {
+public final boolean getIsWinner() {
     return apuesta.getOpcionApuesta().getEstado() != null
             && apuesta.getOpcionApuesta().getEstado();
 }
@@ -66,7 +66,7 @@ public boolean getIsWinner() {
  *
  * @return the data evento
  */
-public String getDataEvento() {
+public final String getDataEvento() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
     return sdf.format(apuesta.getOpcionApuesta().getTipoApuesta().getEvento()
             .getFecha().getTime());
@@ -77,7 +77,7 @@ public String getDataEvento() {
  *
  * @return the ganancia
  */
-public float getGanancia() {
+public final float getGanancia() {
     float ganancia = apuesta.getCantidadApostada()
             * apuesta.getOpcionApuesta().getCuota();
 
@@ -89,7 +89,7 @@ public float getGanancia() {
  *
  * @return the fecha apuesta
  */
-public String getFechaApuesta() {
+public final String getFechaApuesta() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
     return sdf.format(apuesta.getFecha().getTime());
 }
@@ -99,7 +99,7 @@ public String getFechaApuesta() {
  *
  * @return the apuestas user
  */
-public List<ApuestaRealizada> getApuestasUser() {
+public final List<ApuestaRealizada> getApuestasUser() {
     return apuestaBlock.getApuestas();
 }
 
@@ -117,7 +117,7 @@ public static int getApuestasPerPage() {
  *
  * @return the previous link context
  */
-public Object[] getPreviousLinkContext() {
+public final Object[] getPreviousLinkContext() {
 
     if (startIndex - APUESTAS_PER_PAGE >= 0) {
         return new Object[] {startIndex - APUESTAS_PER_PAGE };
@@ -132,7 +132,7 @@ public Object[] getPreviousLinkContext() {
  *
  * @return the next link context
  */
-public Object[] getNextLinkContext() {
+public final Object[] getNextLinkContext() {
 
     if (apuestaBlock.getExistMoreApuestas()) {
         return new Object[] {startIndex + APUESTAS_PER_PAGE };
@@ -148,7 +148,7 @@ public Object[] getNextLinkContext() {
  * @param startIndex
  *            the start index
  */
-void onActivate(int startIndex) {
+final void onActivate(int startIndex) {
     this.startIndex = startIndex;
     apuestaBlock = userService.consultarApuestas(
             userSession.getUserProfileId(), startIndex, APUESTAS_PER_PAGE);

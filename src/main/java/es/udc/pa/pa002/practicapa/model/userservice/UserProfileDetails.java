@@ -35,7 +35,7 @@ public UserProfileDetails(String firstName, String lastName, String email) {
  *
  * @return the first name
  */
-public String getFirstName() {
+public final String getFirstName() {
     return firstName;
 }
 
@@ -44,7 +44,7 @@ public String getFirstName() {
  *
  * @return the last name
  */
-public String getLastName() {
+public final String getLastName() {
     return lastName;
 }
 
@@ -53,7 +53,7 @@ public String getLastName() {
  *
  * @return the email
  */
-public String getEmail() {
+public final String getEmail() {
     return email;
 }
 

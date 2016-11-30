@@ -57,7 +57,7 @@ private UserSession userSession;
  *
  * @return the format
  */
-public Format getFormat() {
+public final Format getFormat() {
     return new SimpleDateFormat("dd/MM/yyy HH:mm");
 }
 
@@ -66,7 +66,7 @@ public Format getFormat() {
  *
  * @return the eventos
  */
-public List<Evento> getEventos() {
+public final List<Evento> getEventos() {
     return eventoBlock.getEventos();
 }
 
@@ -75,7 +75,7 @@ public List<Evento> getEventos() {
  *
  * @return the eventos per page
  */
-public int getEventosPerPage() {
+public final int getEventosPerPage() {
     return EVENTOS_PER_PAGE;
 }
 
@@ -84,7 +84,7 @@ public int getEventosPerPage() {
  *
  * @return the id categoria
  */
-public Long getIdCategoria() {
+public final Long getIdCategoria() {
     return idCategoria;
 }
 
@@ -94,7 +94,7 @@ public Long getIdCategoria() {
  * @param idCategoria
  *            the new id categoria
  */
-public void setIdCategoria(Long idCategoria) {
+public final void setIdCategoria(Long idCategoria) {
     this.idCategoria = idCategoria;
 }
 
@@ -103,7 +103,7 @@ public void setIdCategoria(Long idCategoria) {
  *
  * @return the keywords
  */
-public String getKeywords() {
+public final String getKeywords() {
     return keywords;
 }
 
@@ -112,7 +112,7 @@ public String getKeywords() {
  *
  * @return the evento grid data source
  */
-public EventoGridDataSource getEventoGridDataSource() {
+public final EventoGridDataSource getEventoGridDataSource() {
     return eventoGridDataSource;
 }
 
@@ -122,7 +122,7 @@ public EventoGridDataSource getEventoGridDataSource() {
  * @param keywords
  *            the new keywords
  */
-public void setKeywords(String keywords) {
+public final void setKeywords(String keywords) {
     this.keywords = keywords;
 }
 
@@ -131,7 +131,7 @@ public void setKeywords(String keywords) {
  *
  * @return the object[]
  */
-Object[] onPassivate() {
+final Object[] onPassivate() {
     return new Object[] {keywords, idCategoria, startIndex };
 }
 
@@ -145,7 +145,7 @@ Object[] onPassivate() {
  * @param startIndex
  *            the start index
  */
-void onActivate(String keywords, Long idCategoria, int startIndex) {
+final void onActivate(String keywords, Long idCategoria, int startIndex) {
     this.keywords = keywords;
     this.idCategoria = idCategoria;
     this.startIndex = startIndex;

@@ -57,7 +57,7 @@ private ApuestaRealizadaDao apuestaRealizadaDao;
 private CategoriaDao categoriaDao;
 
 @Override
-public UserProfile registerUser(String loginName, String clearPassword,
+public final UserProfile registerUser(String loginName, String clearPassword,
         UserProfileDetails userProfileDetails)
         throws DuplicateInstanceException {
 
@@ -80,7 +80,7 @@ public UserProfile registerUser(String loginName, String clearPassword,
 
 @Override
 @Transactional(readOnly = true)
-public UserProfile login(String loginName, String password,
+public final UserProfile login(String loginName, String password,
         boolean passwordIsEncrypted) throws InstanceNotFoundException,
         IncorrectPasswordException {
 
@@ -102,14 +102,14 @@ public UserProfile login(String loginName, String password,
 
 @Override
 @Transactional(readOnly = true)
-public UserProfile findUserProfile(Long userProfileId)
+public final UserProfile findUserProfile(Long userProfileId)
         throws InstanceNotFoundException {
 
     return userProfileDao.find(userProfileId);
 }
 
 @Override
-public void updateUserProfileDetails(Long userProfileId,
+public final void updateUserProfileDetails(Long userProfileId,
         UserProfileDetails userProfileDetails) throws InstanceNotFoundException {
 
     UserProfile userProfile = userProfileDao.find(userProfileId);
@@ -120,7 +120,7 @@ public void updateUserProfileDetails(Long userProfileId,
 }
 
 @Override
-public void changePassword(Long userProfileId, String oldClearPassword,
+public final void changePassword(Long userProfileId, String oldClearPassword,
         String newClearPassword) throws IncorrectPasswordException,
         InstanceNotFoundException {
 
@@ -148,7 +148,7 @@ public void changePassword(Long userProfileId, String oldClearPassword,
  * @throws InstanceAlreadyCreatedException
  *             the instance already created exception
  */
-private void validarEvento(Evento evento) throws InvalidDateException,
+private final void validarEvento(Evento evento) throws InvalidDateException,
         InstanceAlreadyCreatedException {
     if (evento.getFecha().before(Calendar.getInstance())) {
         throw new InvalidDateException("La fecha introducida no es correcta");
@@ -160,7 +160,7 @@ private void validarEvento(Evento evento) throws InvalidDateException,
 }
 
 @Override
-public Evento addEvento(Evento evento) throws InvalidDateException,
+public final Evento addEvento(Evento evento) throws InvalidDateException,
         InstanceAlreadyCreatedException {
     validarEvento(evento);
     eventoDao.save(evento);
@@ -168,14 +168,15 @@ public Evento addEvento(Evento evento) throws InvalidDateException,
 }
 
 @Override
-public Evento findEventoById(Long idEvento) throws InstanceNotFoundException {
+public final Evento findEventoById(Long idEvento)
+        throws InstanceNotFoundException {
     Evento evento = eventoDao.find(idEvento);
     return evento;
 }
 
 @Transactional(readOnly = true)
 @Override
-public EventoBlock findEventos(String keywords, Long idCategoria,
+public final EventoBlock findEventos(String keywords, Long idCategoria,
         boolean admin, int startIndex, int count) {
     List<Evento> listaEventos;
 
@@ -197,7 +198,7 @@ public EventoBlock findEventos(String keywords, Long idCategoria,
  * @throws RepeatedOpcionApuestaException
  *             the repeated opcion apuesta exception
  */
-private void validarOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta)
+private final void validarOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta)
         throws RepeatedOpcionApuestaException {
 
     for (OpcionApuesta opcion : opcionesApuesta) {
@@ -214,7 +215,7 @@ private void validarOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta)
 }
 
 @Override
-public TipoApuesta addTipoApuesta(Long idEvento, TipoApuesta tipoApuesta)
+public final TipoApuesta addTipoApuesta(Long idEvento, TipoApuesta tipoApuesta)
         throws EventoStartedException, InstanceNotFoundException,
         InstanceAlreadyCreatedException, RepeatedOpcionApuestaException {
     Calendar hoy = Calendar.getInstance();
@@ -240,9 +241,9 @@ public TipoApuesta addTipoApuesta(Long idEvento, TipoApuesta tipoApuesta)
 }
 
 @Override
-public ApuestaRealizada apostar(Long idOpcionApuesta, float cantidadApostada,
-        Long userId) throws EventoStartedException, InstanceNotFoundException,
-        InvalidValueException {
+public final ApuestaRealizada apostar(Long idOpcionApuesta,
+        float cantidadApostada, Long userId) throws EventoStartedException,
+        InstanceNotFoundException, InvalidValueException {
 
     Calendar hoy = Calendar.getInstance();
     if (cantidadApostada <= 0) {
@@ -264,7 +265,7 @@ public ApuestaRealizada apostar(Long idOpcionApuesta, float cantidadApostada,
 }
 
 @Override
-public void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
+public final void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
         throws EventoNotStartedException, OpcionApuestaAlreadySolvedException,
         InstanceNotFoundException, SimpleWinnerException,
         InvalidOptionException {
@@ -313,7 +314,8 @@ public void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
 }
 
 @Override
-public ApuestaBlock consultarApuestas(Long idUsuario, int startIndex, int count) {
+public final ApuestaBlock consultarApuestas(Long idUsuario, int startIndex,
+        int count) {
     List<ApuestaRealizada> apuestas;
 
     apuestas = apuestaRealizadaDao.findByUser(idUsuario, startIndex, count + 1);
@@ -328,39 +330,40 @@ public ApuestaBlock consultarApuestas(Long idUsuario, int startIndex, int count)
 }
 
 @Override
-public List<Categoria> findCategories() {
+public final List<Categoria> findCategories() {
     return categoriaDao.findAll();
 }
 
 @Override
-public TipoApuesta findTipoApuestaById(Long idTipoApuesta)
+public final TipoApuesta findTipoApuestaById(Long idTipoApuesta)
         throws InstanceNotFoundException {
     TipoApuesta tipoApuesta = tipoApuestaDao.find(idTipoApuesta);
     return tipoApuesta;
 }
 
 @Override
-public OpcionApuesta findOpcionApuestaById(Long idOpcionApuesta)
+public final OpcionApuesta findOpcionApuestaById(Long idOpcionApuesta)
         throws InstanceNotFoundException {
     OpcionApuesta opcion = opcionApuestaDao.find(idOpcionApuesta);
     return opcion;
 }
 
 @Override
-public Categoria findCategoryById(Long idCategoria)
+public final Categoria findCategoryById(Long idCategoria)
         throws InstanceNotFoundException {
     Categoria categoria = categoriaDao.find(idCategoria);
     return categoria;
 }
 
 @Override
-public ApuestaRealizada findApuestaById(Long idApuesta)
+public final ApuestaRealizada findApuestaById(Long idApuesta)
         throws InstanceNotFoundException {
     return apuestaRealizadaDao.find(idApuesta);
 }
 
 @Override
-public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin) {
+public final int getNumberOfEventos(String keywords, Long idCategoria,
+        boolean admin) {
     return eventoDao.getNumberOfEventos(keywords, idCategoria, admin);
 }
 

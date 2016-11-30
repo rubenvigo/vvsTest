@@ -33,7 +33,7 @@ public class EventoDaoHibernate extends GenericDaoHibernate<Evento, Long>
  */
 @SuppressWarnings("unchecked")
 @Override
-public List<Evento> findByParameters(String keywords, Long idCategoria,
+public final List<Evento> findByParameters(String keywords, Long idCategoria,
         boolean admin, int startIndex, int count) {
 
     String query = "SELECT a FROM Evento a";
@@ -96,7 +96,7 @@ public List<Evento> findByParameters(String keywords, Long idCategoria,
 }
 
 @Override
-public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
+public final boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
     Session session = getSession();
     Query query = session.createQuery("SELECT COUNT(a) FROM Evento a "
             + "WHERE LOWER(a.nombre) LIKE LOWER(:nombre) "
@@ -111,7 +111,8 @@ public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
 }
 
 @Override
-public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin) {
+public final int getNumberOfEventos(String keywords, Long idCategoria,
+        boolean admin) {
 
     String query = "SELECT COUNT(a) FROM Evento a";
 

@@ -81,7 +81,7 @@ sequenceName = "EventoSeq")
 // generators.
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "idEventoGenerator")
-public Long getIdEvento() {
+public final Long getIdEvento() {
     return idEvento;
 }
 
@@ -91,7 +91,7 @@ public Long getIdEvento() {
  * @param idEvento
  *            the new id evento
  */
-public void setIdEvento(Long idEvento) {
+public final void setIdEvento(Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -100,7 +100,7 @@ public void setIdEvento(Long idEvento) {
  *
  * @return the nombre
  */
-public String getNombre() {
+public final String getNombre() {
     return nombre;
 }
 
@@ -110,7 +110,7 @@ public String getNombre() {
  * @param nombre
  *            the new nombre
  */
-public void setNombre(String nombre) {
+public final void setNombre(String nombre) {
     this.nombre = nombre;
 }
 
@@ -120,7 +120,7 @@ public void setNombre(String nombre) {
  * @return the fecha
  */
 @Temporal(TemporalType.TIMESTAMP)
-public Calendar getFecha() {
+public final Calendar getFecha() {
     return fecha;
 }
 
@@ -130,7 +130,7 @@ public Calendar getFecha() {
  * @param fecha
  *            the new fecha
  */
-public void setFecha(Calendar fecha) {
+public final void setFecha(Calendar fecha) {
     if (fecha != null) {
         fecha.set(Calendar.SECOND, 0);
         fecha.set(Calendar.MILLISECOND, 0);
@@ -145,7 +145,7 @@ public void setFecha(Calendar fecha) {
  */
 @ManyToOne(optional = false, fetch = FetchType.LAZY)
 @JoinColumn(name = "idCategoria")
-public Categoria getCategoria() {
+public final Categoria getCategoria() {
     return categoria;
 }
 
@@ -155,7 +155,7 @@ public Categoria getCategoria() {
  * @param categoria
  *            the new categoria
  */
-public void setCategoria(Categoria categoria) {
+public final void setCategoria(Categoria categoria) {
     this.categoria = categoria;
 }
 
@@ -165,7 +165,7 @@ public void setCategoria(Categoria categoria) {
  * @return the tipo apuesta
  */
 @OneToMany(mappedBy = "evento")
-public Set<TipoApuesta> getTipoApuesta() {
+public final Set<TipoApuesta> getTipoApuesta() {
     return tipoApuesta;
 }
 
@@ -175,7 +175,7 @@ public Set<TipoApuesta> getTipoApuesta() {
  * @param tipoApuesta
  *            the new tipo apuesta
  */
-public void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
+public final void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }
 
@@ -185,7 +185,7 @@ public void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
  * @param tipoApuesta
  *            the tipo apuesta
  */
-public void addTipoApuesta(TipoApuesta tipoApuesta) {
+public final void addTipoApuesta(TipoApuesta tipoApuesta) {
     this.tipoApuesta.add(tipoApuesta);
 }
 
@@ -196,7 +196,7 @@ public void addTipoApuesta(TipoApuesta tipoApuesta) {
  *            the nombre
  * @return true, if successful
  */
-public boolean existsTipoApuesta(String nombre) {
+public final boolean existsTipoApuesta(String nombre) {
     for (TipoApuesta tA : tipoApuesta) {
         if (tA.getPregunta().equals(nombre)) {
             return true;

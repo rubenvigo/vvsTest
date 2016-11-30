@@ -69,7 +69,7 @@ sequenceName = "OpcionApuestaSeq")
 // generators.
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "OpcionApuestaIdGenerator")
-public Long getIdOpcionApuesta() {
+public final Long getIdOpcionApuesta() {
     return idOpcionApuesta;
 }
 
@@ -79,7 +79,7 @@ public Long getIdOpcionApuesta() {
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public void setIdOpcionApuesta(Long idOpcionApuesta) {
+public final void setIdOpcionApuesta(Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
@@ -88,7 +88,7 @@ public void setIdOpcionApuesta(Long idOpcionApuesta) {
  *
  * @return the respuesta
  */
-public String getRespuesta() {
+public final String getRespuesta() {
     return respuesta;
 }
 
@@ -98,7 +98,7 @@ public String getRespuesta() {
  * @param respuesta
  *            the new respuesta
  */
-public void setRespuesta(String respuesta) {
+public final void setRespuesta(String respuesta) {
     this.respuesta = respuesta;
 }
 
@@ -107,7 +107,7 @@ public void setRespuesta(String respuesta) {
  *
  * @return the cuota
  */
-public float getCuota() {
+public final float getCuota() {
     return cuota;
 }
 
@@ -117,7 +117,7 @@ public float getCuota() {
  * @param cuota
  *            the new cuota
  */
-public void setCuota(float cuota) {
+public final void setCuota(float cuota) {
     this.cuota = cuota;
 }
 
@@ -126,7 +126,7 @@ public void setCuota(float cuota) {
  *
  * @return the estado
  */
-public Boolean getEstado() {
+public final Boolean getEstado() {
     return estado;
 }
 
@@ -136,7 +136,7 @@ public Boolean getEstado() {
  * @param estado
  *            the new estado
  */
-public void setEstado(Boolean estado) {
+public final void setEstado(Boolean estado) {
     this.estado = estado;
 }
 
@@ -147,7 +147,7 @@ public void setEstado(Boolean estado) {
  */
 @ManyToOne(optional = false)
 @JoinColumn(name = "idTipoApuesta")
-public TipoApuesta getTipoApuesta() {
+public final TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
@@ -157,7 +157,7 @@ public TipoApuesta getTipoApuesta() {
  * @param tipoApuesta
  *            the new tipo apuesta
  */
-public void setTipoApuesta(TipoApuesta tipoApuesta) {
+public final void setTipoApuesta(TipoApuesta tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }
 

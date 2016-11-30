@@ -30,7 +30,7 @@ private SelectModel categoriaSelectModel;
 
 /** The select model factory. */
 @Inject
-SelectModelFactory selectModelFactory;
+private SelectModelFactory selectModelFactory;
 
 /** The keywords. */
 @Property
@@ -55,7 +55,7 @@ private FoundEventos foundEventos;
 /**
  * On activate.
  */
-void onActivate() {
+final void onActivate() {
     List<Categoria> categorias = userService.findCategories();
     categoriaSelectModel = selectModelFactory.create(categorias, "nombre");
 }
@@ -65,7 +65,7 @@ void onActivate() {
  *
  * @return the categoria encoder
  */
-public CategoriaEncoder getCategoriaEncoder() {
+public final CategoriaEncoder getCategoriaEncoder() {
     return new CategoriaEncoder(userService);
 }
 
@@ -76,7 +76,7 @@ public CategoriaEncoder getCategoriaEncoder() {
  *            the partial
  * @return the list
  */
-List<String> onProvideCompletionsFromKeywords(String partial) {
+final List<String> onProvideCompletionsFromKeywords(String partial) {
     List<String> matches = new ArrayList<String>();
     boolean isAdmin = false;
     if (userSession != null) {
@@ -97,7 +97,7 @@ List<String> onProvideCompletionsFromKeywords(String partial) {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     foundEventos.setKeywords(keywords);
     if (categoria != null) {
         foundEventos.setIdCategoria(categoria.getIdCategoria());

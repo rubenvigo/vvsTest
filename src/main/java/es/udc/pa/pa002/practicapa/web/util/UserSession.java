@@ -19,7 +19,7 @@ private boolean admin;
  *
  * @return the user profile id
  */
-public Long getUserProfileId() {
+public final Long getUserProfileId() {
     return userProfileId;
 }
 
@@ -29,7 +29,7 @@ public Long getUserProfileId() {
  * @param userProfileId
  *            the new user profile id
  */
-public void setUserProfileId(Long userProfileId) {
+public final void setUserProfileId(Long userProfileId) {
     this.userProfileId = userProfileId;
 }
 
@@ -38,7 +38,7 @@ public void setUserProfileId(Long userProfileId) {
  *
  * @return the first name
  */
-public String getFirstName() {
+public final String getFirstName() {
     return firstName;
 }
 
@@ -48,7 +48,7 @@ public String getFirstName() {
  * @param firstName
  *            the new first name
  */
-public void setFirstName(String firstName) {
+public final void setFirstName(String firstName) {
     this.firstName = firstName;
 }
 
@@ -57,7 +57,7 @@ public void setFirstName(String firstName) {
  *
  * @return true, if is admin
  */
-public boolean isAdmin() {
+public final boolean isAdmin() {
     return admin;
 }
 
@@ -67,7 +67,7 @@ public boolean isAdmin() {
  * @param admin
  *            the new admin
  */
-public void setAdmin(boolean admin) {
+public final void setAdmin(boolean admin) {
     this.admin = admin;
 }
 

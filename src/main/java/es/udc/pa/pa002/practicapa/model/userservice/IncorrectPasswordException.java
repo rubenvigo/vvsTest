@@ -25,7 +25,7 @@ public IncorrectPasswordException(String loginName) {
  *
  * @return the login name
  */
-public String getLoginName() {
+public final String getLoginName() {
     return loginName;
 }
 

@@ -72,7 +72,7 @@ private Login login;
  *
  * @return the evento
  */
-public Evento getEvento() {
+public final Evento getEvento() {
     return opcionApuesta.getTipoApuesta().getEvento();
 }
 
@@ -81,7 +81,7 @@ public Evento getEvento() {
  *
  * @return the past event
  */
-public boolean getPastEvent() {
+public final boolean getPastEvent() {
     Calendar now = Calendar.getInstance();
     return this.getEvento().getFecha().before(now);
 }
@@ -91,7 +91,7 @@ public boolean getPastEvent() {
  *
  * @return the tipo apuesta
  */
-public TipoApuesta getTipoApuesta() {
+public final TipoApuesta getTipoApuesta() {
     return opcionApuesta.getTipoApuesta();
 }
 
@@ -100,7 +100,7 @@ public TipoApuesta getTipoApuesta() {
  *
  * @return the opcion apuesta
  */
-public OpcionApuesta getOpcionApuesta() {
+public final OpcionApuesta getOpcionApuesta() {
     return opcionApuesta;
 }
 
@@ -110,7 +110,7 @@ public OpcionApuesta getOpcionApuesta() {
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public void setIdOpcionApuesta(Long idOpcionApuesta) {
+public final void setIdOpcionApuesta(Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
@@ -119,7 +119,7 @@ public void setIdOpcionApuesta(Long idOpcionApuesta) {
  *
  * @return the checks if is usuario
  */
-public boolean getIsUsuario() {
+public final boolean getIsUsuario() {
     return userSession == null || !userSession.isAdmin();
 }
 
@@ -131,7 +131,8 @@ public boolean getIsUsuario() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public void onActivate(Long idOpcionApuesta) throws InstanceNotFoundException {
+public final void onActivate(Long idOpcionApuesta)
+        throws InstanceNotFoundException {
     this.idOpcionApuesta = idOpcionApuesta;
     opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);
 }
@@ -141,7 +142,7 @@ public void onActivate(Long idOpcionApuesta) throws InstanceNotFoundException {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idOpcionApuesta;
 }
 
@@ -153,7 +154,7 @@ Long onPassivate() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onValidateFromApostarForm() throws InvalidValueException,
+final void onValidateFromApostarForm() throws InvalidValueException,
         InstanceNotFoundException {
     if (!apostarForm.isValid()) {
         return;
@@ -175,7 +176,7 @@ void onValidateFromApostarForm() throws InvalidValueException,
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     if (userSession == null) {
         login.setIdOpcionApuesta(idOpcionApuesta);
         return login;

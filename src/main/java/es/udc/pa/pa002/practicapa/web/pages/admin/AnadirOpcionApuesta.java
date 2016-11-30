@@ -37,7 +37,7 @@ public class AnadirOpcionApuesta {
 
 /** The opciones. */
 @Persist
-Set<OpcionApuesta> opciones;
+private Set<OpcionApuesta> opciones;
 
 /** The zona opciones registradas. */
 @InjectComponent
@@ -107,7 +107,7 @@ private Messages messages;
  *
  * @return the opciones
  */
-public Set<OpcionApuesta> getOpciones() {
+public final Set<OpcionApuesta> getOpciones() {
     return opciones;
 }
 
@@ -117,7 +117,7 @@ public Set<OpcionApuesta> getOpciones() {
  * @param opciones
  *            the new opciones
  */
-public void setOpciones(Set<OpcionApuesta> opciones) {
+public final void setOpciones(Set<OpcionApuesta> opciones) {
     this.opciones = opciones;
 }
 
@@ -126,7 +126,7 @@ public void setOpciones(Set<OpcionApuesta> opciones) {
  *
  * @return the num opciones
  */
-public int getNumOpciones() {
+public final int getNumOpciones() {
     return opciones.size();
 }
 
@@ -136,7 +136,7 @@ public int getNumOpciones() {
  * @param pregunta
  *            the new pregunta
  */
-public void setPregunta(String pregunta) {
+public final void setPregunta(String pregunta) {
     this.pregunta = pregunta;
 }
 
@@ -145,7 +145,7 @@ public void setPregunta(String pregunta) {
  *
  * @return the pregunta
  */
-public String getPregunta() {
+public final String getPregunta() {
     return pregunta;
 }
 
@@ -154,7 +154,7 @@ public String getPregunta() {
  *
  * @return the opcion apuesta
  */
-public OpcionApuesta getOpcionApuesta() {
+public final OpcionApuesta getOpcionApuesta() {
     return opcionApuesta;
 }
 
@@ -164,7 +164,7 @@ public OpcionApuesta getOpcionApuesta() {
  * @param opcionApuesta
  *            the new opcion apuesta
  */
-public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
+public final void setOpcionApuesta(OpcionApuesta opcionApuesta) {
     this.opcionApuesta = opcionApuesta;
 }
 
@@ -173,7 +173,7 @@ public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
  *
  * @return the evento
  */
-public Evento getEvento() {
+public final Evento getEvento() {
     return evento;
 }
 
@@ -183,7 +183,7 @@ public Evento getEvento() {
  * @param idEvento
  *            the new id evento
  */
-public void setIdEvento(Long idEvento) {
+public final void setIdEvento(Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -193,7 +193,7 @@ public void setIdEvento(Long idEvento) {
  * @param multiplesganadoras
  *            the new multiplesganadoras
  */
-public void setMultiplesganadoras(boolean multiplesganadoras) {
+public final void setMultiplesganadoras(boolean multiplesganadoras) {
     this.multiplesganadoras = multiplesganadoras;
 }
 
@@ -202,7 +202,7 @@ public void setMultiplesganadoras(boolean multiplesganadoras) {
  *
  * @return the checks if is admin
  */
-public boolean getIsAdmin() {
+public final boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
@@ -218,7 +218,7 @@ public boolean getIsAdmin() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
+final void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
         throws InstanceNotFoundException {
     this.idEvento = idEvento;
     this.pregunta = pregunta;
@@ -232,7 +232,7 @@ void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
  *
  * @return the object[]
  */
-Object[] onPassivate() {
+final Object[] onPassivate() {
     return new Object[] {idEvento, pregunta, multiplesganadoras };
 }
 
@@ -240,7 +240,7 @@ Object[] onPassivate() {
  * On validate from anadir opcion apuesta form.
  */
 @OnEvent(value = "validate", component = "anadirOpcionApuestaForm")
-void OnValidateFromAnadirOpcionApuestaForm() {
+final void OnValidateFromAnadirOpcionApuestaForm() {
 
     if (!anadirOpcionApuestaForm.isValid()) {
         return;
@@ -289,7 +289,7 @@ void OnValidateFromAnadirOpcionApuestaForm() {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     if (clickFinalizar) {
         clickFinalizar = false;
         return tipoApuestaCreada;
@@ -307,7 +307,7 @@ Object onSuccess() {
  *
  * @return the object
  */
-Object onFailure() {
+final Object onFailure() {
     if (request.isXHR()) {
         return zonaOpcionesRegistradas.getBody();
     } else {
@@ -318,7 +318,7 @@ Object onFailure() {
 /**
  * On selected from finalizar.
  */
-void onSelectedFromFinalizar() {
+final void onSelectedFromFinalizar() {
     clickFinalizar = true;
 
 }

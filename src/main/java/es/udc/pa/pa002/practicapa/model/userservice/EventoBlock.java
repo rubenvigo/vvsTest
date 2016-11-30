@@ -35,7 +35,7 @@ public EventoBlock(List<Evento> eventos, boolean existMoreEventos) {
  *
  * @return the eventos
  */
-public List<Evento> getEventos() {
+public final List<Evento> getEventos() {
     return eventos;
 }
 
@@ -44,7 +44,7 @@ public List<Evento> getEventos() {
  *
  * @return the exist more eventos
  */
-public boolean getExistMoreEventos() {
+public final boolean getExistMoreEventos() {
     return existMoreEventos;
 }
 

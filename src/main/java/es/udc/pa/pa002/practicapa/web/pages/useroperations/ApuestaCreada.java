@@ -33,7 +33,7 @@ private UserService userService;
  *
  * @return the id apuesta
  */
-public Long getIdApuesta() {
+public final Long getIdApuesta() {
     return idApuesta;
 }
 
@@ -43,7 +43,7 @@ public Long getIdApuesta() {
  * @param idApuesta
  *            the new id apuesta
  */
-public void setIdApuesta(Long idApuesta) {
+public final void setIdApuesta(Long idApuesta) {
     this.idApuesta = idApuesta;
 }
 
@@ -52,7 +52,7 @@ public void setIdApuesta(Long idApuesta) {
  *
  * @return the data evento
  */
-public String getDataEvento() {
+public final String getDataEvento() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
     return sdf.format(apuesta.getOpcionApuesta().getTipoApuesta().getEvento()
             .getFecha().getTime());
@@ -63,7 +63,7 @@ public String getDataEvento() {
  *
  * @return the ganancia
  */
-public float getGanancia() {
+public final float getGanancia() {
     float ganancia = apuesta.getCantidadApostada()
             * apuesta.getOpcionApuesta().getCuota();
 
@@ -75,7 +75,7 @@ public float getGanancia() {
  *
  * @return the fecha apuesta
  */
-public String getFechaApuesta() {
+public final String getFechaApuesta() {
     SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyy HH:mm");
     return sdf.format(apuesta.getFecha().getTime());
 }
@@ -85,7 +85,7 @@ public String getFechaApuesta() {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idApuesta;
 }
 
@@ -97,7 +97,7 @@ Long onPassivate() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idApuesta) throws InstanceNotFoundException {
+final void onActivate(Long idApuesta) throws InstanceNotFoundException {
     this.idApuesta = idApuesta;
     apuesta = userService.findApuestaById(idApuesta);
 }

@@ -51,7 +51,7 @@ private UserSession userSession;
  * @param idEvento
  *            the new id evento
  */
-public void setIdEvento(Long idEvento) {
+public final void setIdEvento(Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -60,7 +60,7 @@ public void setIdEvento(Long idEvento) {
  *
  * @return the id evento
  */
-public Long getIdEvento() {
+public final Long getIdEvento() {
     return idEvento;
 }
 
@@ -69,7 +69,7 @@ public Long getIdEvento() {
  *
  * @return the evento
  */
-public Evento getEvento() {
+public final Evento getEvento() {
     return evento;
 }
 
@@ -78,7 +78,7 @@ public Evento getEvento() {
  *
  * @return the checks if is admin
  */
-public boolean getIsAdmin() {
+public final boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
@@ -90,7 +90,7 @@ public boolean getIsAdmin() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idEvento) throws InstanceNotFoundException {
+final void onActivate(Long idEvento) throws InstanceNotFoundException {
     this.idEvento = idEvento;
 
     evento = userService.findEventoById(idEvento);
@@ -102,7 +102,7 @@ void onActivate(Long idEvento) throws InstanceNotFoundException {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idEvento;
 }
 
@@ -111,7 +111,7 @@ Long onPassivate() {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     anadirOpcionApuesta.setIdEvento(idEvento);
     anadirOpcionApuesta.setPregunta(pregunta);
     anadirOpcionApuesta.setMultiplesganadoras(multiplesganadoras);

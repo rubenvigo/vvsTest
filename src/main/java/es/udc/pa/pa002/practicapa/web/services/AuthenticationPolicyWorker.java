@@ -14,8 +14,8 @@ public class AuthenticationPolicyWorker implements
         ComponentClassTransformWorker2 {
 
 @Override
-public void transform(PlasticClass plasticClass, TransformationSupport support,
-        MutableComponentModel model) {
+public final void transform(PlasticClass plasticClass,
+        TransformationSupport support, MutableComponentModel model) {
 
     processPageAnnotations(plasticClass, model);
     processEventHandlerAnnotations(plasticClass, model);

@@ -35,7 +35,7 @@ public ApuestaBlock(List<ApuestaRealizada> apuestas, boolean existMoreApuestas) 
  *
  * @return the apuestas
  */
-public List<ApuestaRealizada> getApuestas() {
+public final List<ApuestaRealizada> getApuestas() {
     return apuestas;
 }
 
@@ -44,7 +44,7 @@ public List<ApuestaRealizada> getApuestas() {
  *
  * @return the exist more apuestas
  */
-public boolean getExistMoreApuestas() {
+public final boolean getExistMoreApuestas() {
     return existMoreApuestas;
 }
 

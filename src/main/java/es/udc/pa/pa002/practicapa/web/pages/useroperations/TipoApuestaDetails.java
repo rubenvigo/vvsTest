@@ -52,7 +52,7 @@ private EspecificarGanadoras especificarGanadoras;
  *
  * @return the evento
  */
-public Evento getEvento() {
+public final Evento getEvento() {
     return tipoApuesta.getEvento();
 }
 
@@ -61,7 +61,7 @@ public Evento getEvento() {
  *
  * @return the checks if is admin
  */
-public boolean getIsAdmin() {
+public final boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
@@ -70,7 +70,7 @@ public boolean getIsAdmin() {
  *
  * @return the not resolved
  */
-public boolean getNotResolved() {
+public final boolean getNotResolved() {
     boolean resuelta = true;
     for (OpcionApuesta opcion : tipoApuesta.getOpcionesApuesta()) {
         resuelta = opcion.getEstado() == null;
@@ -83,7 +83,7 @@ public boolean getNotResolved() {
  *
  * @return the opciones apuesta
  */
-public Set<OpcionApuesta> getOpcionesApuesta() {
+public final Set<OpcionApuesta> getOpcionesApuesta() {
     return tipoApuesta.getOpcionesApuesta();
 }
 
@@ -92,7 +92,7 @@ public Set<OpcionApuesta> getOpcionesApuesta() {
  *
  * @return the evento start
  */
-public boolean getEventoStart() {
+public final boolean getEventoStart() {
     Calendar now = Calendar.getInstance();
     return tipoApuesta.getEvento().getFecha().before(now);
 }
@@ -102,7 +102,7 @@ public boolean getEventoStart() {
  *
  * @return the tipo apuesta
  */
-public TipoApuesta getTipoApuesta() {
+public final TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
@@ -112,7 +112,7 @@ public TipoApuesta getTipoApuesta() {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
@@ -124,7 +124,7 @@ public void setIdTipoApuesta(Long idTipoApuesta) {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
+final void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
 }
@@ -134,7 +134,7 @@ void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idTipoApuesta;
 }
 
@@ -143,7 +143,7 @@ Long onPassivate() {
  *
  * @return the object
  */
-Object onSuccess() {
+final Object onSuccess() {
     especificarGanadoras.setIdTipoApuesta(idTipoApuesta);
     return especificarGanadoras;
 }

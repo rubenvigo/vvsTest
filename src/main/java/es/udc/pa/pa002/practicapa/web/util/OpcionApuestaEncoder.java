@@ -25,12 +25,12 @@ public OpcionApuestaEncoder(UserService userService) {
 }
 
 @Override
-public String toClient(OpcionApuesta value) {
+public final String toClient(OpcionApuesta value) {
     return String.valueOf(value.getIdOpcionApuesta());
 }
 
 @Override
-public OpcionApuesta toValue(String id) {
+public final OpcionApuesta toValue(String id) {
     try {
         return userService.findOpcionApuestaById(Long.parseLong(id));
     } catch (NumberFormatException e) {

@@ -17,7 +17,7 @@ private Long idEvento;
  *
  * @return the id evento
  */
-public Long getIdEvento() {
+public final Long getIdEvento() {
     return idEvento;
 }
 
@@ -27,7 +27,7 @@ public Long getIdEvento() {
  * @param idEvento
  *            the new id evento
  */
-public void setIdEvento(Long idEvento) {
+public final void setIdEvento(Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -36,7 +36,7 @@ public void setIdEvento(Long idEvento) {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idEvento;
 }
 
@@ -46,7 +46,7 @@ Long onPassivate() {
  * @param idEvento
  *            the id evento
  */
-void onActivate(Long idEvento) {
+final void onActivate(Long idEvento) {
     this.idEvento = idEvento;
 }
 }

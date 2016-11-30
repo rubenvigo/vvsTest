@@ -5,7 +5,7 @@ import java.util.Random;
 /**
  * The Class PasswordEncrypter.
  */
-public class PasswordEncrypter {
+public final class PasswordEncrypter {
 /*
  * "jcrypt" only considers the first 8 characters of the clear text, and
  * generates an encrypted text that is always 13 characters in length. The first

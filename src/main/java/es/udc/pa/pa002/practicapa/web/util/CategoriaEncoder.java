@@ -26,12 +26,12 @@ public CategoriaEncoder(UserService userService) {
 }
 
 @Override
-public String toClient(Categoria value) {
+public final String toClient(Categoria value) {
     return String.valueOf(value.getIdCategoria());
 }
 
 @Override
-public Categoria toValue(String id) {
+public final Categoria toValue(String id) {
     try {
         return userService.findCategoryById(Long.parseLong(id));
     } catch (NumberFormatException | InstanceNotFoundException e) {

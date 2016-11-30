@@ -43,7 +43,7 @@ private Cookies cookies;
  *
  * @return the start index
  */
-public int getStartIndex() {
+public final int getStartIndex() {
     return 0;
 }
 
@@ -52,7 +52,7 @@ public int getStartIndex() {
  *
  * @return the show title in body
  */
-public boolean getShowTitleInBody() {
+public final boolean getShowTitleInBody() {
 
     if (showTitleInBody == null) {
         return true;
@@ -68,7 +68,7 @@ public boolean getShowTitleInBody() {
  * @return the object
  */
 @AuthenticationPolicy(AuthenticationPolicyType.AUTHENTICATED_USERS)
-Object onActionFromLogout() {
+public final Object onActionFromLogout() {
     userSession = null;
     CookiesManager.removeCookies(cookies);
     return Index.class;

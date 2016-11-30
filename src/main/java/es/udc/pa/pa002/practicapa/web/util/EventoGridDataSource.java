@@ -57,7 +57,7 @@ public EventoGridDataSource(UserService userService, String keywords,
 }
 
 @Override
-public int getAvailableRows() {
+public final int getAvailableRows() {
 
     int numberEventos = userService.getNumberOfEventos(keywords, idCategoria,
             admin);
@@ -69,17 +69,17 @@ public int getAvailableRows() {
 }
 
 @Override
-public Class<Evento> getRowType() {
+public final Class<Evento> getRowType() {
     return Evento.class;
 }
 
 @Override
-public Object getRowValue(int index) {
+public final Object getRowValue(int index) {
     return eventos.get(index - this.startIndex);
 }
 
 @Override
-public void prepare(int startIndex, int endIndex,
+public final void prepare(int startIndex, int endIndex,
         List<SortConstraint> sortConstraints) {
     eventos = userService.findEventos(keywords, idCategoria, admin, startIndex,
             endIndex - startIndex + 1).getEventos();
@@ -92,7 +92,7 @@ public void prepare(int startIndex, int endIndex,
  *
  * @return the evento not found
  */
-public boolean getEventoNotFound() {
+public final boolean getEventoNotFound() {
     return eventoNotFound;
 }
 

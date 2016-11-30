@@ -75,7 +75,7 @@ sequenceName = "ApuestaRealizadaSeq")
 // generators.
 @Id
 @GeneratedValue(strategy = GenerationType.AUTO, generator = "ApuestaRealizadaIdGenerator")
-public Long getIdApuestaRealizada() {
+public final Long getIdApuestaRealizada() {
     return idApuestaRealizada;
 }
 
@@ -85,7 +85,7 @@ public Long getIdApuestaRealizada() {
  * @param idApuestaRealizada
  *            the new id apuesta realizada
  */
-public void setIdApuestaRealizada(Long idApuestaRealizada) {
+public final void setIdApuestaRealizada(Long idApuestaRealizada) {
     this.idApuestaRealizada = idApuestaRealizada;
 }
 
@@ -96,7 +96,7 @@ public void setIdApuestaRealizada(Long idApuestaRealizada) {
  */
 @ManyToOne(optional = false, fetch = FetchType.LAZY)
 @JoinColumn(name = "idUsuario")
-public UserProfile getUsuario() {
+public final UserProfile getUsuario() {
     return usuario;
 }
 
@@ -106,7 +106,7 @@ public UserProfile getUsuario() {
  * @param usuario
  *            the new user
  */
-public void setUsuario(UserProfile usuario) {
+public final void setUsuario(UserProfile usuario) {
     this.usuario = usuario;
 }
 
@@ -117,7 +117,7 @@ public void setUsuario(UserProfile usuario) {
  */
 @ManyToOne(optional = false, fetch = FetchType.LAZY)
 @JoinColumn(name = "idOpcionApuesta")
-public OpcionApuesta getOpcionApuesta() {
+public final OpcionApuesta getOpcionApuesta() {
     return opcionApuesta;
 }
 
@@ -127,7 +127,7 @@ public OpcionApuesta getOpcionApuesta() {
  * @param opcionApuesta
  *            the new option bet
  */
-public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
+public final void setOpcionApuesta(OpcionApuesta opcionApuesta) {
     this.opcionApuesta = opcionApuesta;
 }
 
@@ -136,7 +136,7 @@ public void setOpcionApuesta(OpcionApuesta opcionApuesta) {
  *
  * @return the amount wagered
  */
-public float getCantidadApostada() {
+public final float getCantidadApostada() {
     return cantidadApostada;
 }
 
@@ -146,7 +146,7 @@ public float getCantidadApostada() {
  * @param cantidadApostada
  *            the new amount wagered
  */
-public void setCantidadApostada(float cantidadApostada) {
+public final void setCantidadApostada(float cantidadApostada) {
     this.cantidadApostada = cantidadApostada;
 }
 
@@ -155,7 +155,7 @@ public void setCantidadApostada(float cantidadApostada) {
  *
  * @return the date
  */
-public Calendar getFecha() {
+public final Calendar getFecha() {
     return fecha;
 }
 
@@ -165,7 +165,7 @@ public Calendar getFecha() {
  * @param fecha
  *            the new date
  */
-public void setFecha(Calendar fecha) {
+public final void setFecha(Calendar fecha) {
     this.fecha = fecha;
 }
 

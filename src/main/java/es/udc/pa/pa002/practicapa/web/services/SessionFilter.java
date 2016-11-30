@@ -50,7 +50,7 @@ public SessionFilter(ApplicationStateManager applicationStateManager,
 }
 
 @Override
-public boolean service(Request request, Response response,
+public final boolean service(Request request, Response response,
         RequestHandler handler) throws IOException {
 
     if (!applicationStateManager.exists(UserSession.class)) {

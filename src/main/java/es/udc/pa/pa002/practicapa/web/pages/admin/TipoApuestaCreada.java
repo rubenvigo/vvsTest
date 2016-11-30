@@ -44,7 +44,7 @@ private OpcionApuesta opcion;
  *
  * @return the id tipo apuesta
  */
-public Long getIdTipoApuesta() {
+public final Long getIdTipoApuesta() {
     return idTipoApuesta;
 }
 
@@ -54,7 +54,7 @@ public Long getIdTipoApuesta() {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
@@ -63,7 +63,7 @@ public void setIdTipoApuesta(Long idTipoApuesta) {
  *
  * @return the opciones
  */
-public Set<OpcionApuesta> getOpciones() {
+public final Set<OpcionApuesta> getOpciones() {
     return tipoApuesta.getOpcionesApuesta();
 }
 
@@ -72,7 +72,7 @@ public Set<OpcionApuesta> getOpciones() {
  *
  * @return the tipo apuesta
  */
-public TipoApuesta getTipoApuesta() {
+public final TipoApuesta getTipoApuesta() {
     return tipoApuesta;
 }
 
@@ -82,7 +82,7 @@ public TipoApuesta getTipoApuesta() {
  * @param tipoApuesta
  *            the new tipo apuesta
  */
-public void setTipoApuesta(TipoApuesta tipoApuesta) {
+public final void setTipoApuesta(TipoApuesta tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }
 
@@ -91,7 +91,7 @@ public void setTipoApuesta(TipoApuesta tipoApuesta) {
  *
  * @return the checks if is admin
  */
-public boolean getIsAdmin() {
+public final boolean getIsAdmin() {
     return userSession != null && userSession.isAdmin();
 }
 
@@ -103,7 +103,7 @@ public boolean getIsAdmin() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
+final void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
 }
@@ -113,7 +113,7 @@ void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
  *
  * @return the long
  */
-Long onPassivate() {
+final Long onPassivate() {
     return idTipoApuesta;
 }
 
