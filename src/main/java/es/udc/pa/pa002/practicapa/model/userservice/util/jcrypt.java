@@ -297,8 +297,11 @@ private static final int cov_2char[] = {0x2E, 0x2F, 0x30, 0x31, 0x32, 0x33,
  */
 private static int byteToUnsigned(byte b) {
     int value = b;
-
-    return (value >= 0 ? value : value + 256);
+    if (value >= 0) {
+        return value;
+    } else {
+        return value + 256;
+    }
 }
 
 /**

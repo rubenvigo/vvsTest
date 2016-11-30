@@ -295,7 +295,11 @@ Object onSuccess() {
         return tipoApuestaCreada;
     }
 
-    return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
+    if (request.isXHR()) {
+        return zonaOpcionesRegistradas.getBody();
+    } else {
+        return null;
+    }
 }
 
 /**
@@ -304,7 +308,11 @@ Object onSuccess() {
  * @return the object
  */
 Object onFailure() {
-    return request.isXHR() ? zonaOpcionesRegistradas.getBody() : null;
+    if (request.isXHR()) {
+        return zonaOpcionesRegistradas.getBody();
+    } else {
+        return null;
+    }
 }
 
 /**

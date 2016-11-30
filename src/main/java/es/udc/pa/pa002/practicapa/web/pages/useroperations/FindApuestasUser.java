@@ -58,7 +58,7 @@ public boolean getIsPendiente() {
  */
 public boolean getIsWinner() {
     return apuesta.getOpcionApuesta().getEstado() != null
-            && apuesta.getOpcionApuesta().getEstado() == true;
+            && apuesta.getOpcionApuesta().getEstado();
 }
 
 /**

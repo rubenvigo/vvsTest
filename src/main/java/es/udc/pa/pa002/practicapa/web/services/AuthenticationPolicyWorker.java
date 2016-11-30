@@ -137,7 +137,10 @@ private String extractEventType(String methodName, OnEvent annotation) {
     int fromx = methodName.indexOf("From");
 
     // The first two characters are always "on" as in "onActionFromFoo".
-    return fromx == -1 ? methodName.substring(2) : methodName.substring(2,
-            fromx);
+    if (fromx == -1) {
+        return methodName.substring(2);
+    } else {
+        return methodName.substring(2, fromx);
+    }
 }
 }

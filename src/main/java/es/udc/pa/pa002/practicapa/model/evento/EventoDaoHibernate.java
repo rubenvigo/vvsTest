@@ -38,7 +38,10 @@ public List<Evento> findByParameters(String keywords, Long idCategoria,
 
     String query = "SELECT a FROM Evento a";
 
-    String[] words = keywords != null ? keywords.split(" ") : null;
+    String[] words = null;
+    if (keywords != null) {
+        words = keywords.split(" ");
+    }
 
     if (keywords != null || idCategoria != null || !admin) {
         query = query + " WHERE";
@@ -92,13 +95,6 @@ public List<Evento> findByParameters(String keywords, Long idCategoria,
     return consulta.setFirstResult(startIndex).setMaxResults(count).list();
 }
 
-/*
- * (non-Javadoc)
- * 
- * @see
- * es.udc.pa.pa002.practicapa.model.evento.EventoDao#existsEvent(java.lang.String
- * , java.lang.Long, java.util.Calendar)
- */
 @Override
 public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
     Session session = getSession();
@@ -114,19 +110,15 @@ public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha) {
     return eventos > 0;
 }
 
-/*
- * (non-Javadoc)
- * 
- * @see
- * es.udc.pa.pa002.practicapa.model.evento.EventoDao#getNumberOfEventos(java
- * .lang.String, java.lang.Long, boolean)
- */
 @Override
 public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin) {
 
     String query = "SELECT COUNT(a) FROM Evento a";
 
-    String[] words = keywords != null ? keywords.split(" ") : null;
+    String[] words = null;
+    if (keywords != null) {
+        words = keywords.split(" ");
+    }
 
     if (keywords != null || idCategoria != null || !admin) {
         query = query + " WHERE";

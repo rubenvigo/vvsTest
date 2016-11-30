@@ -54,8 +54,9 @@ public ApuestaRealizada() {
  * @param fecha
  *            the date
  */
-public ApuestaRealizada(UserProfile usuario, OpcionApuesta opcionApuesta,
-        float cantidadApostada, Calendar fecha) {
+public ApuestaRealizada(final UserProfile usuario,
+        final OpcionApuesta opcionApuesta, final float cantidadApostada,
+        final Calendar fecha) {
     super();
     this.usuario = usuario;
     this.opcionApuesta = opcionApuesta;
