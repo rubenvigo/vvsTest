@@ -25,8 +25,8 @@ public interface EventoDao extends GenericDao<Evento, Long> {
  *            the count
  * @return the list
  */
-public List<Evento> findByParameters(String keywords, Long categoriaId,
-        boolean admin, int startIndex, int count);
+List<Evento> findByParameters(String keywords, Long categoriaId, boolean admin,
+        int startIndex, int count);
 
 /**
  * Exists event.
@@ -39,7 +39,7 @@ public List<Evento> findByParameters(String keywords, Long categoriaId,
  *            the fecha
  * @return true, if successful
  */
-public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha);
+boolean existsEvent(String nombre, Long idCategoria, Calendar fecha);
 
 /**
  * Gets the number of eventos.
@@ -52,5 +52,5 @@ public boolean existsEvent(String nombre, Long idCategoria, Calendar fecha);
  *            the admin
  * @return the number of eventos
  */
-public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin);
+int getNumberOfEventos(String keywords, Long idCategoria, boolean admin);
 }

@@ -20,5 +20,5 @@ public interface ApuestaRealizadaDao extends GenericDao<ApuestaRealizada, Long> 
  *            the count
  * @return the list
  */
-public List<ApuestaRealizada> findByUser(Long userId, int startIndex, int count);
+List<ApuestaRealizada> findByUser(Long userId, int startIndex, int count);
 }

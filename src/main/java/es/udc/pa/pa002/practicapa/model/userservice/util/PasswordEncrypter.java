@@ -26,13 +26,13 @@ public final class PasswordEncrypter {
  */
 
 /** The Constant A_ASCII_CODE. */
-private final static int A_ASCII_CODE = 65;
+private static final int A_ASCII_CODE = 65;
 
 /** The Constant Z_ASCII_CODE. */
-private final static int Z_ASCII_CODE = 90;
+private static final int Z_ASCII_CODE = 90;
 
 /** The Constant NUMBER_OF_LETTERS. */
-private final static int NUMBER_OF_LETTERS = Z_ASCII_CODE - A_ASCII_CODE + 1;
+private static final int NUMBER_OF_LETTERS = Z_ASCII_CODE - A_ASCII_CODE + 1;
 
 /**
  * Instantiates a new password encrypter.
@@ -45,7 +45,7 @@ private PasswordEncrypter() {
  *
  * @return the string
  */
-private final static String generateRandomSalt() {
+private static String generateRandomSalt() {
 
     Random randomGenerator = new Random();
     byte[] saltAsByteArray = new byte[2];
@@ -66,7 +66,7 @@ private final static String generateRandomSalt() {
  *            the clear password
  * @return the string
  */
-public final static String crypt(final String clearPassword) {
+public static String crypt(final String clearPassword) {
 
     String salt = generateRandomSalt();
 
@@ -83,7 +83,7 @@ public final static String crypt(final String clearPassword) {
  *            the encrypted password
  * @return true, if is clear password correct
  */
-public final static boolean isClearPasswordCorrect(final String clearPassword,
+public static boolean isClearPasswordCorrect(final String clearPassword,
         final String encryptedPassword) {
 
     String salt = encryptedPassword.substring(0, 2);

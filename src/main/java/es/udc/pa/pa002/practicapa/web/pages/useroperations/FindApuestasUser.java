@@ -21,7 +21,7 @@ import es.udc.pa.pa002.practicapa.web.util.UserSession;
 public class FindApuestasUser {
 
 /** The Constant APUESTAS_PER_PAGE. */
-private final static int APUESTAS_PER_PAGE = 10;
+private static final int APUESTAS_PER_PAGE = 10;
 
 /** The apuesta block. */
 private ApuestaBlock apuestaBlock;

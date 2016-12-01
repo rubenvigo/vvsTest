@@ -149,8 +149,8 @@ public final void changePassword(final Long userProfileId,
  * @throws InstanceAlreadyCreatedException
  *             the instance already created exception
  */
-private final void validarEvento(final Evento evento)
-        throws InvalidDateException, InstanceAlreadyCreatedException {
+private void validarEvento(final Evento evento) throws InvalidDateException,
+        InstanceAlreadyCreatedException {
     if (evento.getFecha().before(Calendar.getInstance())) {
         throw new InvalidDateException("La fecha introducida no es correcta");
     }
@@ -200,8 +200,7 @@ public final EventoBlock findEventos(final String keywords,
  * @throws RepeatedOpcionApuestaException
  *             the repeated opcion apuesta exception
  */
-private final void validarOpcionesApuesta(
-        final Set<OpcionApuesta> opcionesApuesta)
+private void validarOpcionesApuesta(final Set<OpcionApuesta> opcionesApuesta)
         throws RepeatedOpcionApuestaException {
 
     for (OpcionApuesta opcion : opcionesApuesta) {

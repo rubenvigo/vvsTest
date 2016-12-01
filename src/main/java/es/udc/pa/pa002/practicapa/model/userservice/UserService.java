@@ -29,7 +29,7 @@ public interface UserService {
  * @throws DuplicateInstanceException
  *             the duplicate instance exception
  */
-public UserProfile registerUser(String loginName, String clearPassword,
+UserProfile registerUser(String loginName, String clearPassword,
         UserProfileDetails userProfileDetails)
         throws DuplicateInstanceException;
 
@@ -48,9 +48,8 @@ public UserProfile registerUser(String loginName, String clearPassword,
  * @throws IncorrectPasswordException
  *             the incorrect password exception
  */
-public UserProfile login(String loginName, String password,
-        boolean passwordIsEncrypted) throws InstanceNotFoundException,
-        IncorrectPasswordException;
+UserProfile login(String loginName, String password, boolean passwordIsEncrypted)
+        throws InstanceNotFoundException, IncorrectPasswordException;
 
 /**
  * Find user profile.
@@ -61,7 +60,7 @@ public UserProfile login(String loginName, String password,
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public UserProfile findUserProfile(Long userProfileId)
+UserProfile findUserProfile(Long userProfileId)
         throws InstanceNotFoundException;
 
 /**
@@ -74,7 +73,7 @@ public UserProfile findUserProfile(Long userProfileId)
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public void updateUserProfileDetails(Long userProfileId,
+void updateUserProfileDetails(Long userProfileId,
         UserProfileDetails userProfileDetails) throws InstanceNotFoundException;
 
 /**
@@ -91,7 +90,7 @@ public void updateUserProfileDetails(Long userProfileId,
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public void changePassword(Long userProfileId, String oldClearPassword,
+void changePassword(Long userProfileId, String oldClearPassword,
         String newClearPassword) throws IncorrectPasswordException,
         InstanceNotFoundException;
 
@@ -100,7 +99,7 @@ public void changePassword(Long userProfileId, String oldClearPassword,
  *
  * @return the list
  */
-public List<Categoria> findCategories();
+List<Categoria> findCategories();
 
 /**
  * Find category by id.
@@ -111,8 +110,7 @@ public List<Categoria> findCategories();
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public Categoria findCategoryById(Long idCategoria)
-        throws InstanceNotFoundException;
+Categoria findCategoryById(Long idCategoria) throws InstanceNotFoundException;
 
 /**
  * Adds the evento.
@@ -125,7 +123,7 @@ public Categoria findCategoryById(Long idCategoria)
  * @throws InstanceAlreadyCreatedException
  *             the instance already created exception
  */
-public Evento addEvento(Evento evento) throws InvalidDateException,
+Evento addEvento(Evento evento) throws InvalidDateException,
         InstanceAlreadyCreatedException;
 
 /**
@@ -137,7 +135,7 @@ public Evento addEvento(Evento evento) throws InvalidDateException,
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public Evento findEventoById(Long idEvento) throws InstanceNotFoundException;
+Evento findEventoById(Long idEvento) throws InstanceNotFoundException;
 
 /**
  * Find eventos.
@@ -154,8 +152,8 @@ public Evento findEventoById(Long idEvento) throws InstanceNotFoundException;
  *            the count
  * @return the evento block
  */
-public EventoBlock findEventos(String keywords, Long idCategoria,
-        boolean admin, int startIndex, int count);
+EventoBlock findEventos(String keywords, Long idCategoria, boolean admin,
+        int startIndex, int count);
 
 /**
  * Adds the tipo apuesta.
@@ -174,7 +172,7 @@ public EventoBlock findEventos(String keywords, Long idCategoria,
  * @throws RepeatedOpcionApuestaException
  *             the repeated opcion apuesta exception
  */
-public TipoApuesta addTipoApuesta(Long idEvento, TipoApuesta tipoApuesta)
+TipoApuesta addTipoApuesta(Long idEvento, TipoApuesta tipoApuesta)
         throws EventoStartedException, InstanceNotFoundException,
         InstanceAlreadyCreatedException, RepeatedOpcionApuestaException;
 
@@ -187,7 +185,7 @@ public TipoApuesta addTipoApuesta(Long idEvento, TipoApuesta tipoApuesta)
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public TipoApuesta findTipoApuestaById(Long idTipoApuesta)
+TipoApuesta findTipoApuestaById(Long idTipoApuesta)
         throws InstanceNotFoundException;
 
 /**
@@ -199,7 +197,7 @@ public TipoApuesta findTipoApuestaById(Long idTipoApuesta)
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public OpcionApuesta findOpcionApuestaById(Long idOpcionApuesta)
+OpcionApuesta findOpcionApuestaById(Long idOpcionApuesta)
         throws InstanceNotFoundException;
 
 /**
@@ -213,7 +211,7 @@ public OpcionApuesta findOpcionApuestaById(Long idOpcionApuesta)
  *            the admin
  * @return the number of eventos
  */
-public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin);
+int getNumberOfEventos(String keywords, Long idCategoria, boolean admin);
 
 /**
  * Apostar.
@@ -232,8 +230,8 @@ public int getNumberOfEventos(String keywords, Long idCategoria, boolean admin);
  * @throws InvalidValueException
  *             the invalid value exception
  */
-public ApuestaRealizada apostar(Long idOpcionApuesta, float cantidad,
-        Long userId) throws EventoStartedException, InstanceNotFoundException,
+ApuestaRealizada apostar(Long idOpcionApuesta, float cantidad, Long userId)
+        throws EventoStartedException, InstanceNotFoundException,
         InvalidValueException;
 
 /**
@@ -254,7 +252,7 @@ public ApuestaRealizada apostar(Long idOpcionApuesta, float cantidad,
  * @throws InvalidOptionException
  *             the invalid option exception
  */
-public void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
+void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
         throws EventoNotStartedException, OpcionApuestaAlreadySolvedException,
         InstanceNotFoundException, SimpleWinnerException,
         InvalidOptionException;
@@ -270,7 +268,7 @@ public void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
  *            the count
  * @return the apuesta block
  */
-public ApuestaBlock consultarApuestas(Long idUsuario, int startIndex, int count);
+ApuestaBlock consultarApuestas(Long idUsuario, int startIndex, int count);
 
 /**
  * Find apuesta by id.
@@ -281,6 +279,6 @@ public ApuestaBlock consultarApuestas(Long idUsuario, int startIndex, int count)
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public ApuestaRealizada findApuestaById(Long idApuesta)
+ApuestaRealizada findApuestaById(Long idApuesta)
         throws InstanceNotFoundException;
 }

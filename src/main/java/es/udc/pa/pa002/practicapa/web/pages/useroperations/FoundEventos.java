@@ -23,7 +23,7 @@ import es.udc.pa.pa002.practicapa.web.util.UserSession;
 public class FoundEventos {
 
 /** The Constant EVENTOS_PER_PAGE. */
-private final static int EVENTOS_PER_PAGE = 10;
+private static final int EVENTOS_PER_PAGE = 10;
 
 /** The evento block. */
 private EventoBlock eventoBlock;
