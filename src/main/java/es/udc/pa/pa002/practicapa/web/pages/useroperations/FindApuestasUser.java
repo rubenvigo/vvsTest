@@ -148,7 +148,7 @@ public final Object[] getNextLinkContext() {
  * @param startIndex
  *            the start index
  */
-final void onActivate(int startIndex) {
+final void onActivate(final int startIndex) {
     this.startIndex = startIndex;
     apuestaBlock = userService.consultarApuestas(
             userSession.getUserProfileId(), startIndex, APUESTAS_PER_PAGE);

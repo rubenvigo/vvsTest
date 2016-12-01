@@ -12,7 +12,7 @@ public class InvalidOptionException extends Exception {
  * @param message
  *            the message
  */
-public InvalidOptionException(String message) {
+public InvalidOptionException(final String message) {
     super(message);
 }
 

@@ -12,7 +12,7 @@ public class InputValidationException extends Exception {
  * @param message
  *            the message
  */
-public InputValidationException(String message) {
+public InputValidationException(final String message) {
     super(message);
 }
 }

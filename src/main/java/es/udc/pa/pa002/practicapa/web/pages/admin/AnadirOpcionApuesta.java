@@ -117,7 +117,7 @@ public final Set<OpcionApuesta> getOpciones() {
  * @param opciones
  *            the new opciones
  */
-public final void setOpciones(Set<OpcionApuesta> opciones) {
+public final void setOpciones(final Set<OpcionApuesta> opciones) {
     this.opciones = opciones;
 }
 
@@ -136,7 +136,7 @@ public final int getNumOpciones() {
  * @param pregunta
  *            the new pregunta
  */
-public final void setPregunta(String pregunta) {
+public final void setPregunta(final String pregunta) {
     this.pregunta = pregunta;
 }
 
@@ -164,7 +164,7 @@ public final OpcionApuesta getOpcionApuesta() {
  * @param opcionApuesta
  *            the new opcion apuesta
  */
-public final void setOpcionApuesta(OpcionApuesta opcionApuesta) {
+public final void setOpcionApuesta(final OpcionApuesta opcionApuesta) {
     this.opcionApuesta = opcionApuesta;
 }
 
@@ -183,7 +183,7 @@ public final Evento getEvento() {
  * @param idEvento
  *            the new id evento
  */
-public final void setIdEvento(Long idEvento) {
+public final void setIdEvento(final Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -193,7 +193,7 @@ public final void setIdEvento(Long idEvento) {
  * @param multiplesganadoras
  *            the new multiplesganadoras
  */
-public final void setMultiplesganadoras(boolean multiplesganadoras) {
+public final void setMultiplesganadoras(final boolean multiplesganadoras) {
     this.multiplesganadoras = multiplesganadoras;
 }
 
@@ -218,8 +218,8 @@ public final boolean getIsAdmin() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-final void onActivate(Long idEvento, String pregunta, boolean multiplesganadoras)
-        throws InstanceNotFoundException {
+final void onActivate(final Long idEvento, final String pregunta,
+        final boolean multiplesganadoras) throws InstanceNotFoundException {
     this.idEvento = idEvento;
     this.pregunta = pregunta;
     this.multiplesganadoras = multiplesganadoras;

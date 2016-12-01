@@ -14,8 +14,8 @@ public class AuthenticationPolicyWorker implements
         ComponentClassTransformWorker2 {
 
 @Override
-public final void transform(PlasticClass plasticClass,
-        TransformationSupport support, MutableComponentModel model) {
+public final void transform(final PlasticClass plasticClass,
+        final TransformationSupport support, final MutableComponentModel model) {
 
     processPageAnnotations(plasticClass, model);
     processEventHandlerAnnotations(plasticClass, model);
@@ -34,8 +34,8 @@ public final void transform(PlasticClass plasticClass,
  *            {@link org.apache.tapestry5.model.ComponentModel} used during the
  *            transformation phase.
  */
-private void processPageAnnotations(PlasticClass plasticClass,
-        MutableComponentModel model) {
+private void processPageAnnotations(final PlasticClass plasticClass,
+        final MutableComponentModel model) {
 
     AuthenticationPolicy policy = plasticClass
             .getAnnotation(AuthenticationPolicy.class);
@@ -57,8 +57,8 @@ private void processPageAnnotations(PlasticClass plasticClass,
  *            {@link org.apache.tapestry5.model.ComponentModel} used during the
  *            transformation phase.
  */
-private void processEventHandlerAnnotations(PlasticClass plasticClass,
-        MutableComponentModel model) {
+private void processEventHandlerAnnotations(final PlasticClass plasticClass,
+        final MutableComponentModel model) {
 
     for (PlasticMethod method : plasticClass
             .getMethodsWithAnnotation(AuthenticationPolicy.class)) {
@@ -98,7 +98,8 @@ private void processEventHandlerAnnotations(PlasticClass plasticClass,
  *            the annotation
  * @return the string
  */
-private String extractComponentId(String methodName, OnEvent annotation) {
+private String extractComponentId(final String methodName,
+        final OnEvent annotation) {
     if (annotation != null) {
         return annotation.component();
     }
@@ -129,7 +130,8 @@ private String extractComponentId(String methodName, OnEvent annotation) {
  *            the annotation
  * @return the string
  */
-private String extractEventType(String methodName, OnEvent annotation) {
+private String extractEventType(final String methodName,
+        final OnEvent annotation) {
     if (annotation != null) {
         return annotation.value();
     }

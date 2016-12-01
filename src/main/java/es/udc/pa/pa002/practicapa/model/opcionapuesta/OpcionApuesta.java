@@ -51,7 +51,8 @@ public OpcionApuesta() {
  * @param estado
  *            the estado
  */
-public OpcionApuesta(String respuesta, float cuota, Boolean estado) {
+public OpcionApuesta(final String respuesta, final float cuota,
+        final Boolean estado) {
     super();
     this.respuesta = respuesta;
     this.cuota = cuota;
@@ -79,7 +80,7 @@ public final Long getIdOpcionApuesta() {
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public final void setIdOpcionApuesta(Long idOpcionApuesta) {
+public final void setIdOpcionApuesta(final Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
@@ -98,7 +99,7 @@ public final String getRespuesta() {
  * @param respuesta
  *            the new respuesta
  */
-public final void setRespuesta(String respuesta) {
+public final void setRespuesta(final String respuesta) {
     this.respuesta = respuesta;
 }
 
@@ -117,7 +118,7 @@ public final float getCuota() {
  * @param cuota
  *            the new cuota
  */
-public final void setCuota(float cuota) {
+public final void setCuota(final float cuota) {
     this.cuota = cuota;
 }
 
@@ -136,7 +137,7 @@ public final Boolean getEstado() {
  * @param estado
  *            the new estado
  */
-public final void setEstado(Boolean estado) {
+public final void setEstado(final Boolean estado) {
     this.estado = estado;
 }
 
@@ -157,7 +158,7 @@ public final TipoApuesta getTipoApuesta() {
  * @param tipoApuesta
  *            the new tipo apuesta
  */
-public final void setTipoApuesta(TipoApuesta tipoApuesta) {
+public final void setTipoApuesta(final TipoApuesta tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }
 

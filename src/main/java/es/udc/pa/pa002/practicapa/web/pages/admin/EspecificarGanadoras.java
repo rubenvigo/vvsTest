@@ -119,7 +119,8 @@ public final TipoApuesta getTipoApuesta() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-final void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
+final void onActivate(final Long idTipoApuesta)
+        throws InstanceNotFoundException {
     opcionApuesta = new OpcionApuesta();
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
@@ -135,7 +136,7 @@ final void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public final void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(final Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 

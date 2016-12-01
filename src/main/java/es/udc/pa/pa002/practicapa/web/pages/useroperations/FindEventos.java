@@ -76,7 +76,7 @@ public final CategoriaEncoder getCategoriaEncoder() {
  *            the partial
  * @return the list
  */
-final List<String> onProvideCompletionsFromKeywords(String partial) {
+final List<String> onProvideCompletionsFromKeywords(final String partial) {
     List<String> matches = new ArrayList<String>();
     boolean isAdmin = false;
     if (userSession != null) {

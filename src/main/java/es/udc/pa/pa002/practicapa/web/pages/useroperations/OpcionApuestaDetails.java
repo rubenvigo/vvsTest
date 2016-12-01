@@ -110,7 +110,7 @@ public final OpcionApuesta getOpcionApuesta() {
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public final void setIdOpcionApuesta(Long idOpcionApuesta) {
+public final void setIdOpcionApuesta(final Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
@@ -131,7 +131,7 @@ public final boolean getIsUsuario() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public final void onActivate(Long idOpcionApuesta)
+public final void onActivate(final Long idOpcionApuesta)
         throws InstanceNotFoundException {
     this.idOpcionApuesta = idOpcionApuesta;
     opcionApuesta = userService.findOpcionApuestaById(idOpcionApuesta);

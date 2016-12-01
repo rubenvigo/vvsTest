@@ -12,7 +12,7 @@ public class EventoStartedException extends Exception {
  * @param mensaje
  *            the mensaje
  */
-public EventoStartedException(String mensaje) {
+public EventoStartedException(final String mensaje) {
     super(mensaje);
 }
 }

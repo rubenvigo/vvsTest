@@ -35,8 +35,8 @@ private MetaDataLocator locator;
  *            the locator
  */
 public PageRenderAuthenticationFilter(
-        ApplicationStateManager applicationStateManager,
-        ComponentSource componentSource, MetaDataLocator locator) {
+        final ApplicationStateManager applicationStateManager,
+        final ComponentSource componentSource, final MetaDataLocator locator) {
 
     this.applicationStateManager = applicationStateManager;
     this.componentSource = componentSource;
@@ -45,8 +45,8 @@ public PageRenderAuthenticationFilter(
 }
 
 @Override
-public final void handle(PageRenderRequestParameters parameters,
-        PageRenderRequestHandler handler) throws IOException {
+public final void handle(final PageRenderRequestParameters parameters,
+        final PageRenderRequestHandler handler) throws IOException {
 
     PageRenderRequestParameters handlerParameters = parameters;
     String redirectPage = AuthenticationValidator.checkForPage(

@@ -12,7 +12,7 @@ public class InvalidValueException extends Exception {
  * @param message
  *            the message
  */
-public InvalidValueException(String message) {
+public InvalidValueException(final String message) {
     super(message);
 }
 

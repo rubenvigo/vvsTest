@@ -24,7 +24,7 @@ public class UserProfileDaoHibernate extends
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-public final UserProfile findByLoginName(String loginName)
+public final UserProfile findByLoginName(final String loginName)
         throws InstanceNotFoundException {
 
     UserProfile userProfile = (UserProfile) getSession()

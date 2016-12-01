@@ -40,8 +40,8 @@ private UserService userService;
  * @param userService
  *            the user service
  */
-public SessionFilter(ApplicationStateManager applicationStateManager,
-        Cookies cookies, UserService userService) {
+public SessionFilter(final ApplicationStateManager applicationStateManager,
+        final Cookies cookies, final UserService userService) {
 
     this.applicationStateManager = applicationStateManager;
     this.cookies = cookies;
@@ -50,8 +50,8 @@ public SessionFilter(ApplicationStateManager applicationStateManager,
 }
 
 @Override
-public final boolean service(Request request, Response response,
-        RequestHandler handler) throws IOException {
+public final boolean service(final Request request, final Response response,
+        final RequestHandler handler) throws IOException {
 
     if (!applicationStateManager.exists(UserSession.class)) {
 

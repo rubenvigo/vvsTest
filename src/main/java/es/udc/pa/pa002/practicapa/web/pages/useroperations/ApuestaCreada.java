@@ -43,7 +43,7 @@ public final Long getIdApuesta() {
  * @param idApuesta
  *            the new id apuesta
  */
-public final void setIdApuesta(Long idApuesta) {
+public final void setIdApuesta(final Long idApuesta) {
     this.idApuesta = idApuesta;
 }
 
@@ -97,7 +97,7 @@ final Long onPassivate() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-final void onActivate(Long idApuesta) throws InstanceNotFoundException {
+final void onActivate(final Long idApuesta) throws InstanceNotFoundException {
     this.idApuesta = idApuesta;
     apuesta = userService.findApuestaById(idApuesta);
 }

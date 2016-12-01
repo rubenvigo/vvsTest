@@ -22,7 +22,7 @@ public class AppModule {
  * @param binder
  *            the binder
  */
-public static void bind(ServiceBinder binder) {
+public static void bind(final ServiceBinder binder) {
 
     /* Bind filters. */
     binder.bind(SessionFilter.class);
@@ -38,7 +38,7 @@ public static void bind(ServiceBinder binder) {
  *            the configuration
  */
 public static void contributeApplicationDefaults(
-        MappedConfiguration<String, Object> configuration) {
+        final MappedConfiguration<String, Object> configuration) {
 
     configuration.add(SymbolConstants.SUPPORTED_LOCALES, "en,es,gl");
     configuration.add(SymbolConstants.JAVASCRIPT_INFRASTRUCTURE_PROVIDER,
@@ -54,7 +54,7 @@ public static void contributeApplicationDefaults(
  *            component class transformer configuration
  */
 public static void contributeComponentClassTransformWorker(
-        OrderedConfiguration<ComponentClassTransformWorker2> configuration) {
+        final OrderedConfiguration<ComponentClassTransformWorker2> configuration) {
 
     configuration.add("AuthenticationPolicy", new AuthenticationPolicyWorker());
 
@@ -69,8 +69,8 @@ public static void contributeComponentClassTransformWorker(
  *            the session filter
  */
 public static void contributeRequestHandler(
-        OrderedConfiguration<RequestFilter> configuration,
-        SessionFilter sessionFilter) {
+        final OrderedConfiguration<RequestFilter> configuration,
+        final SessionFilter sessionFilter) {
 
     /* Add filters to the RequestHandler service. */
     configuration.add("SessionFilter", sessionFilter, "after:*");
@@ -87,8 +87,8 @@ public static void contributeRequestHandler(
  *            the page render authentication filter
  */
 public final void contributePageRenderRequestHandler(
-        OrderedConfiguration<PageRenderRequestFilter> configuration,
-        PageRenderRequestFilter pageRenderAuthenticationFilter) {
+        final OrderedConfiguration<PageRenderRequestFilter> configuration,
+        final PageRenderRequestFilter pageRenderAuthenticationFilter) {
 
     /*
      * Add filters to the filters pipeline of the PageRender command of the
@@ -109,8 +109,8 @@ public final void contributePageRenderRequestHandler(
  *            the component event authentication filter
  */
 public final void contributeComponentEventRequestHandler(
-        OrderedConfiguration<ComponentEventRequestFilter> configuration,
-        ComponentEventRequestFilter componentEventAuthenticationFilter) {
+        final OrderedConfiguration<ComponentEventRequestFilter> configuration,
+        final ComponentEventRequestFilter componentEventAuthenticationFilter) {
 
     /*
      * Add filters to the filters pipeline of the ComponentEvent command of the

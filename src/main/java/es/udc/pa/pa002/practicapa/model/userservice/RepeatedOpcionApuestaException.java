@@ -12,7 +12,7 @@ public class RepeatedOpcionApuestaException extends Exception {
  * @param mensaje
  *            the mensaje
  */
-public RepeatedOpcionApuestaException(String mensaje) {
+public RepeatedOpcionApuestaException(final String mensaje) {
     super(mensaje);
 }
 

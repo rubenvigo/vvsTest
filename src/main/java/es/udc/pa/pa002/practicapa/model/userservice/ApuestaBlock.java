@@ -23,7 +23,8 @@ private boolean existMoreApuestas;
  * @param existMoreApuestas
  *            the exist more apuestas
  */
-public ApuestaBlock(List<ApuestaRealizada> apuestas, boolean existMoreApuestas) {
+public ApuestaBlock(final List<ApuestaRealizada> apuestas,
+        final boolean existMoreApuestas) {
 
     this.apuestas = apuestas;
     this.existMoreApuestas = existMoreApuestas;

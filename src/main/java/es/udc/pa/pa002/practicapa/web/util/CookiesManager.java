@@ -28,8 +28,8 @@ private static final int REMEMBER_MY_PASSWORD_AGE = 30 * 24 * 3600; // 30 days
  * @param encryptedPassword
  *            the encrypted password
  */
-public static void leaveCookies(Cookies cookies, String loginName,
-        String encryptedPassword) {
+public static void leaveCookies(final Cookies cookies, final String loginName,
+        final String encryptedPassword) {
 
     cookies.getBuilder(LOGIN_NAME_COOKIE, loginName)
             .setMaxAge(REMEMBER_MY_PASSWORD_AGE).write();
@@ -44,7 +44,7 @@ public static void leaveCookies(Cookies cookies, String loginName,
  * @param cookies
  *            the cookies
  */
-public static void removeCookies(Cookies cookies) {
+public static void removeCookies(final Cookies cookies) {
     cookies.removeCookieValue(LOGIN_NAME_COOKIE);
     cookies.removeCookieValue(ENCRYPTED_PASSWORD_COOKIE);
 }
@@ -56,7 +56,7 @@ public static void removeCookies(Cookies cookies) {
  *            the cookies
  * @return the login name
  */
-public static String getLoginName(Cookies cookies) {
+public static String getLoginName(final Cookies cookies) {
     return cookies.readCookieValue(LOGIN_NAME_COOKIE);
 }
 
@@ -67,7 +67,7 @@ public static String getLoginName(Cookies cookies) {
  *            the cookies
  * @return the encrypted password
  */
-public static String getEncryptedPassword(Cookies cookies) {
+public static String getEncryptedPassword(final Cookies cookies) {
     return cookies.readCookieValue(ENCRYPTED_PASSWORD_COOKIE);
 }
 

@@ -59,7 +59,8 @@ public Evento() {
  * @param categoria
  *            the categoria
  */
-public Evento(String nombre, Calendar fecha, Categoria categoria) {
+public Evento(final String nombre, final Calendar fecha,
+        final Categoria categoria) {
     super();
     this.nombre = nombre;
     if (fecha != null) {
@@ -91,7 +92,7 @@ public final Long getIdEvento() {
  * @param idEvento
  *            the new id evento
  */
-public final void setIdEvento(Long idEvento) {
+public final void setIdEvento(final Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -110,7 +111,7 @@ public final String getNombre() {
  * @param nombre
  *            the new nombre
  */
-public final void setNombre(String nombre) {
+public final void setNombre(final String nombre) {
     this.nombre = nombre;
 }
 
@@ -130,7 +131,7 @@ public final Calendar getFecha() {
  * @param fecha
  *            the new fecha
  */
-public final void setFecha(Calendar fecha) {
+public final void setFecha(final Calendar fecha) {
     if (fecha != null) {
         fecha.set(Calendar.SECOND, 0);
         fecha.set(Calendar.MILLISECOND, 0);
@@ -155,7 +156,7 @@ public final Categoria getCategoria() {
  * @param categoria
  *            the new categoria
  */
-public final void setCategoria(Categoria categoria) {
+public final void setCategoria(final Categoria categoria) {
     this.categoria = categoria;
 }
 
@@ -175,7 +176,7 @@ public final Set<TipoApuesta> getTipoApuesta() {
  * @param tipoApuesta
  *            the new tipo apuesta
  */
-public final void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
+public final void setTipoApuesta(final Set<TipoApuesta> tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }
 
@@ -185,7 +186,7 @@ public final void setTipoApuesta(Set<TipoApuesta> tipoApuesta) {
  * @param tipoApuesta
  *            the tipo apuesta
  */
-public final void addTipoApuesta(TipoApuesta tipoApuesta) {
+public final void addTipoApuesta(final TipoApuesta tipoApuesta) {
     this.tipoApuesta.add(tipoApuesta);
 }
 
@@ -196,7 +197,7 @@ public final void addTipoApuesta(TipoApuesta tipoApuesta) {
  *            the nombre
  * @return true, if successful
  */
-public final boolean existsTipoApuesta(String nombre) {
+public final boolean existsTipoApuesta(final String nombre) {
     for (TipoApuesta tA : tipoApuesta) {
         if (tA.getPregunta().equals(nombre)) {
             return true;

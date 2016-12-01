@@ -15,7 +15,7 @@ private String loginName;
  * @param loginName
  *            the login name
  */
-public IncorrectPasswordException(String loginName) {
+public IncorrectPasswordException(final String loginName) {
     super("Incorrect password exception => loginName = " + loginName);
     this.loginName = loginName;
 }

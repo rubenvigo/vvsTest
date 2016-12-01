@@ -35,7 +35,7 @@ public Categoria() {
  * @param nombre
  *            the nombre
  */
-public Categoria(String nombre) {
+public Categoria(final String nombre) {
     super();
     this.nombre = nombre;
 }
@@ -61,7 +61,7 @@ public final Long getIdCategoria() {
  * @param idCategoria
  *            the new id categoria
  */
-public final void setIdCategoria(Long idCategoria) {
+public final void setIdCategoria(final Long idCategoria) {
     this.idCategoria = idCategoria;
 }
 
@@ -80,7 +80,7 @@ public final String getNombre() {
  * @param nombre
  *            the new nombre
  */
-public final void setNombre(String nombre) {
+public final void setNombre(final String nombre) {
     this.nombre = nombre;
 }
 

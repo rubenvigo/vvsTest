@@ -46,8 +46,8 @@ private boolean eventoNotFound;
  * @param admin
  *            the admin
  */
-public EventoGridDataSource(UserService userService, String keywords,
-        Long idCategoria, boolean admin) {
+public EventoGridDataSource(final UserService userService,
+        final String keywords, final Long idCategoria, final boolean admin) {
 
     this.userService = userService;
     this.idCategoria = idCategoria;
@@ -74,13 +74,13 @@ public final Class<Evento> getRowType() {
 }
 
 @Override
-public final Object getRowValue(int index) {
+public final Object getRowValue(final int index) {
     return eventos.get(index - this.startIndex);
 }
 
 @Override
-public final void prepare(int startIndex, int endIndex,
-        List<SortConstraint> sortConstraints) {
+public final void prepare(final int startIndex, final int endIndex,
+        final List<SortConstraint> sortConstraints) {
     eventos = userService.findEventos(keywords, idCategoria, admin, startIndex,
             endIndex - startIndex + 1).getEventos();
     this.startIndex = startIndex;

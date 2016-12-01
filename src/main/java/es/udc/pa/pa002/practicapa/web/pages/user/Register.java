@@ -92,7 +92,7 @@ private Long userProfileId;
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public final void setIdOpcionApuesta(long idOpcionApuesta) {
+public final void setIdOpcionApuesta(final long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 
@@ -130,7 +130,7 @@ final void onValidateFromRegistrationForm() {
  * @param idOpcionApuesta
  *            the id opcion apuesta
  */
-final void onActivate(Long idOpcionApuesta) {
+final void onActivate(final Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 

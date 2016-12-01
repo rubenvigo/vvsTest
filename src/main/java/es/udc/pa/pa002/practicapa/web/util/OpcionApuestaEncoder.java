@@ -20,17 +20,17 @@ private UserService userService;
  * @param userService
  *            the user service
  */
-public OpcionApuestaEncoder(UserService userService) {
+public OpcionApuestaEncoder(final UserService userService) {
     this.userService = userService;
 }
 
 @Override
-public final String toClient(OpcionApuesta value) {
+public final String toClient(final OpcionApuesta value) {
     return String.valueOf(value.getIdOpcionApuesta());
 }
 
 @Override
-public final OpcionApuesta toValue(String id) {
+public final OpcionApuesta toValue(final String id) {
     try {
         return userService.findOpcionApuestaById(Long.parseLong(id));
     } catch (NumberFormatException e) {

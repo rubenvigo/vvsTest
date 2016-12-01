@@ -24,7 +24,8 @@ private String email;
  * @param email
  *            the email
  */
-public UserProfileDetails(String firstName, String lastName, String email) {
+public UserProfileDetails(final String firstName, final String lastName,
+        final String email) {
     this.firstName = firstName;
     this.lastName = lastName;
     this.email = email;

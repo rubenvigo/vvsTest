@@ -16,8 +16,8 @@ public class ApuestaRealizadaDaoHibernate extends
 
 @SuppressWarnings("unchecked")
 @Override
-public final List<ApuestaRealizada> findByUser(Long userId, int startIndex,
-        int count) {
+public final List<ApuestaRealizada> findByUser(final Long userId,
+        final int startIndex, final int count) {
     return getSession()
             .createQuery(
                     "SELECT a FROM ApuestaRealizada a "

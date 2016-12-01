@@ -12,7 +12,7 @@ public class OpcionApuestaAlreadySolvedException extends Exception {
  * @param mensaje
  *            the mensaje
  */
-public OpcionApuestaAlreadySolvedException(String mensaje) {
+public OpcionApuestaAlreadySolvedException(final String mensaje) {
     super(mensaje);
 }
 }

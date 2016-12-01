@@ -51,8 +51,8 @@ public UserProfile() {
  * @param email
  *            the email
  */
-public UserProfile(String loginName, String encryptedPassword,
-        String firstName, String lastName, String email) {
+public UserProfile(final String loginName, final String encryptedPassword,
+        final String firstName, final String lastName, final String email) {
 
     /**
      * NOTE: "userProfileId" *must* be left as "null" since its value is
@@ -88,7 +88,7 @@ public final Long getUserProfileId() {
  * @param userProfileId
  *            the new user profile id
  */
-public final void setUserProfileId(Long userProfileId) {
+public final void setUserProfileId(final Long userProfileId) {
     this.userProfileId = userProfileId;
 }
 
@@ -107,7 +107,7 @@ public final String getLoginName() {
  * @param loginName
  *            the new login name
  */
-public final void setLoginName(String loginName) {
+public final void setLoginName(final String loginName) {
     this.loginName = loginName;
 }
 
@@ -127,7 +127,7 @@ public final String getEncryptedPassword() {
  * @param encryptedPassword
  *            the new encrypted password
  */
-public final void setEncryptedPassword(String encryptedPassword) {
+public final void setEncryptedPassword(final String encryptedPassword) {
     this.encryptedPassword = encryptedPassword;
 }
 
@@ -146,7 +146,7 @@ public final String getFirstName() {
  * @param firstName
  *            the new first name
  */
-public final void setFirstName(String firstName) {
+public final void setFirstName(final String firstName) {
     this.firstName = firstName;
 }
 
@@ -165,7 +165,7 @@ public final String getLastName() {
  * @param lastName
  *            the new last name
  */
-public final void setLastName(String lastName) {
+public final void setLastName(final String lastName) {
     this.lastName = lastName;
 }
 
@@ -184,7 +184,7 @@ public final String getEmail() {
  * @param email
  *            the new email
  */
-public final void setEmail(String email) {
+public final void setEmail(final String email) {
     this.email = email;
 }
 

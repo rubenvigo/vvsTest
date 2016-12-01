@@ -23,7 +23,7 @@ private boolean existMoreEventos;
  * @param existMoreEventos
  *            the exist more eventos
  */
-public EventoBlock(List<Evento> eventos, boolean existMoreEventos) {
+public EventoBlock(final List<Evento> eventos, final boolean existMoreEventos) {
 
     this.eventos = eventos;
     this.existMoreEventos = existMoreEventos;

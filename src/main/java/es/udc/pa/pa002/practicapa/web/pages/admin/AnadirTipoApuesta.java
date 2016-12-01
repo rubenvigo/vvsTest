@@ -51,7 +51,7 @@ private UserSession userSession;
  * @param idEvento
  *            the new id evento
  */
-public final void setIdEvento(Long idEvento) {
+public final void setIdEvento(final Long idEvento) {
     this.idEvento = idEvento;
 }
 
@@ -90,7 +90,7 @@ public final boolean getIsAdmin() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-final void onActivate(Long idEvento) throws InstanceNotFoundException {
+final void onActivate(final Long idEvento) throws InstanceNotFoundException {
     this.idEvento = idEvento;
 
     evento = userService.findEventoById(idEvento);

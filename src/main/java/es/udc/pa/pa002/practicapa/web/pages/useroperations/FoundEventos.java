@@ -94,7 +94,7 @@ public final Long getIdCategoria() {
  * @param idCategoria
  *            the new id categoria
  */
-public final void setIdCategoria(Long idCategoria) {
+public final void setIdCategoria(final Long idCategoria) {
     this.idCategoria = idCategoria;
 }
 
@@ -122,7 +122,7 @@ public final EventoGridDataSource getEventoGridDataSource() {
  * @param keywords
  *            the new keywords
  */
-public final void setKeywords(String keywords) {
+public final void setKeywords(final String keywords) {
     this.keywords = keywords;
 }
 
@@ -145,7 +145,8 @@ final Object[] onPassivate() {
  * @param startIndex
  *            the start index
  */
-final void onActivate(String keywords, Long idCategoria, int startIndex) {
+final void onActivate(final String keywords, final Long idCategoria,
+        final int startIndex) {
     this.keywords = keywords;
     this.idCategoria = idCategoria;
     this.startIndex = startIndex;

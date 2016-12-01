@@ -107,7 +107,7 @@ final void onActivate() {
  *            the fecha
  * @return true, if successful
  */
-final boolean validateFecha(String fecha) {
+final boolean validateFecha(final String fecha) {
     return Integer.valueOf(fecha.substring(0, 2)) > 23
             || Integer.valueOf(fecha.substring(3)) > 60;
 }

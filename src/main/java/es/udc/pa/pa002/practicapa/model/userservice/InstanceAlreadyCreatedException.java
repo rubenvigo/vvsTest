@@ -12,7 +12,7 @@ public class InstanceAlreadyCreatedException extends Exception {
  * @param message
  *            the message
  */
-public InstanceAlreadyCreatedException(String message) {
+public InstanceAlreadyCreatedException(final String message) {
     super(message);
 }
 

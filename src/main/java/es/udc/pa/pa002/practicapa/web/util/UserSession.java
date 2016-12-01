@@ -29,7 +29,7 @@ public final Long getUserProfileId() {
  * @param userProfileId
  *            the new user profile id
  */
-public final void setUserProfileId(Long userProfileId) {
+public final void setUserProfileId(final Long userProfileId) {
     this.userProfileId = userProfileId;
 }
 
@@ -48,7 +48,7 @@ public final String getFirstName() {
  * @param firstName
  *            the new first name
  */
-public final void setFirstName(String firstName) {
+public final void setFirstName(final String firstName) {
     this.firstName = firstName;
 }
 
@@ -67,7 +67,7 @@ public final boolean isAdmin() {
  * @param admin
  *            the new admin
  */
-public final void setAdmin(boolean admin) {
+public final void setAdmin(final boolean admin) {
     this.admin = admin;
 }
 

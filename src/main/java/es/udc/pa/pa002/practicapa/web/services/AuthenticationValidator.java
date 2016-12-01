@@ -37,9 +37,9 @@ public static final String EVENT_HANDLER_AUTHENTICATION_TYPE = "event-handler-au
  *            the locator
  * @return the string
  */
-public static String checkForPage(String pageName,
-        ApplicationStateManager applicationStateManager,
-        ComponentSource componentSource, MetaDataLocator locator) {
+public static String checkForPage(final String pageName,
+        final ApplicationStateManager applicationStateManager,
+        final ComponentSource componentSource, final MetaDataLocator locator) {
 
     String redirectPage = null;
     Component page = componentSource.getPage(pageName);
@@ -76,10 +76,10 @@ public static String checkForPage(String pageName,
  *            the locator
  * @return the string
  */
-public static String checkForComponentEvent(String pageName,
-        String componentId, String eventId, String eventType,
-        ApplicationStateManager applicationStateManager,
-        ComponentSource componentSource, MetaDataLocator locator) {
+public static String checkForComponentEvent(final String pageName,
+        final String componentId, final String eventId, final String eventType,
+        final ApplicationStateManager applicationStateManager,
+        final ComponentSource componentSource, final MetaDataLocator locator) {
 
     String redirectPage = null;
     String authenticationPolicyMeta = EVENT_HANDLER_AUTHENTICATION_TYPE + "-"
@@ -116,8 +116,8 @@ public static String checkForComponentEvent(String pageName,
  *            the application state manager
  * @return the string
  */
-public static String check(AuthenticationPolicy policy,
-        ApplicationStateManager applicationStateManager) {
+public static String check(final AuthenticationPolicy policy,
+        final ApplicationStateManager applicationStateManager) {
 
     if (policy != null) {
         return check(policy.value(), applicationStateManager);
@@ -136,8 +136,8 @@ public static String check(AuthenticationPolicy policy,
  *            the application state manager
  * @return the string
  */
-public static String check(AuthenticationPolicyType policyType,
-        ApplicationStateManager applicationStateManager) {
+public static String check(final AuthenticationPolicyType policyType,
+        final ApplicationStateManager applicationStateManager) {
     String redirectPage = null;
 
     boolean userAuthenticated = applicationStateManager

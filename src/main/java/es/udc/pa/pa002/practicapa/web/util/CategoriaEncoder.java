@@ -20,18 +20,18 @@ private UserService userService;
  * @param userService
  *            the user service
  */
-public CategoriaEncoder(UserService userService) {
+public CategoriaEncoder(final UserService userService) {
     super();
     this.userService = userService;
 }
 
 @Override
-public final String toClient(Categoria value) {
+public final String toClient(final Categoria value) {
     return String.valueOf(value.getIdCategoria());
 }
 
 @Override
-public final Categoria toValue(String id) {
+public final Categoria toValue(final String id) {
     try {
         return userService.findCategoryById(Long.parseLong(id));
     } catch (NumberFormatException | InstanceNotFoundException e) {

@@ -43,9 +43,9 @@ private PageRenderRequestHandler pageRenderRequestHandler;
  *            the page render request handler
  */
 public ComponentEventAuthenticationFilter(
-        ApplicationStateManager applicationStateManager,
-        ComponentSource componentSource, MetaDataLocator locator,
-        PageRenderRequestHandler pageRenderRequestHandler) {
+        final ApplicationStateManager applicationStateManager,
+        final ComponentSource componentSource, final MetaDataLocator locator,
+        final PageRenderRequestHandler pageRenderRequestHandler) {
 
     this.applicationStateManager = applicationStateManager;
     this.componentSource = componentSource;
@@ -55,8 +55,8 @@ public ComponentEventAuthenticationFilter(
 }
 
 @Override
-public final void handle(ComponentEventRequestParameters parameters,
-        ComponentEventRequestHandler handler) throws IOException {
+public final void handle(final ComponentEventRequestParameters parameters,
+        final ComponentEventRequestHandler handler) throws IOException {
 
     ComponentEventRequestParameters handlerParameters = parameters;
     String redirectPage = AuthenticationValidator.checkForPage(

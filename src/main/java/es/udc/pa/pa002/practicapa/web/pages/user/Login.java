@@ -76,7 +76,7 @@ private OpcionApuestaDetails opcionApuestaDetails;
  * @param idOpcionApuesta
  *            the new id opcion apuesta
  */
-public final void setIdOpcionApuesta(Long idOpcionApuesta) {
+public final void setIdOpcionApuesta(final Long idOpcionApuesta) {
     this.idOpcionApuesta = idOpcionApuesta;
 }
 

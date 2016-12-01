@@ -12,7 +12,7 @@ public class SimpleWinnerException extends Exception {
  * @param mensaje
  *            the mensaje
  */
-public SimpleWinnerException(String mensaje) {
+public SimpleWinnerException(final String mensaje) {
     super(mensaje);
 }
 }

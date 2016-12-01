@@ -57,8 +57,9 @@ public TipoApuesta() {
  * @param multiplesGanadoras
  *            the multiples ganadoras
  */
-public TipoApuesta(Evento evento, String pregunta,
-        Set<OpcionApuesta> opcionesApuesta, boolean multiplesGanadoras) {
+public TipoApuesta(final Evento evento, final String pregunta,
+        final Set<OpcionApuesta> opcionesApuesta,
+        final boolean multiplesGanadoras) {
 
     this.pregunta = pregunta;
     this.opcionesApuesta = opcionesApuesta;
@@ -75,8 +76,9 @@ public TipoApuesta(Evento evento, String pregunta,
  * @param multiplesGanadoras
  *            the multiples ganadoras
  */
-public TipoApuesta(String pregunta, Set<OpcionApuesta> opcionesApuesta,
-        boolean multiplesGanadoras) {
+public TipoApuesta(final String pregunta,
+        final Set<OpcionApuesta> opcionesApuesta,
+        final boolean multiplesGanadoras) {
 
     this.pregunta = pregunta;
     this.opcionesApuesta = opcionesApuesta;
@@ -101,7 +103,7 @@ public final Long getIdTipoApuesta() {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public final void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(final Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
@@ -120,7 +122,7 @@ public final String getPregunta() {
  * @param pregunta
  *            the new pregunta
  */
-public final void setPregunta(String pregunta) {
+public final void setPregunta(final String pregunta) {
     this.pregunta = pregunta;
 }
 
@@ -141,7 +143,7 @@ public final Evento getEvento() {
  * @param evento
  *            the new evento
  */
-public final void setEvento(Evento evento) {
+public final void setEvento(final Evento evento) {
     this.evento = evento;
 }
 
@@ -161,7 +163,7 @@ public final Set<OpcionApuesta> getOpcionesApuesta() {
  * @param opcionesApuesta
  *            the new opciones apuesta
  */
-public final void setOpcionesApuesta(Set<OpcionApuesta> opcionesApuesta) {
+public final void setOpcionesApuesta(final Set<OpcionApuesta> opcionesApuesta) {
     this.opcionesApuesta = opcionesApuesta;
 }
 
@@ -180,7 +182,7 @@ public final boolean isMultiplesGanadoras() {
  * @param multiplesGanadoras
  *            the new multiples ganadoras
  */
-public final void setMultiplesGanadoras(boolean multiplesGanadoras) {
+public final void setMultiplesGanadoras(final boolean multiplesGanadoras) {
     this.multiplesGanadoras = multiplesGanadoras;
 }
 
@@ -191,7 +193,7 @@ public final void setMultiplesGanadoras(boolean multiplesGanadoras) {
  *            the nombre
  * @return true, if successful
  */
-public final boolean existsOpcionApuesta(String nombre) {
+public final boolean existsOpcionApuesta(final String nombre) {
     for (OpcionApuesta opcionApuesta : opcionesApuesta) {
         if (opcionApuesta.getRespuesta().equals(nombre)) {
             return true;

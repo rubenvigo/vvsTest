@@ -54,7 +54,7 @@ public final Long getIdTipoApuesta() {
  * @param idTipoApuesta
  *            the new id tipo apuesta
  */
-public final void setIdTipoApuesta(Long idTipoApuesta) {
+public final void setIdTipoApuesta(final Long idTipoApuesta) {
     this.idTipoApuesta = idTipoApuesta;
 }
 
@@ -82,7 +82,7 @@ public final TipoApuesta getTipoApuesta() {
  * @param tipoApuesta
  *            the new tipo apuesta
  */
-public final void setTipoApuesta(TipoApuesta tipoApuesta) {
+public final void setTipoApuesta(final TipoApuesta tipoApuesta) {
     this.tipoApuesta = tipoApuesta;
 }
 
@@ -103,7 +103,8 @@ public final boolean getIsAdmin() {
  * @throws InstanceNotFoundException
  *             the instance not found exception
  */
-final void onActivate(Long idTipoApuesta) throws InstanceNotFoundException {
+final void onActivate(final Long idTipoApuesta)
+        throws InstanceNotFoundException {
     this.idTipoApuesta = idTipoApuesta;
     tipoApuesta = userService.findTipoApuestaById(idTipoApuesta);
 }

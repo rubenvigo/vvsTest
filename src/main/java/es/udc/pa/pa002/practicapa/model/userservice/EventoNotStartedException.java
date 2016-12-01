@@ -12,7 +12,7 @@ public class EventoNotStartedException extends Exception {
  * @param mensaje
  *            the mensaje
  */
-public EventoNotStartedException(String mensaje) {
+public EventoNotStartedException(final String mensaje) {
     super(mensaje);
 }
 }

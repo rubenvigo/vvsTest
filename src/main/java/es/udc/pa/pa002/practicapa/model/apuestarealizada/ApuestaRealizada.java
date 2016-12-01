@@ -85,7 +85,7 @@ public final Long getIdApuestaRealizada() {
  * @param idApuestaRealizada
  *            the new id apuesta realizada
  */
-public final void setIdApuestaRealizada(Long idApuestaRealizada) {
+public final void setIdApuestaRealizada(final Long idApuestaRealizada) {
     this.idApuestaRealizada = idApuestaRealizada;
 }
 
@@ -106,7 +106,7 @@ public final UserProfile getUsuario() {
  * @param usuario
  *            the new user
  */
-public final void setUsuario(UserProfile usuario) {
+public final void setUsuario(final UserProfile usuario) {
     this.usuario = usuario;
 }
 
@@ -127,7 +127,7 @@ public final OpcionApuesta getOpcionApuesta() {
  * @param opcionApuesta
  *            the new option bet
  */
-public final void setOpcionApuesta(OpcionApuesta opcionApuesta) {
+public final void setOpcionApuesta(final OpcionApuesta opcionApuesta) {
     this.opcionApuesta = opcionApuesta;
 }
 
@@ -146,7 +146,7 @@ public final float getCantidadApostada() {
  * @param cantidadApostada
  *            the new amount wagered
  */
-public final void setCantidadApostada(float cantidadApostada) {
+public final void setCantidadApostada(final float cantidadApostada) {
     this.cantidadApostada = cantidadApostada;
 }
 
@@ -165,7 +165,7 @@ public final Calendar getFecha() {
  * @param fecha
  *            the new date
  */
-public final void setFecha(Calendar fecha) {
+public final void setFecha(final Calendar fecha) {
     this.fecha = fecha;
 }
 

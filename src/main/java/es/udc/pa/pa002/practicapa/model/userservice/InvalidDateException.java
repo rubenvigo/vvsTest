@@ -12,7 +12,7 @@ public class InvalidDateException extends Exception {
  * @param message
  *            the message
  */
-public InvalidDateException(String message) {
+public InvalidDateException(final String message) {
     super(message);
 }
 
