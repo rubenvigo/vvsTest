@@ -240,7 +240,7 @@ final Object[] onPassivate() {
  * On validate from anadir opcion apuesta form.
  */
 @OnEvent(value = "validate", component = "anadirOpcionApuestaForm")
-final void OnValidateFromAnadirOpcionApuestaForm() {
+final void onValidateFromAnadirOpcionApuestaForm() {
 
     if (!anadirOpcionApuestaForm.isValid()) {
         return;

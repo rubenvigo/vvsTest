@@ -655,7 +655,7 @@ public void especificarGanadoras() throws InstanceNotFoundException,
 
     List<Long> ganadoras = new ArrayList<Long>();
     ganadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(1L, ganadoras);
+    userService.especificarGanadoras(1L, ganadoras);
 
     assertTrue(opcionApuesta.getEstado());
     assertFalse(opcionApuesta2.getEstado());
@@ -692,7 +692,7 @@ public void especificarGanadorasEventoNotStarted()
     when(tipoApuestaDaoMock.find(1L)).thenReturn(tipoApuesta);
 
     List<Long> ganadoras = new ArrayList<Long>();
-    userService.EspecificarGanadoras(1L, ganadoras);
+    userService.especificarGanadoras(1L, ganadoras);
 }
 
 /*
@@ -726,9 +726,9 @@ public void especificarGanadorasAlreadySolved()
 
     List<Long> ganadoras = new ArrayList<Long>();
     ganadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(1L, ganadoras);
+    userService.especificarGanadoras(1L, ganadoras);
 
-    userService.EspecificarGanadoras(1L, ganadoras);
+    userService.especificarGanadoras(1L, ganadoras);
 
 }
 
@@ -767,7 +767,7 @@ public void especificarGanadorasSimpleWinnerException()
     ganadoras.add(opcionApuesta.getIdOpcionApuesta());
     ganadoras.add(opcionApuesta2.getIdOpcionApuesta());
 
-    userService.EspecificarGanadoras(1L, ganadoras);
+    userService.especificarGanadoras(1L, ganadoras);
 
 }
 
@@ -803,7 +803,7 @@ public void especificarGanadorasInvalidOptionException()
     List<Long> ganadoras = new ArrayList<Long>();
     ganadoras.add(opcionApuesta2.getIdOpcionApuesta());
 
-    userService.EspecificarGanadoras(1L, ganadoras);
+    userService.especificarGanadoras(1L, ganadoras);
 
 }
 
@@ -843,7 +843,7 @@ public void consultarApuestas() throws InstanceNotFoundException,
     ApuestaRealizada apuesta10 = userService.apostar(1L, 10, 1L);
     ApuestaRealizada apuesta11 = userService.apostar(1L, 11, 1L);
 
-    List<ApuestaRealizada> apuestas = new ArrayList();
+    List<ApuestaRealizada> apuestas = new ArrayList<>();
     apuestas.add(apuesta1);
     apuestas.add(apuesta2);
     apuestas.add(apuesta3);
@@ -891,7 +891,7 @@ public void consultarApuestasLastPage() throws InstanceNotFoundException,
     ApuestaRealizada apuesta11 = userService.apostar(1L, 11, 1L);
     ApuestaRealizada apuesta12 = userService.apostar(1L, 12, 1L);
 
-    List<ApuestaRealizada> apuestas = new ArrayList();
+    List<ApuestaRealizada> apuestas = new ArrayList<>();
     apuestas.add(apuesta11);
     apuestas.add(apuesta12);
 
@@ -929,7 +929,7 @@ public void consultarApuestasNotExistsMore() throws InstanceNotFoundException,
     ApuestaRealizada apuesta1 = userService.apostar(1L, 1, 1L);
     ApuestaRealizada apuesta2 = userService.apostar(1L, 2, 1L);
 
-    List<ApuestaRealizada> apuestas = new ArrayList();
+    List<ApuestaRealizada> apuestas = new ArrayList<>();
     apuestas.add(apuesta1);
     apuestas.add(apuesta2);
 

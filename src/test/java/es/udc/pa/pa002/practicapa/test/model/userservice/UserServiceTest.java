@@ -47,7 +47,7 @@ import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
+@ContextConfiguration(locations = {SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
 @Transactional
 public class UserServiceTest {
 
@@ -586,7 +586,7 @@ public void testEstablecerGanadoras() throws EventoStartedException,
 
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
     OpcionApuesta foundOpcionApuesta = opcionApuestaDao.find(opcionApuesta
@@ -636,7 +636,7 @@ public void testEstablecerGanadoras2() throws InstanceNotFoundException,
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta3.getIdOpcionApuesta());
     opcionesGanadoras.add(opcionApuesta5.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta3.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta3.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
     OpcionApuesta foundOpcionApuesta3 = opcionApuestaDao.find(opcionApuesta3
@@ -681,7 +681,7 @@ public void testEstablecerGanadorasFailed() throws EventoStartedException,
 
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }
@@ -721,9 +721,9 @@ public void testEstablecerGanadorasFailed2() throws EventoStartedException,
 
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 }
 
@@ -765,9 +765,9 @@ public void testEstablecerGanadorasFailed3() throws InstanceNotFoundException,
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta3.getIdOpcionApuesta());
     opcionesGanadoras.add(opcionApuesta5.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta3.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta3.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
-    userService.EspecificarGanadoras(opcionApuesta3.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta3.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }
@@ -810,7 +810,7 @@ public void testEstablecerGanadorasFailed4() throws InstanceNotFoundException,
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta3.getIdOpcionApuesta());
     opcionesGanadoras.add(opcionApuesta5.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta3.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta3.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }
@@ -854,7 +854,7 @@ public void testEstablecerGanadorasFailed5() throws InstanceNotFoundException,
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta5.getIdOpcionApuesta());
     opcionesGanadoras.add(100L);
-    userService.EspecificarGanadoras(opcionApuesta3.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta3.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }

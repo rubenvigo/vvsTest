@@ -269,7 +269,7 @@ public final ApuestaRealizada apostar(final Long idOpcionApuesta,
 }
 
 @Override
-public final void EspecificarGanadoras(final Long tipoApuestaId,
+public final void especificarGanadoras(final Long tipoApuestaId,
         final List<Long> ganadoras) throws EventoNotStartedException,
         OpcionApuestaAlreadySolvedException, InstanceNotFoundException,
         SimpleWinnerException, InvalidOptionException {

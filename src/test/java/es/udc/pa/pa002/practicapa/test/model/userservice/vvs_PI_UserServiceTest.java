@@ -53,7 +53,7 @@ import es.udc.pojo.modelutil.exceptions.DuplicateInstanceException;
 import es.udc.pojo.modelutil.exceptions.InstanceNotFoundException;
 
 @RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = { SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
+@ContextConfiguration(locations = {SPRING_CONFIG_FILE, SPRING_CONFIG_TEST_FILE })
 @Transactional
 public class vvs_PI_UserServiceTest {
 
@@ -577,7 +577,7 @@ public void especificarGanadoras() throws EventoStartedException,
 
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }
@@ -616,7 +616,7 @@ public void especificarGanadorasNotStartedEvento()
 
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }
@@ -659,9 +659,9 @@ public void especificarGanadorasAlreadySolved() throws EventoStartedException,
 
     List<Long> opcionesGanadoras = new ArrayList<Long>();
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 
 }
@@ -706,7 +706,7 @@ public void especificarGanadorasSimpleWinner() throws EventoStartedException,
     opcionesGanadoras.add(opcionApuesta.getIdOpcionApuesta());
 
     opcionesGanadoras.add(opcionApuesta2.getIdOpcionApuesta());
-    userService.EspecificarGanadoras(opcionApuesta.getTipoApuesta()
+    userService.especificarGanadoras(opcionApuesta.getTipoApuesta()
             .getIdTipoApuesta(), opcionesGanadoras);
 }
 

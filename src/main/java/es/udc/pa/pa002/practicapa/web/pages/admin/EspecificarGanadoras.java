@@ -171,14 +171,14 @@ final void onValidateFromEspecificarGanadorasForm()
         List<Long> ids = new ArrayList<Long>();
         if (!tipoApuesta.isMultiplesGanadoras()) {
             ids.add(opcionApuesta.getIdOpcionApuesta());
-            userService.EspecificarGanadoras(idTipoApuesta, ids);
+            userService.especificarGanadoras(idTipoApuesta, ids);
             ids.clear();
             return;
         }
         for (OpcionApuesta opcion : ganadoras) {
             ids.add(opcion.getIdOpcionApuesta());
         }
-        userService.EspecificarGanadoras(idTipoApuesta, ids);
+        userService.especificarGanadoras(idTipoApuesta, ids);
         ids.clear();
         ganadoras.clear();
 

@@ -116,7 +116,7 @@ final boolean validateFecha(final String fecha) {
  * On validate from add eventos form.
  */
 @OnEvent(value = "validate", component = "addEventosForm")
-final void OnValidateFromAddEventosForm() {
+final void onValidateFromAddEventosForm() {
     if (!addEventosForm.isValid()) {
         return;
     }

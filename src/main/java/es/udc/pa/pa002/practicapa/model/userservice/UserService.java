@@ -252,7 +252,7 @@ ApuestaRealizada apostar(Long idOpcionApuesta, float cantidad, Long userId)
  * @throws InvalidOptionException
  *             the invalid option exception
  */
-void EspecificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
+void especificarGanadoras(Long tipoApuestaId, List<Long> ganadoras)
         throws EventoNotStartedException, OpcionApuestaAlreadySolvedException,
         InstanceNotFoundException, SimpleWinnerException,
         InvalidOptionException;
