@@ -1,6 +1,3 @@
-/*
- * 
- */
 package es.udc.pa.pa002.practicapa.model.userprofile;
 
 import org.springframework.stereotype.Repository;

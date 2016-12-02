@@ -86,7 +86,6 @@ private void processEventHandlerAnnotations(final PlasticClass plasticClass,
  * This code is taken deliberatly from:
  * http://svn.apache.org/viewvc/tapestry/tapestry5/trunk/tapestry-core/src/ main
  * /java/org/apache/tapestry5/internal/transform/OnEventWorker.java?view= markup
- * 
  * Returns the component id to match against, or the empty string if the
  * component id is not specified. The component id is provided by the OnEvent
  * annotation or (if that is not present) by the part of the method name
@@ -119,7 +118,6 @@ private String extractComponentId(final String methodName,
  * This code is taken deliberatly from:
  * http://svn.apache.org/viewvc/tapestry/tapestry5/trunk/tapestry-core/src/ main
  * /java/org/apache/tapestry5/internal/transform/OnEventWorker.java?view= markup
- * 
  * Returns the event name to match against, as specified in the annotation or
  * (if the annotation is not present) extracted from the name of the method.
  * "onActionFromFoo" or just "onAction".
