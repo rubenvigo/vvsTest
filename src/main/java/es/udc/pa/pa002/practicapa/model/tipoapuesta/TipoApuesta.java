@@ -23,183 +23,168 @@ import es.udc.pa.pa002.practicapa.model.opcionapuesta.OpcionApuesta;
 @BatchSize(size = 10)
 public class TipoApuesta {
 
-/** The id tipo apuesta. */
-private Long idTipoApuesta;
+	/** The id tipo apuesta. */
+	private Long idTipoApuesta;
 
-/** The pregunta. */
-private String pregunta;
+	/** The pregunta. */
+	private String pregunta;
 
-/** The evento. */
-private Evento evento;
+	/** The evento. */
+	private Evento evento;
 
-/** The opciones apuesta. */
-private Set<OpcionApuesta> opcionesApuesta;
+	/** The opciones apuesta. */
+	private Set<OpcionApuesta> opcionesApuesta;
 
-/** The multiples ganadoras. */
-private boolean multiplesGanadoras;
+	/** The multiples ganadoras. */
+	private boolean multiplesGanadoras;
 
-/**
- * Instantiates a new tipo apuesta.
- */
-public TipoApuesta() {
+	/**
+	 * Instantiates a new tipo apuesta.
+	 */
+	public TipoApuesta() {
 
-}
+	}
 
-/**
- * Instantiates a new tipo apuesta.
- *
- * @param evento
- *            the evento
- * @param pregunta
- *            the pregunta
- * @param opcionesApuesta
- *            the opciones apuesta
- * @param multiplesGanadoras
- *            the multiples ganadoras
- */
-public TipoApuesta(final Evento evento, final String pregunta,
-        final Set<OpcionApuesta> opcionesApuesta,
-        final boolean multiplesGanadoras) {
+	/**
+	 * Instantiates a new tipo apuesta.
+	 *
+	 * @param evento
+	 *            the evento
+	 * @param pregunta
+	 *            the pregunta
+	 * @param opcionesApuesta
+	 *            the opciones apuesta
+	 * @param multiplesGanadoras
+	 *            the multiples ganadoras
+	 */
+	public TipoApuesta(final Evento evento, final String pregunta,
+			final Set<OpcionApuesta> opcionesApuesta,
+			final boolean multiplesGanadoras) {
 
-    this.pregunta = pregunta;
-    this.opcionesApuesta = opcionesApuesta;
-    this.multiplesGanadoras = multiplesGanadoras;
-}
+		this.pregunta = pregunta;
+		this.opcionesApuesta = opcionesApuesta;
+		this.multiplesGanadoras = multiplesGanadoras;
+	}
 
-/**
- * Instantiates a new tipo apuesta.
- *
- * @param pregunta
- *            the pregunta
- * @param opcionesApuesta
- *            the opciones apuesta
- * @param multiplesGanadoras
- *            the multiples ganadoras
- */
-public TipoApuesta(final String pregunta,
-        final Set<OpcionApuesta> opcionesApuesta,
-        final boolean multiplesGanadoras) {
+	/**
+	 * Instantiates a new tipo apuesta.
+	 *
+	 * @param pregunta
+	 *            the pregunta
+	 * @param opcionesApuesta
+	 *            the opciones apuesta
+	 * @param multiplesGanadoras
+	 *            the multiples ganadoras
+	 */
+	public TipoApuesta(final String pregunta,
+			final Set<OpcionApuesta> opcionesApuesta,
+			final boolean multiplesGanadoras) {
 
-    this.pregunta = pregunta;
-    this.opcionesApuesta = opcionesApuesta;
-    this.multiplesGanadoras = multiplesGanadoras;
-}
+		this.pregunta = pregunta;
+		this.opcionesApuesta = opcionesApuesta;
+		this.multiplesGanadoras = multiplesGanadoras;
+	}
 
-/**
- * Gets the id tipo apuesta.
- *
- * @return the id tipo apuesta
- */
-@SequenceGenerator(name = "idTipoApuestaGenerator", sequenceName = "tipoApuestaSeq")
-@Id
-@GeneratedValue(strategy = GenerationType.AUTO, generator = "idTipoApuestaGenerator")
-public final Long getIdTipoApuesta() {
-    return idTipoApuesta;
-}
+	/**
+	 * Gets the id tipo apuesta.
+	 *
+	 * @return the id tipo apuesta
+	 */
+	@SequenceGenerator(name = "idTipoApuestaGenerator", sequenceName = "tipoApuestaSeq")
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO, generator = "idTipoApuestaGenerator")
+	public final Long getIdTipoApuesta() {
+		return idTipoApuesta;
+	}
 
-/**
- * Sets the id tipo apuesta.
- *
- * @param idTipoApuesta
- *            the new id tipo apuesta
- */
-public final void setIdTipoApuesta(final Long idTipoApuesta) {
-    this.idTipoApuesta = idTipoApuesta;
-}
+	/**
+	 * Sets the id tipo apuesta.
+	 *
+	 * @param idTipoApuesta
+	 *            the new id tipo apuesta
+	 */
+	public final void setIdTipoApuesta(final Long idTipoApuesta) {
+		this.idTipoApuesta = idTipoApuesta;
+	}
 
-/**
- * Gets the pregunta.
- *
- * @return the pregunta
- */
-public final String getPregunta() {
-    return pregunta;
-}
+	/**
+	 * Gets the pregunta.
+	 *
+	 * @return the pregunta
+	 */
+	public final String getPregunta() {
+		return pregunta;
+	}
 
-/**
- * Sets the pregunta.
- *
- * @param pregunta
- *            the new pregunta
- */
-public final void setPregunta(final String pregunta) {
-    this.pregunta = pregunta;
-}
+	/**
+	 * Sets the pregunta.
+	 *
+	 * @param pregunta
+	 *            the new pregunta
+	 */
+	public final void setPregunta(final String pregunta) {
+		this.pregunta = pregunta;
+	}
 
-/**
- * Gets the evento.
- *
- * @return the evento
- */
-@ManyToOne(optional = false)
-@JoinColumn(name = "idEvento")
-public final Evento getEvento() {
-    return evento;
-}
+	/**
+	 * Gets the evento.
+	 *
+	 * @return the evento
+	 */
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "idEvento")
+	public final Evento getEvento() {
+		return evento;
+	}
 
-/**
- * Sets the evento.
- *
- * @param evento
- *            the new evento
- */
-public final void setEvento(final Evento evento) {
-    this.evento = evento;
-}
+	/**
+	 * Sets the evento.
+	 *
+	 * @param evento
+	 *            the new evento
+	 */
+	public final void setEvento(final Evento evento) {
+		this.evento = evento;
+	}
 
-/**
- * Gets the opciones apuesta.
- *
- * @return the opciones apuesta
- */
-@OneToMany(mappedBy = "tipoApuesta")
-public final Set<OpcionApuesta> getOpcionesApuesta() {
-    return opcionesApuesta;
-}
+	/**
+	 * Gets the opciones apuesta.
+	 *
+	 * @return the opciones apuesta
+	 */
+	@OneToMany(mappedBy = "tipoApuesta")
+	public final Set<OpcionApuesta> getOpcionesApuesta() {
+		return opcionesApuesta;
+	}
 
-/**
- * Sets the opciones apuesta.
- *
- * @param opcionesApuesta
- *            the new opciones apuesta
- */
-public final void setOpcionesApuesta(final Set<OpcionApuesta> opcionesApuesta) {
-    this.opcionesApuesta = opcionesApuesta;
-}
+	/**
+	 * Sets the opciones apuesta.
+	 *
+	 * @param opcionesApuesta
+	 *            the new opciones apuesta
+	 */
+	public final void setOpcionesApuesta(
+			final Set<OpcionApuesta> opcionesApuesta) {
+		this.opcionesApuesta = opcionesApuesta;
+	}
 
-/**
- * Checks if is multiples ganadoras.
- *
- * @return true, if is multiples ganadoras
- */
-public final boolean isMultiplesGanadoras() {
-    return multiplesGanadoras;
-}
+	/**
+	 * Checks if is multiples ganadoras.
+	 *
+	 * @return true, if is multiples ganadoras
+	 */
+	public final boolean isMultiplesGanadoras() {
+		return multiplesGanadoras;
+	}
 
-/**
- * Sets the multiples ganadoras.
- *
- * @param multiplesGanadoras
- *            the new multiples ganadoras
- */
-public final void setMultiplesGanadoras(final boolean multiplesGanadoras) {
-    this.multiplesGanadoras = multiplesGanadoras;
-}
-
-/**
- * Exists opcion apuesta.
- *
- * @param nombre
- *            the nombre
- * @return true, if successful
- */
-public final boolean existsOpcionApuesta(final String nombre) {
-    for (OpcionApuesta opcionApuesta : opcionesApuesta) {
-        if (opcionApuesta.getRespuesta().equals(nombre)) {
-            return true;
-        }
-    }
-    return false;
-}
+	/**
+	 * Sets the multiples ganadoras.
+	 *
+	 * @param multiplesGanadoras
+	 *            the new multiples ganadoras
+	 */
+	public final void setMultiplesGanadoras(final boolean multiplesGanadoras) {
+		this.multiplesGanadoras = multiplesGanadoras;
+	}
 
 }
