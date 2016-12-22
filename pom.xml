@@ -204,11 +204,6 @@
 			<artifactId>graphwalker-java</artifactId>
 			<version>3.4.2</version>
 		</dependency>
-		<dependency>
-			<groupId>org.graphwalker</groupId>
-			<artifactId>graphwalker-maven-plugin</artifactId>
-			<version>3.4.2</version>
-		</dependency>
 		<!-- Spring -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -349,16 +344,6 @@
 					<groupId>org.graphwalker</groupId>
 					<artifactId>graphwalker-maven-plugin</artifactId>
 					<version>3.4.2</version>
-					<!-- Bind goals to the default lifecycle -->
-					<executions>
-						<execution>
-							<id>generate-sources</id>
-							<phase>generate-sources</phase>
-							<goals>
-								<goal>generate-sources</goal>
-							</goals>
-						</execution>
-					</executions>
 				</plugin>
 			</plugins>
 		</pluginManagement>
